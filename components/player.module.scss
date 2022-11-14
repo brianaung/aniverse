@@ -1,0 +1,13 @@
+$video-width: 360px;
+$video-height: 240px;
+
+.container {
+  border: solid 2px red;
+  display: flex;
+  justify-content: center;
+}
+
+.player {
+  width: $video-width;
+  height: $video-height;
+}
