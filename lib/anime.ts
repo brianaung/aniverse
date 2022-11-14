@@ -50,8 +50,7 @@ export async function getAnimeSearch(query: string) {
     }
     await fetchData(page)
     return ret
-  }
-  catch(err: any) {
+  } catch (err: any) {
     console.log(err.message)
   }
 }
