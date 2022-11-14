@@ -5,21 +5,6 @@ import { getAllTopAnime } from '../lib/anime'
 import Player from '../components/player'
 import Layout from '../components/layout'
 
-export const getStaticProps: GetStaticProps = async () => {
-  const allTopAnime = await getAllTopAnime()
-  // error handling
-  if (typeof allTopAnime === 'undefined') {
-    return {
-      notFound: true,
-    }
-  }
-  return {
-    props: {
-      allTopAnime,
-    },
-  }
-}
-
 export default function Home({
   allTopAnime,
 }: {
@@ -38,7 +23,7 @@ export default function Home({
       </Head>
       {/* testing video player */}
       <section>
-        <p>Testing</p>
+        <p>Testing: video player</p>
         <Player src="https://wwwx16.gogocdn.stream/videos/hls/3wT6FzERnZZ6t_9FXeYgbA/1668426010/17075/bcc369738325d609c828bc6c16f9a7fd/ep.1.1657689068.720.m3u8" />
       </section>
       <section>
@@ -47,7 +32,6 @@ export default function Home({
           {allTopAnime.map((anime) => (
             <li key={anime.id}>
               {anime.title}
-              {anime.url}
               <Image src={anime.image} height={180} width={180} alt={anime.title} />
             </li>
           ))}
@@ -55,4 +39,19 @@ export default function Home({
       </section>
     </Layout>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const allTopAnime = await getAllTopAnime()
+  // error handling
+  if (typeof allTopAnime === 'undefined') {
+    return {
+      notFound: true,
+    }
+  }
+  return {
+    props: {
+      allTopAnime,
+    },
+  }
 }

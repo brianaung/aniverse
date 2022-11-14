@@ -1,4 +1,6 @@
+@use 'styles/_library.scss';
+
 .mainHeader {
-  font-size: 36px;
+  font-size: library.$font-h1;
   text-align: center;
 }
