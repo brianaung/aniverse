@@ -26,17 +26,16 @@ export async function getAllTopAnime() {
   }
 }
 
-export async function getAnimeSearch() {
+export async function getAnimeSearch(query: string) {
   try {
     // tmp search string
-    const query = "gintama"
+    // const query = "gintama"
     let page = 1
     const ret: { id: string; title: string; image: string; releaseDate: string; subOrDub: string }[] = []
 
     const fetchData = async (page: number) => {
       const res = await fetch(`https://api.consumet.org/anime/gogoanime/${query}?page=${page}`)
       const data = await res.json()
-      console.log(data);
       ret.push(...data.results)
 
       // base case

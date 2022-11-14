@@ -1,21 +1,16 @@
-import { GetStaticProps } from 'next'
+// import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { getAllTopAnime, getAnimeSearch } from '../lib/anime'
+// import { getAllTopAnime, getAnimeSearch } from '../lib/anime'
 import Player from '../components/player'
 import Layout from '../components/layout'
+import useSWR, { Fetcher } from 'swr'
 
-export default function Home({
-  queryResults,
-}: {
-  queryResults: {
-    id: string
-    title: string
-    image: string
-    releaseDate: string
-    subOrDub: string
-  }[]
-}) {
+const fetcher: Fetcher<{id: string; title: string; url: string; image: string; releaseDate: string; subOrDub: string }[], string> = (arg: string) => fetch(arg).then(res => res.json())
+
+export default function Home() {
+  const { data, error } = useSWR(`/api/search/gintama`, fetcher)
+
   return (
     <Layout>
       <Head>
@@ -29,7 +24,7 @@ export default function Home({
       <section>
         <h2>Testing: data fetching</h2>
         <ul>
-          {queryResults.map((anime) => (
+          {!error && typeof data !== 'undefined' && data.map((anime) => (
             <li key={anime.id}>
               {anime.title}
               <Image src={anime.image} height={180} width={180} alt={anime.title} />
@@ -41,9 +36,9 @@ export default function Home({
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+/* export const getStaticProps: GetStaticProps = async () => {
   // todo: testing search function (might need to use client side rendering)
-  const queryResults = await getAnimeSearch()
+  const queryResults = await getAnimeSearch('gintama')
   console.log(queryResults)
 
   // error handling
@@ -59,4 +54,4 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   }
 }
-
+*/
