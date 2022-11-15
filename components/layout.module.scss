@@ -1,8 +1,7 @@
-$main-width: 70%;
+@use 'styles/_library.scss';
 
 .container {
-  max-width: $main-width;
+  max-width: library.$main-width;
   padding: 0 1rem;
   margin: 1rem auto;
-  border: solid 2px black;
 }

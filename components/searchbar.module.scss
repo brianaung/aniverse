@@ -1,0 +1,6 @@
+@use 'styles/_library.scss';
+
+.container {
+  height: 2rem;
+  border: solid 1px library.$divider;
+}

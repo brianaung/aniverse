@@ -1,0 +1,17 @@
+/* main style variables that will be used across multiple components.
+   these will make up the building blocks of the overall theme.
+   any variables that are tied to only one component will be defined in that specific file.
+*/
+
+// color
+$primary: white;
+$secondary: yellow;
+$divider: lightgrey;
+
+// font
+$line-height: 1.6;
+$font-h1: 36px;
+$font-body: 18px;
+
+// structure
+$main-width: 70%;

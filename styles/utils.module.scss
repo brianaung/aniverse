@@ -1,4 +1,14 @@
+@use 'styles/_library.scss';
+
 .mainHeader {
-  font-size: 36px;
+  font-size: library.$font-h1;
   text-align: center;
+}
+
+// tmp. to display vivid dev message during development
+.devMessage {
+  font-size: 22px;
+  font-weight: 600;
+  color: red;
+  font-style: italic;
 }
