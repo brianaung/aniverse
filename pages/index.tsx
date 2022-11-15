@@ -3,9 +3,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 // import { getAllTopAnime, getAnimeSearch } from '../lib/anime'
 import Player from '../components/player'
-import Layout from '../components/layout'
 import useSWR, { Fetcher } from 'swr'
 import utilStyles from '../styles/utils.module.scss'
+import { useContext } from 'react'
+import { SearchContext } from './_app'
+import Layout from '../components/layout'
 
 const fetcher: Fetcher<
   { id: string; title: string; url: string; image: string; releaseDate: string; subOrDub: string }[],
@@ -13,7 +15,8 @@ const fetcher: Fetcher<
 > = (arg: string) => fetch(arg).then((res) => res.json())
 
 export default function Home() {
-  const { data, error } = useSWR(`/api/search/gintama`, fetcher)
+  const { query } = useContext(SearchContext)
+  const { data, error } = useSWR(`/api/search/${query}`, fetcher)
 
   return (
     <Layout>
@@ -28,6 +31,7 @@ export default function Home() {
       {/* testing data fetch */}
       <section>
         <p className={utilStyles.devMessage}>Testing: data fetching</p>
+        <p>{query}</p>
         <ul>
           {!error &&
             typeof data !== 'undefined' &&

@@ -1,3 +1,4 @@
+import React from 'react'
 import styles from './layout.module.scss'
 // import utilStyles from '../styles/utils.module.scss'
 import Navbar from './navbar'
