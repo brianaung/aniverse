@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router'
 import useSWR, { Fetcher } from 'swr'
-import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '../../../components/layout'
+import AnimeItem from '../../../components/animeItem'
+import AnimeListContainer from '../../../components/animeListContainer'
 
 // fetcher for useSWR
 const fetcher: Fetcher<
@@ -19,19 +20,16 @@ export default function Results() {
   return (
     <Layout>
       <h2>results page</h2>
-      <p>{query}</p>
-      <section>
-        <ul>
-          {!error &&
-            typeof data !== 'undefined' &&
-            data.map((anime) => (
-              <li key={anime.id}>
-                {anime.title}
-                <Image src={anime.image} height={180} width={180} alt={anime.title} />
-              </li>
-            ))}
-        </ul>
-      </section>
+      <p>searching for: {query}</p>
+      {!data && !error && <p>Loading</p>}
+      {!data && error && <p>Search not found.</p>}
+      <AnimeListContainer>
+        {data && !error &&
+          data.map((anime) => (
+              <AnimeItem key={anime.id} anime={anime} />
+          ))
+        }
+      </AnimeListContainer>
       <Link href="/">Back to home</Link>
     </Layout>
   )
