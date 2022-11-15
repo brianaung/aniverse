@@ -24,11 +24,7 @@ export default function Results() {
       {!data && !error && <p>Loading</p>}
       {!data && error && <p>Search not found.</p>}
       <AnimeListContainer>
-        {data && !error &&
-          data.map((anime) => (
-              <AnimeItem key={anime.id} anime={anime} />
-          ))
-        }
+        {data && !error && data.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
       </AnimeListContainer>
       <Link href="/">Back to home</Link>
     </Layout>

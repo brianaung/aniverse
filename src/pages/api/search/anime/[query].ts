@@ -8,7 +8,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const queryResults = await getAnimeSearch(query.query)
 
   // return not found error if search results return empty array
-  if (queryResults && queryResults.length === 0) { throw new Error('Not found') }
+  if (queryResults && queryResults.length === 0) {
+    throw new Error('Not found')
+  }
 
   return res.status(200).json(queryResults)
 }
