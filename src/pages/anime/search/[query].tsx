@@ -11,7 +11,7 @@ const fetcher: Fetcher<
   string
 > = (arg: string) => fetch(arg).then((res) => res.json())
 
-export default function Results() {
+export default function SearchResultsPage() {
   const router = useRouter()
   // get .../search/anime/[query]
   const { query } = router.query
