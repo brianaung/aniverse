@@ -20,6 +20,7 @@ export default function Home() {
       {/* testing video player */}
       <section>
         <p className={utilStyles.devMessage}>Testing: video player</p>
+        
         {!data && !error && <p>Loading</p>}
         {!data && error && <p>Error loading video.</p>}
         {data && !error && <Player src={data.url} />}
