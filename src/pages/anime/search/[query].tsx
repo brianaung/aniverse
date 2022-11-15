@@ -4,12 +4,10 @@ import Link from 'next/link'
 import Layout from '../../../components/layout'
 import AnimeItem from '../../../components/animeItem'
 import AnimeListContainer from '../../../components/animeListContainer'
+import { IAnimeMinimalInfo } from '../../../types'
 
 // fetcher for useSWR
-const fetcher: Fetcher<
-  { id: string; title: string; url: string; image: string; releaseDate: string; subOrDub: string }[],
-  string
-> = (arg: string) => fetch(arg).then((res) => res.json())
+const fetcher: Fetcher<[IAnimeMinimalInfo], string> = (arg: string) => fetch(arg).then((res) => res.json())
 
 export default function SearchResultsPage() {
   const router = useRouter()

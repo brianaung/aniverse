@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { IAnimeInfo } from "../../../../types";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const query: { id: string } = Array.isArray(req.query) ? req.query[0] : req.query
@@ -9,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     throw new Error('An Error has occured')
   }
 
-  const data = await response.json()
+  const data: IAnimeInfo = await response.json()
 
   return res.status(200).json(data)
 }

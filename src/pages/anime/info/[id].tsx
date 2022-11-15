@@ -1,8 +1,9 @@
 import useSWR, { Fetcher } from "swr";
 import { useRouter } from "next/router";
 import Layout from "../../../components/layout";
+import { IAnimeInfo } from "../../../types";
 
-const fetcher: Fetcher = (arg: string) => fetch(arg).then((res) => res.json())
+const fetcher: Fetcher<IAnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
 
 export default function AnimeInfoPage() {
   const router = useRouter()
