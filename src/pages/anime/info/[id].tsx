@@ -8,8 +8,7 @@ const fetcher: Fetcher<IAnimeInfo, string> = (arg: string) => fetch(arg).then((r
 export default function AnimeInfoPage() {
   const router = useRouter()
   const { id } = router.query
-  const { data, error } = useSWR(`/api/anime/info/${id}`, fetcher)
-  console.log(data)
+  const { data, error } = useSWR(id ? `/api/anime/info/${id}` : null, fetcher)
 
   return (
     <Layout>
@@ -23,6 +22,8 @@ export default function AnimeInfoPage() {
           <p>{data.totalEpisodes}</p>
         </>
       }
+      <p>Testing video player</p>
+      {data && !error && <button onClick={() => router.push(`/anime/player/${data.episodes[0].id}`)}>Play first episode</button>}
     </Layout>
   )
 }
