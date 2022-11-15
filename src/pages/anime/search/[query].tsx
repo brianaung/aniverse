@@ -15,7 +15,7 @@ export default function Results() {
   const router = useRouter()
   // get .../search/anime/[query]
   const { query } = router.query
-  const { data, error } = useSWR(`/api/search/anime/${query}`, fetcher)
+  const { data, error } = useSWR(`/api/anime/search/${query}`, fetcher)
 
   return (
     <Layout>

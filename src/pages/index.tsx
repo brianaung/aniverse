@@ -9,7 +9,7 @@ const fetcher: Fetcher<{ url: string; error: string }> = (arg: string) => fetch(
 export default function Home() {
   // todo: do not hardcode anime episode
   const vidUrl = 'gintama-episode-1'
-  const { data, error } = useSWR(`/api/play/${vidUrl}`, fetcher)
+  const { data, error } = useSWR(`/api/anime/play/${vidUrl}`, fetcher)
 
   return (
     <Layout>

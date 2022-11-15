@@ -6,7 +6,7 @@ export default function Searchbar() {
 
   const handleInput = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
-    router.push(`/search/anime/${e.target.searchbar.value}`)
+    router.push(`/anime/search/${e.target.searchbar.value}`)
   }
 
   return (
