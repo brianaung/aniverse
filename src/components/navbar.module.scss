@@ -3,7 +3,6 @@
 $bar-height: 3rem;
 
 .container {
-  // todo: change this to only have bottom border or remove it completely
   border: solid 1px library.$divider;
   width: 100%;
   min-height: $bar-height;

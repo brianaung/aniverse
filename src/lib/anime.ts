@@ -1,4 +1,4 @@
-import { IAnimeMinimalInfo } from "../types";
+import { IAnimeMinimalInfo } from '../types'
 
 export async function getAllTopAnime() {
   try {
