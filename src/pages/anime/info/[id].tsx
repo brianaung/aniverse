@@ -10,6 +10,10 @@ export default function AnimeInfoPage() {
   const { id } = router.query
   const { data, error } = useSWR(id ? `/api/anime/info/${id}` : null, fetcher)
 
+  const handlePlay = (epID: string) => {
+    router.push(`/anime/player/${epID}`)
+  }
+
   return (
     <Layout>
       {!data && !error && <p>Loading</p>}
@@ -20,12 +24,13 @@ export default function AnimeInfoPage() {
           <p>{data.description}</p>
           <p>{data.releaseDate}</p>
           <p>{data.totalEpisodes}</p>
+          {/* return a list of episodes */}
+          {data.episodes.map((ep) => (
+            <button onClick={() => handlePlay(ep.id)}>{ep.id}</button>
+          ))}
         </>
       )}
       <p>Testing video player</p>
-      {data && !error && (
-        <button onClick={() => router.push(`/anime/player/${data.episodes[0].id}`)}>Play first episode</button>
-      )}
     </Layout>
   )
 }
