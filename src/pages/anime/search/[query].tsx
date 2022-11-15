@@ -4,18 +4,16 @@ import Link from 'next/link'
 import Layout from '../../../components/layout'
 import AnimeItem from '../../../components/animeItem'
 import AnimeListContainer from '../../../components/animeListContainer'
+import { IAnimeMinimalInfo } from '../../../types'
 
 // fetcher for useSWR
-const fetcher: Fetcher<
-  { id: string; title: string; url: string; image: string; releaseDate: string; subOrDub: string }[],
-  string
-> = (arg: string) => fetch(arg).then((res) => res.json())
+const fetcher: Fetcher<[IAnimeMinimalInfo], string> = (arg: string) => fetch(arg).then((res) => res.json())
 
-export default function Results() {
+export default function SearchResultsPage() {
   const router = useRouter()
   // get .../search/anime/[query]
   const { query } = router.query
-  const { data, error } = useSWR(`/api/anime/search/${query}`, fetcher)
+  const { data, error } = useSWR(query ? `/api/anime/search/${query}` : null, fetcher)
 
   return (
     <Layout>

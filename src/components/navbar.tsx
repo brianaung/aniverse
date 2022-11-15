@@ -8,7 +8,7 @@ export default function Navbar() {
     <div className={styles.container}>
       {/* back to home */}
       <Link className={utilStyles.mainHeader} href="/">
-        Aniverse
+        Home
       </Link>
 
       {/* searchbar */}
