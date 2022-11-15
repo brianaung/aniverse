@@ -1,8 +1,8 @@
-import { useRouter } from "next/router"
+import { useRouter } from 'next/router'
 import useSWR, { Fetcher } from 'swr'
-import Image from "next/image"
-import Link from "next/link"
-import Layout from "../../../components/layout"
+import Image from 'next/image'
+import Link from 'next/link'
+import Layout from '../../../components/layout'
 
 // fetcher for useSWR
 const fetcher: Fetcher<
@@ -32,7 +32,7 @@ export default function Results() {
             ))}
         </ul>
       </section>
-      <Link href='/'>Back to home</Link>
+      <Link href="/">Back to home</Link>
     </Layout>
   )
 }

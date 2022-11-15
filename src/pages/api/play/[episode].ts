@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // throw error if res is not ok
   // try catch can also be used if not using useSWR
   if (!queryResult.ok) {
-    throw new Error("An Error has occured")
+    throw new Error('An Error has occured')
   }
 
   // return data

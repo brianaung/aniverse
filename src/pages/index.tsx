@@ -1,10 +1,10 @@
-import Head from 'next/head'
 import utilStyles from '../styles/utils.module.scss'
+import Head from 'next/head'
+import useSWR, { Fetcher } from 'swr'
 import Layout from '../components/layout'
 import Player from '../components/player'
-import useSWR, { Fetcher } from 'swr'
 
-const fetcher: Fetcher<{ url: string, error: string }> = (arg: string) => fetch(arg).then((res) => res.json())
+const fetcher: Fetcher<{ url: string; error: string }> = (arg: string) => fetch(arg).then((res) => res.json())
 
 export default function Home() {
   // todo: do not hardcode anime episode
@@ -27,7 +27,6 @@ export default function Home() {
       </section>
 
       {/* todo: fetch top animes using getStaticProps */}
-
     </Layout>
   )
 }

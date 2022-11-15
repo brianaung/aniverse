@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import styles from './navbar.module.scss'
 import utilStyles from '../styles/utils.module.scss'
+import Link from 'next/link'
 import Searchbar from './searchbar'
 
 export default function Navbar() {
@@ -16,7 +16,6 @@ export default function Navbar() {
 
       {/* getAllTopAnime */}
       {/* getAllRecentAnime */}
-
     </div>
   )
 }

@@ -1,6 +1,6 @@
+import styles from './player.module.scss'
 import { useEffect, useRef } from 'react'
 import Hls from 'hls.js'
-import styles from './player.module.scss'
 
 export default function Player({ src }: { src: string }) {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -23,7 +23,7 @@ export default function Player({ src }: { src: string }) {
       // even Hls.js cant help you
       console.error('Stop using an old browser')
     }
-  }, [videoRef])
+  }, [src, videoRef])
 
   return (
     <div className={styles.container}>
