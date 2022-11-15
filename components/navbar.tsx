@@ -7,7 +7,9 @@ export default function Navbar() {
   return (
     <div className={styles.container}>
       {/* back to home */}
-      <Link className={utilStyles.mainHeader} href="/">Aniverse</Link>
+      <Link className={utilStyles.mainHeader} href="/">
+        Aniverse
+      </Link>
 
       {/* searchbar */}
       <Searchbar />

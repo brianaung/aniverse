@@ -1,10 +1,19 @@
+import { useRouter } from 'next/router'
 import styles from './searchbar.module.scss'
 
 export default function Searchbar() {
-  // todo: add search functionality
-  // api call to getAnimeSearch with getStaticProps
+  const router = useRouter()
+
+  const handleInput = (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    router.push(`/search/anime/${e.target.searchbar.value}`)
+  }
 
   return (
-    <input className={styles.container} placeholder="search..." />
+    <>
+      <form onSubmit={handleInput}>
+        <input id="searchbar" className={styles.container} placeholder="search..." />
+      </form>
+    </>
   )
 }
