@@ -1,10 +1,29 @@
 import styles from './player.module.scss'
-import { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Hls from 'hls.js'
+import { IVideoSrc } from '../types'
 
-export default function Player({ src }: { src: string }) {
+export default function Player({ allSrc }: { allSrc: [IVideoSrc] }) {
+  const getUrl = (quality: string) => {
+    let url = allSrc[0].url
+    allSrc.forEach(src => {
+      if (src.quality === quality) { 
+        url = src.url
+      }
+    });
+    return url
+  }
+  const [quality, setQuality] = useState('default')
   const videoRef = useRef<HTMLVideoElement>(null)
+  const [src, setSrc] = useState(getUrl(quality))
 
+  // get new video src whenever the user changes video quality
+  useEffect(() => {
+    setSrc(getUrl(quality))
+    console.log(`playing ${quality} video`)
+  }, [quality])
+
+  // get the video player ready with the src available
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
@@ -25,9 +44,32 @@ export default function Player({ src }: { src: string }) {
     }
   }, [src, videoRef])
 
+  const handleQuality = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setQuality(e.target.value)
+  }
+
   return (
     <div className={styles.container}>
-      <video className={styles.player} ref={videoRef} />
+      <main>
+        <video className={styles.player} ref={videoRef} />
+      </main>
+
+      <p>Current quality: {quality}</p>
+
+      <select onChange={handleQuality}>
+        {allSrc.map((src) => (
+          <>
+          {(src.quality === 'default') ? (
+            <option selected key={src.quality} value={src.quality}>
+              {src.quality}
+            </option>
+          ) : (
+          <option key={src.quality} value={src.quality}>
+            {src.quality}
+          </option>)}
+          </>
+        ))}
+      </select>
     </div>
   )
 }

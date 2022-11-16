@@ -28,3 +28,9 @@ export interface IAnimeMinimalInfo {
   releaseDate: string
   subOrDub: string
 }
+
+export interface IVideoSrc {
+  url: string
+  quality: string
+  isM3U8: boolean
+}

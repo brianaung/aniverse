@@ -14,5 +14,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // return data
   // todo: currently returning a first url (allow user to choose quality in the future
   const data = await response.json()
-  return res.status(200).json({ url: data.sources[0].url })
+  return res.status(200).json({ allSrc: data.sources })
 }
