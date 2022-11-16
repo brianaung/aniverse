@@ -1,7 +1,7 @@
-@use 'src/styles/_library.scss';
+@use 'src/styles/_lib.scss';
 
 .mainHeader {
-  font-size: library.$font-h1;
+  font-size: lib.$fontH1;
   text-align: center;
 }
 

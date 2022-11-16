@@ -1,9 +1,8 @@
-@use 'src/styles/_library.scss';
+@use 'src/styles/_lib.scss';
 
 $bar-height: 3rem;
 
 .container {
-  border: solid 1px library.$divider;
   width: 100%;
   min-height: $bar-height;
   display: flex;
