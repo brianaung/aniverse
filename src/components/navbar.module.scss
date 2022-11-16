@@ -1,12 +1,25 @@
 @use 'src/styles/_lib.scss';
 
-$bar-height: 3rem;
+$barHeight: 3rem;
 
 .container {
   width: 100%;
-  min-height: $bar-height;
+  min-height: $barHeight;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+
+.navSelections {
+  // right align
+  margin-left: auto;
+  margin-right: 3rem;
+  padding: 1rem;
+  // flex box
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 3rem;
 }

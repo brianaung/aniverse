@@ -11,11 +11,14 @@ export default function Navbar() {
         どやなル
       </Link>
 
-      {/* searchbar */}
-      <Searchbar />
-
       {/* getAllTopAnime */}
       {/* getAllRecentAnime */}
+      <div className={styles.navSelections}>
+        <Link href="/">Trending</Link>
+        <Link href="/">Recent</Link>
+      </div>
+
+      <Searchbar />
     </div>
   )
 }
