@@ -1,9 +1,12 @@
-import { IAnimeMinimalInfo, IAnimeTop } from '../types'
+import { IAnimeMinimalInfo, IAnimeTopInfo } from '../types'
 
+/**
+ * Fetch and return an array of all top trending animes
+ */
 export async function getAllTopAnime() {
   try {
     let page = 1
-    const ret: IAnimeTop[] = []
+    const ret: IAnimeTopInfo[] = []
 
     // recusively fetch top animes from all pages
     const fetchData = async (page: number) => {
@@ -28,6 +31,10 @@ export async function getAllTopAnime() {
   }
 }
 
+/**
+ * Fetch and return an array of all matching animes that the user queried.
+ * @param query - The user query string.
+ */
 export async function getAnimeSearch(query: string) {
   let page = 1
   const ret: IAnimeMinimalInfo[] = []

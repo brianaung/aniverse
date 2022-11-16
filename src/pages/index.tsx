@@ -14,8 +14,10 @@ export default function Home({ topAnimes }: { topAnimes: IAnimeTopInfo[] }) {
         <title>Aniverse Home</title>
       </Head>
 
-      {/* todo: fetch top animes using getStaticProps */}
+      {/* todo: handle errors */}
       <section>
+        <h2>popular animes</h2>
+        {/* todo: no need for loading state since it is rendered on server side? */}
         {!topAnimes && <p>Loading</p>}
         <AnimeListContainer>
           {topAnimes && topAnimes.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
