@@ -7,7 +7,7 @@ import AnimeItem from '../components/animeItem'
 import { IAnimeTopInfo } from '../types'
 import AnimeListContainer from '../components/animeListContainer'
 
-  export default function Home({ topAnimes }: { topAnimes: IAnimeTopInfo[] }) {
+export default function Home({ topAnimes }: { topAnimes: IAnimeTopInfo[] }) {
   return (
     <Layout>
       <Head>
@@ -18,12 +18,9 @@ import AnimeListContainer from '../components/animeListContainer'
       <section>
         {!topAnimes && <p>Loading</p>}
         <AnimeListContainer>
-          {topAnimes && topAnimes.map((anime) => (
-            <AnimeItem key={anime.id} anime={anime} />
-          ))} 
+          {topAnimes && topAnimes.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>
       </section>
-
     </Layout>
   )
 }
@@ -34,7 +31,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   // error handling
   if (!topAnimes) {
-    throw new Error("Server error")
+    throw new Error('Server error')
   }
 
   return {

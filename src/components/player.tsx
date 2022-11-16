@@ -6,11 +6,11 @@ import { IVideoSrc } from '../types'
 export default function Player({ allSrc }: { allSrc: [IVideoSrc] }) {
   const getUrl = (quality: string) => {
     let url = allSrc[0].url
-    allSrc.forEach(src => {
-      if (src.quality === quality) { 
+    allSrc.forEach((src) => {
+      if (src.quality === quality) {
         url = src.url
       }
-    });
+    })
     return url
   }
   const [quality, setQuality] = useState('default')
@@ -59,14 +59,15 @@ export default function Player({ allSrc }: { allSrc: [IVideoSrc] }) {
       <select onChange={handleQuality}>
         {allSrc.map((src) => (
           <>
-          {(src.quality === 'default') ? (
-            <option selected key={src.quality} value={src.quality}>
-              {src.quality}
-            </option>
-          ) : (
-          <option key={src.quality} value={src.quality}>
-            {src.quality}
-          </option>)}
+            {src.quality === 'default' ? (
+              <option selected key={src.quality} value={src.quality}>
+                {src.quality}
+              </option>
+            ) : (
+              <option key={src.quality} value={src.quality}>
+                {src.quality}
+              </option>
+            )}
           </>
         ))}
       </select>

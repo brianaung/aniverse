@@ -26,7 +26,7 @@ export interface IAnimeBaseInfo {
   url: string
 }
 
-export interface IAnimeTopInfo extends IAnimeBaseInfo{
+export interface IAnimeTopInfo extends IAnimeBaseInfo {
   genres: [string]
 }
 
