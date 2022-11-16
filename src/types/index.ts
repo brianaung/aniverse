@@ -4,29 +4,30 @@ export interface IEpisode {
   url: string
 }
 
-export interface IAnimeInfo {
-  id: string
-  title: string
-  url: string
-  image: string
-  releaseDate: string
+export interface IAnimeExtendedInfo extends IAnimeMinimalInfo {
   description: string
   genres: [string]
-  subOrDub: string
   type: string
   status: string
-  otherName: string
   totalEpisodes: number
   episodes: [IEpisode]
+  otherName?: string
 }
 
-export interface IAnimeMinimalInfo {
-  id: string
-  title: string
-  url: string
-  image: string
+export interface IAnimeMinimalInfo extends IAnimeBaseInfo {
   releaseDate: string
   subOrDub: string
+}
+
+export interface IAnimeBaseInfo {
+  id: string
+  title: string
+  image: string
+  url: string
+}
+
+export interface IAnimeTopInfo extends IAnimeBaseInfo{
+  genres: [string]
 }
 
 export interface IVideoSrc {

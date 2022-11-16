@@ -1,9 +1,9 @@
-import { IAnimeMinimalInfo } from '../types'
+import { IAnimeMinimalInfo, IAnimeTop } from '../types'
 
 export async function getAllTopAnime() {
   try {
     let page = 1
-    const ret: { id: string; title: string; image: string; url: string; genres: [string] }[] = []
+    const ret: IAnimeTop[] = []
 
     // recusively fetch top animes from all pages
     const fetchData = async (page: number) => {

@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React from 'react'
+import { IAnimeBaseInfo } from '../types'
 import styles from './animeItem.module.scss'
 
 export default function AnimeItem({
   anime,
 }: {
-  anime: { id: string; title: string; url: string; image: string; releaseDate: string; subOrDub: string }
+  anime: IAnimeBaseInfo
 }) {
   const router = useRouter()
   const handleOpen = () => {
