@@ -11,7 +11,7 @@ export default function AnimeInfoPage() {
   const { data, error } = useSWR(id ? `/api/anime/info/${id}` : null, fetcher)
 
   const handlePlay = (epID: string) => {
-    router.push(`/anime/player/${epID}`)
+    router.push(`/anime/play/${epID}`)
   }
 
   return (

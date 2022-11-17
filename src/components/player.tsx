@@ -42,8 +42,10 @@ export default function Player({ allSrc }: { allSrc: [IVideoSrc] }) {
     } else if (Hls.isSupported()) {
       // for other unsupported browsers use Hls.js
       const hls = new Hls()
-      hls.loadSource(src)
-      hls.attachMedia(video)
+      if (hls) {
+        hls.loadSource(src)
+        hls.attachMedia(video)
+      }
     } else {
       // even Hls.js cant help you
       console.error('Stop using an old browser')
@@ -62,19 +64,11 @@ export default function Player({ allSrc }: { allSrc: [IVideoSrc] }) {
 
       <p>Current quality: {quality}</p>
 
-      <select onChange={handleQuality}>
+      <select defaultValue={quality} onChange={handleQuality}>
         {allSrc.map((src) => (
-          <>
-            {src.quality === 'default' ? (
-              <option selected key={src.quality} value={src.quality}>
-                {src.quality}
-              </option>
-            ) : (
-              <option key={src.quality} value={src.quality}>
-                {src.quality}
-              </option>
-            )}
-          </>
+          <option key={src.url} value={src.quality}>
+            {src.quality}
+          </option>
         ))}
       </select>
     </div>
