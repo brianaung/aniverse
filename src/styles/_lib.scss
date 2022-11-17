@@ -4,14 +4,18 @@
 */
 
 // color
-$primary: white;
-$secondary: yellow;
-$divider: lightgrey;
+$bgColor: #ffffff;
+$textColor: #030301;
+$primary: yellow;
+$secondary: red;
+$dividerColor: black;
 
 // font
-$line-height: 1.6;
-$font-h1: 36px;
-$font-body: 18px;
+$lineHeight: 1.6;
+$fontH1: 36px;
+$fontBody: 18px;
 
 // structure
-$main-width: 70%;
+$mainWidth: 70%;
+$dividerSize: 2px;
+$borderRadius: 10px;

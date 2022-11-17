@@ -1,6 +1,11 @@
-@use 'src/styles/_library.scss';
+@use 'src/styles/_lib.scss';
 
-.container {
+.searchInput {
+  font-family: inherit;
+  color: lib.$textColor;
   height: 2rem;
-  border: solid 1px library.$divider;
+  width: 10rem;
+  border: solid lib.$dividerSize lib.$dividerColor;
+  border-radius: 50px;
+  padding: 0 1rem;
 }

@@ -30,7 +30,6 @@ export default function AnimeInfoPage() {
           ))}
         </>
       )}
-      <p>Testing video player</p>
     </Layout>
   )
 }

@@ -30,6 +30,23 @@ export interface IAnimeTopInfo extends IAnimeBaseInfo {
   genres: [string]
 }
 
+export interface IAnimeRecentInfo extends IAnimeBaseInfo {
+  episodeId: string
+  episodeNumber: number
+}
+
+export interface IAnimeTopResults {
+  currentPage: number
+  hasNextPage: boolean
+  results: [IAnimeTopInfo]
+}
+
+export interface IAnimeRecentResults {
+  currentPage: number
+  hasNextPage: boolean
+  results: [IAnimeRecentInfo]
+}
+
 export interface IVideoSrc {
   url: string
   quality: string

@@ -17,8 +17,7 @@ export default function SearchResultsPage() {
 
   return (
     <Layout>
-      <h2>results page</h2>
-      <p>searching for: {query}</p>
+      <p>showing results for: <em>{query}</em></p>
       {!data && !error && <p>Loading</p>}
       {!data && error && <p>Search not found.</p>}
       <AnimeListContainer>

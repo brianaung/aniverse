@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { IAnimeBaseInfo } from '../types'
@@ -12,8 +13,8 @@ export default function AnimeItem({ anime }: { anime: IAnimeBaseInfo }) {
 
   return (
     <div onClick={handleOpen} className={styles.container}>
-      <Image src={anime.image} height={180} width={180} alt={anime.title} />
-      {anime.title}
+      <Image className={styles.image} src={anime.image} height={180} width={180} alt={anime.title} />
+      <Link className={styles.title} href={`/anime/info/${anime.id}`}>{anime.title}</Link>
     </div>
   )
 }

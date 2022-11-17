@@ -12,7 +12,7 @@ export default function Searchbar() {
   return (
     <>
       <form onSubmit={handleInput}>
-        <input id="searchbar" className={styles.container} placeholder="search..." />
+        <input id="searchbar" className={styles.searchInput} placeholder="search..." />
       </form>
     </>
   )
