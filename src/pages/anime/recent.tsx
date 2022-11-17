@@ -8,12 +8,12 @@ import { IAnimeRecentResults } from "../../types";
 
 export default function RecentPage() {
   const [page, setPage] = useState('1')
-  const [topList, setTopList] = useState<IAnimeRecentResults>()
+  const [recentList, setRecentList] = useState<IAnimeRecentResults>()
 
   useEffect(() => {
     const fetchData = async (page: string) => {
       const data = await getAllRecentAnime(page)
-      setTopList(data)
+      setRecentList(data)
     }
 
     fetchData(page)
@@ -23,13 +23,14 @@ export default function RecentPage() {
     <Layout>
       <section>
         <AnimeListContainer>
-          {topList && topList.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
+          {recentList && recentList.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>
       </section>
+      {recentList &&
       <div className={utilStyles.navBtnContainer}>
         <button className={utilStyles.navBtn} onClick={() => setPage(Math.max(1, (parseInt(page) - 1)).toString())}>prev</button>
         <button className={utilStyles.navBtn} onClick={() => setPage((parseInt(page) + 1).toString())}>next</button>
-      </div>
+      </div>}
     </Layout>
   )
 }
