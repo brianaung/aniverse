@@ -4,7 +4,7 @@ import Layout from '../../../components/layout'
 import Player from '../../../components/player'
 import { IVideoSrc } from '../../../types'
 
-const fetcher: Fetcher<{ allSrc: [IVideoSrc]; error: string }> = (arg: string) => fetch(arg).then((res) => res.json())
+const fetcher: Fetcher<{ allSrc: IVideoSrc[]; error: string }> = (arg: string) => fetch(arg).then((res) => res.json())
 // do not revalidate data on...
 const options = {
   revalidateIfStale: false,

@@ -7,7 +7,7 @@ import AnimeListContainer from '../../../components/animeListContainer'
 import { IAnimeMinimalInfo } from '../../../types'
 
 // fetcher for useSWR
-const fetcher: Fetcher<[IAnimeMinimalInfo], string> = (arg: string) => fetch(arg).then((res) => res.json())
+const fetcher: Fetcher<IAnimeMinimalInfo[], string> = (arg: string) => fetch(arg).then((res) => res.json())
 
 export default function SearchResultsPage() {
   const router = useRouter()

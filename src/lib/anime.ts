@@ -22,7 +22,7 @@ export async function getAllRecentAnime(page: string) {
  * @param query - The user query string.
  */
 export async function getAnimeSearch(query: string) {
-  let page = 1
+  const page = 1
   const ret: IAnimeMinimalInfo[] = []
 
   const fetchData = async (page: number) => {

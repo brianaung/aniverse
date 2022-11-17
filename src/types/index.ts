@@ -6,12 +6,12 @@ export interface IEpisode {
 
 export interface IAnimeExtendedInfo extends IAnimeMinimalInfo {
   description: string
-  genres: [string]
+  genres: string[]
   type: string
   status: string
   totalEpisodes: number
-  episodes: [IEpisode]
-  otherName?: string
+  episodes: IEpisode[]
+  otherName: string
 }
 
 export interface IAnimeMinimalInfo extends IAnimeBaseInfo {
@@ -27,7 +27,7 @@ export interface IAnimeBaseInfo {
 }
 
 export interface IAnimeTopInfo extends IAnimeBaseInfo {
-  genres: [string]
+  genres: string[]
 }
 
 export interface IAnimeRecentInfo extends IAnimeBaseInfo {
@@ -38,13 +38,13 @@ export interface IAnimeRecentInfo extends IAnimeBaseInfo {
 export interface IAnimeTopResults {
   currentPage: number
   hasNextPage: boolean
-  results: [IAnimeTopInfo]
+  results: IAnimeTopInfo[]
 }
 
 export interface IAnimeRecentResults {
   currentPage: number
   hasNextPage: boolean
-  results: [IAnimeRecentInfo]
+  results: IAnimeRecentInfo[]
 }
 
 export interface IVideoSrc {

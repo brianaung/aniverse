@@ -19,7 +19,7 @@ const getUrl = (quality: string, allSrc: IVideoSrc[]) => {
   return url
 }
 
-export default function Player({ allSrc }: { allSrc: [IVideoSrc] }) {
+export default function Player({ allSrc }: { allSrc: IVideoSrc[] }) {
   const [quality, setQuality] = useState('default')
   const videoRef = useRef<HTMLVideoElement>(null)
   const [src, setSrc] = useState(getUrl(quality, allSrc))
@@ -32,7 +32,7 @@ export default function Player({ allSrc }: { allSrc: [IVideoSrc] }) {
   // get the video player ready with the src available
   useEffect(() => {
     const video = videoRef.current
-    if (!video) return
+    if (!video) { return }
 
     video.controls = true
 
@@ -46,9 +46,6 @@ export default function Player({ allSrc }: { allSrc: [IVideoSrc] }) {
         hls.loadSource(src)
         hls.attachMedia(video)
       }
-    } else {
-      // even Hls.js cant help you
-      console.error('Stop using an old browser')
     }
   }, [src, videoRef])
 
