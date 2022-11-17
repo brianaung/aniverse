@@ -4,10 +4,10 @@ import { IAnimeMinimalInfo, IAnimeRecentResults, IAnimeTopResults } from '../typ
  * Fetch and return an array of all top trending animes
  */
 export async function getAllTopAnime(page: string) {
-    const res = await fetch(`https://api.consumet.org/anime/gogoanime/top-airing?page=${page}`)
-    const topAnimes: IAnimeTopResults = await res.json()
+  const res = await fetch(`https://api.consumet.org/anime/gogoanime/top-airing?page=${page}`)
+  const topAnimes: IAnimeTopResults = await res.json()
 
-    return topAnimes
+  return topAnimes
 }
 
 export async function getAllRecentAnime(page: string) {

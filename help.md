@@ -42,6 +42,7 @@ export const getStaticProps: GetStaticProps = async () => {
 ```
 
 ## Get next result page
+
 ```tsx
 // props: topAnimes
 
@@ -64,9 +65,13 @@ useEffect(() => {
 return (
   <Layout>
     <AnimeListContainer>
-      {topList.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
+      {topList.map((anime) => (
+        <AnimeItem key={anime.id} anime={anime} />
+      ))}
     </AnimeListContainer>
-    {topList.hasNextPage && <button onClick={() => setPage(page => (parseInt(page) + 1).toString() )}>next page</button>}
+    {topList.hasNextPage && (
+      <button onClick={() => setPage((page) => (parseInt(page) + 1).toString())}>next page</button>
+    )}
     {/* add previous button */}
   </Layout>
 )

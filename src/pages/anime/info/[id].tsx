@@ -26,7 +26,9 @@ export default function AnimeInfoPage() {
           <p>{data.totalEpisodes}</p>
           {/* return a list of episodes */}
           {data.episodes.map((ep) => (
-            <button key={ep.id} onClick={() => handlePlay(ep.id)}>{ep.id}</button>
+            <button key={ep.id} onClick={() => handlePlay(ep.id)}>
+              {ep.id}
+            </button>
           ))}
         </>
       )}

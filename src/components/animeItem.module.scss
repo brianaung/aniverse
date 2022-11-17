@@ -12,7 +12,7 @@
   // property duration timing-function(ease, ...)  delay
   transition: transform 200ms ease 0s;
   &:hover {
-    transform: translateY(-4px)
+    transform: translateY(-4px);
   }
 }
 
