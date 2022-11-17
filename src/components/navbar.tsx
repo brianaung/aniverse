@@ -8,14 +8,15 @@ export default function Navbar() {
     <div className={styles.container}>
       {/* back to home */}
       <Link className={utilStyles.mainHeader} href="/">
-        どやなル
+        {/*どやなル*/}
+        アニメ
       </Link>
 
       {/* getAllTopAnime */}
       {/* getAllRecentAnime */}
       <div className={styles.navSelections}>
-        <Link href="/">Trending</Link>
-        <Link href="/">Recent</Link>
+        <Link href="/anime/trending">Trending</Link>
+        <Link href="/anime/recent">Recent</Link>
       </div>
 
       <Searchbar />

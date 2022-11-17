@@ -1,34 +1,20 @@
-import { IAnimeMinimalInfo, IAnimeTopInfo } from '../types'
+import { IAnimeMinimalInfo, IAnimeRecentResults, IAnimeTopResults } from '../types'
 
 /**
  * Fetch and return an array of all top trending animes
  */
-export async function getAllTopAnime() {
-  try {
-    let page = 1
-    const ret: IAnimeTopInfo[] = []
+export async function getAllTopAnime(page: string) {
+    const res = await fetch(`https://api.consumet.org/anime/gogoanime/top-airing?page=${page}`)
+    const topAnimes: IAnimeTopResults = await res.json()
 
-    // recusively fetch top animes from all pages
-    const fetchData = async (page: number) => {
-      const res = await fetch(`https://api.consumet.org/anime/gogoanime/top-airing?page=${page}`)
-      const data = await res.json()
-      ret.push(...data.results)
+    return topAnimes
+}
 
-      // base case
-      if (!data.hasNextPage) {
-        return ret
-      }
-      // recursive case
-      if (data.hasNextPage) {
-        page++
-        await fetchData(page)
-      }
-    }
-    await fetchData(page)
-    return ret
-  } catch (err: any) {
-    console.log(err.message)
-  }
+export async function getAllRecentAnime(page: string) {
+  const res = await fetch(`https://api.consumet.org/anime/gogoanime/recent-episodes?type=1&page=${page}`)
+  const recentAnimes: IAnimeRecentResults = await res.json()
+
+  return recentAnimes
 }
 
 /**
