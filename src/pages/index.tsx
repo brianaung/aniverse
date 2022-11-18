@@ -7,6 +7,9 @@ export default function Home() {
       <Head>
         <title>Aniverse Home</title>
       </Head>
+      <section>
+        <h1>WIP</h1>
+      </section>
     </Layout>
   )
 }

@@ -1,5 +1,17 @@
 import { IAnimeMinimalInfo, IAnimeRecentResults, IAnimeTopResults } from '../types'
 
+export async function getCoverImage(id: string) {
+  const res = await fetch(`https://api.consumet.org/anime/enime/${id}`)
+  const animeData = await res.json()
+  let coverImgUrl = 'https://i.animepahe.ru/covers/cover_default0.jpg'
+  // return a default cover img
+  if (animeData.results.length === 0) {
+    return coverImgUrl
+  }
+  coverImgUrl = animeData.results[0].cover
+  return coverImgUrl
+}
+
 /**
  * Fetch and return an array of all top trending animes
  */

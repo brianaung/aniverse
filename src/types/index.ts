@@ -12,6 +12,7 @@ export interface IAnimeExtendedInfo extends IAnimeMinimalInfo {
   totalEpisodes: number
   episodes: IEpisode[]
   otherName: string
+  cover: string
 }
 
 export interface IAnimeMinimalInfo extends IAnimeBaseInfo {

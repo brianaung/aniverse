@@ -25,6 +25,7 @@ export default function VideoPage() {
 
   return (
     <Layout>
+      <h3>{episode}</h3>
       <section>
         {!data && !error && <p>Loading</p>}
         {!data && error && <p>Error loading video.</p>}

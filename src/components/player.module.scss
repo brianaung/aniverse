@@ -1,9 +1,11 @@
-$video-width: 480px;
-$video-height: 360px;
+$video-width: 50vw;
+$video-height: auto;
 
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .player {
