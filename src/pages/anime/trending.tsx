@@ -5,7 +5,9 @@ import AnimeListContainer from '../../components/animeListContainer'
 import Layout from '../../components/layout'
 import { getAllTopAnime } from '../../lib/anime'
 import { IAnimeTopResults } from '../../types'
+import Pagination from '../../components/pagination'
 
+/* todo: the first page should be statically generated? */
 export default function TrendingPage() {
   const [page, setPage] = useState('1')
   const [topList, setTopList] = useState<IAnimeTopResults>()
@@ -27,16 +29,7 @@ export default function TrendingPage() {
           {topList && topList.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>
       </section>
-      {topList && (
-        <div className={utilStyles.navBtnContainer}>
-          <button className={utilStyles.navBtn} onClick={() => setPage(Math.max(1, parseInt(page) - 1).toString())}>
-            previous
-          </button>
-          <button className={utilStyles.navBtn} onClick={() => setPage((parseInt(page) + 1).toString())}>
-            next
-          </button>
-        </div>
-      )}
+      {topList && <Pagination page={page} setPage={setPage} />}
     </Layout>
   )
 }

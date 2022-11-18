@@ -5,6 +5,7 @@ import AnimeListContainer from '../../components/animeListContainer'
 import Layout from '../../components/layout'
 import { getAllRecentAnime } from '../../lib/anime'
 import { IAnimeRecentResults } from '../../types'
+import Pagination from '../../components/pagination'
 
 export default function RecentPage() {
   const [page, setPage] = useState('1')
@@ -26,16 +27,7 @@ export default function RecentPage() {
           {recentList && recentList.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>
       </section>
-      {recentList && (
-        <div className={utilStyles.navBtnContainer}>
-          <button className={utilStyles.navBtn} onClick={() => setPage(Math.max(1, parseInt(page) - 1).toString())}>
-            prev
-          </button>
-          <button className={utilStyles.navBtn} onClick={() => setPage((parseInt(page) + 1).toString())}>
-            next
-          </button>
-        </div>
-      )}
+      {recentList && <Pagination page={page} setPage={setPage} />}
     </Layout>
   )
 }
