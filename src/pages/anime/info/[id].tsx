@@ -30,13 +30,12 @@ export default function AnimeInfoPage() {
           {/* return a list of episodes */}
           <p>Total Episodes: {data.totalEpisodes}</p>
           <div className={utilStyles.btnListContainer}>
-          {data.episodes.map((ep) => (
-            <button className={utilStyles.playBtn} key={ep.id} onClick={() => handlePlay(ep.id)}>
-              ep{ep.number}
-            </button>
-          ))}
+            {data.episodes.map((ep) => (
+              <button className={utilStyles.playBtn} key={ep.id} onClick={() => handlePlay(ep.id)}>
+                ep{ep.number}
+              </button>
+            ))}
           </div>
-
         </>
       )}
     </Layout>
