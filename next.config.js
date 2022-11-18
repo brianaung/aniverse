@@ -9,6 +9,18 @@ const nextConfig = {
         hostname: 'gogocdn.net'
         // port: '',
         // pathname: '/cover/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.animepahe.ru'
+        // port: '',
+        // pathname: '/cover/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 's4.anilist.co'
+        // port: '',
+        // pathname: '/cover/**',
       }
     ]
   }
