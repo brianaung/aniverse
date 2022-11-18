@@ -1,4 +1,4 @@
-import utilStyles from '../styles/utils.module.scss'
+import styles from './pagination.module.scss'
 
 export default function Pagination({ page, setPage }: { page: string; setPage: React.Dispatch<React.SetStateAction<string>> }) {
 
@@ -11,11 +11,11 @@ export default function Pagination({ page, setPage }: { page: string; setPage: R
   }
 
   return(
-    <div className={utilStyles.navBtnContainer}>
-      <button className={utilStyles.navBtn} onClick={handlePrev}>
+    <div className={styles.navBtnContainer}>
+      <button className={styles.navBtn} onClick={handlePrev}>
         prev
       </button>
-      <button className={utilStyles.navBtn} onClick={handleNext}>
+      <button className={styles.navBtn} onClick={handleNext}>
         next
       </button>
     </div>
