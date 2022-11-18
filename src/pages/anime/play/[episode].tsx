@@ -6,7 +6,7 @@ import Player from '../../../components/player'
 import { IVideoSrc } from '../../../types'
 
 type ApiDataType = {
-  allSrc: IVideoSrc[],
+  allSrc: IVideoSrc[]
   error: string
 }
 const fetcher: Fetcher<ApiDataType> = (arg: string) => fetch(arg).then((res) => res.json())

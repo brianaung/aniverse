@@ -42,6 +42,7 @@ export const getStaticProps: GetStaticProps = async () => {
 ```
 
 ## Get next result page
+
 ```tsx
 // props: topAnimes
 
@@ -77,6 +78,7 @@ return (
 ```
 
 ## Fetch data using useEffect and not useSWR (getVideoSources)
+
 ```tsx
 const [data, setData] = useState<IVideoSrc[]>()
 useEffect(() => {
