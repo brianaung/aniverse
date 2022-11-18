@@ -1,15 +1,20 @@
 import { useRouter } from 'next/router'
+// import { useEffect, useState } from 'react'
 import useSWRImmutable, { Fetcher } from 'swr'
 import Layout from '../../../components/layout'
 import Player from '../../../components/player'
 import { IVideoSrc } from '../../../types'
 
-const fetcher: Fetcher<{ allSrc: IVideoSrc[]; error: string }> = (arg: string) => fetch(arg).then((res) => res.json())
+type ApiDataType = {
+  allSrc: IVideoSrc[],
+  error: string
+}
+const fetcher: Fetcher<ApiDataType> = (arg: string) => fetch(arg).then((res) => res.json())
 // do not revalidate data on...
 const options = {
   revalidateIfStale: false,
   revalidateOnFocus: false,
-  revalidateOnReconnect: false,
+  revalidateOnReconnect: false
 }
 
 export default function VideoPage() {

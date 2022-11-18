@@ -11,7 +11,7 @@ type SearchContextType = {
 // export const QueryContext = createContext<string>('')
 const SearchContextState = {
   query: '',
-  setQuery: () => {},
+  setQuery: () => {}
 }
 
 export const SearchContext = createContext<SearchContextType>(SearchContextState)
@@ -29,20 +29,19 @@ export const getStaticProps: GetStaticProps = async () => {
   // error handling
   if (typeof queryResults === 'undefined') {
     return {
-      notFound: true,
+      notFound: true
     }
   }
 
   return {
     props: {
-      queryResults,
-    },
+      queryResults
+    }
   }
 }
 ```
 
 ## Get next result page
-
 ```tsx
 // props: topAnimes
 
@@ -75,4 +74,18 @@ return (
     {/* add previous button */}
   </Layout>
 )
+```
+
+## Fetch data using useEffect and not useSWR (getVideoSources)
+```tsx
+const [data, setData] = useState<IVideoSrc[]>()
+useEffect(() => {
+  // this function should be inside the useEffect
+  const fetchData = async (episode: string) => {
+    const data: IVideoSrc[] = await getVideoSources(episode)
+    setData(data) // setState should be inside the function so that the state gets set after promise is resolved
+  }
+  fetchData(episode)
+  // if you set the here the result of fetchData would be Promise<pending>
+}, [episode])
 ```

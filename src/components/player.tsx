@@ -32,7 +32,9 @@ export default function Player({ allSrc }: { allSrc: IVideoSrc[] }) {
   // get the video player ready with the src available
   useEffect(() => {
     const video = videoRef.current
-    if (!video) { return }
+    if (!video) {
+      return
+    }
 
     video.controls = true
 
