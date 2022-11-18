@@ -1,3 +1,4 @@
+import utilStyles from '../../../styles/utils.module.scss'
 import useSWR, { Fetcher } from 'swr'
 import { useRouter } from 'next/router'
 import Layout from '../../../components/layout'
@@ -25,14 +26,16 @@ export default function AnimeInfoPage() {
           <h2>{data.title}</h2>
           <h3>{data.releaseDate}</h3>
           <p>{data.description}</p>
-          <p>Total Episodes: {data.totalEpisodes}</p>
 
           {/* return a list of episodes */}
+          <p>Total Episodes: {data.totalEpisodes}</p>
+          <div className={utilStyles.btnListContainer}>
           {data.episodes.map((ep) => (
-            <button key={ep.id} onClick={() => handlePlay(ep.id)}>
-              {ep.id}
+            <button className={utilStyles.playBtn} key={ep.id} onClick={() => handlePlay(ep.id)}>
+              ep{ep.number}
             </button>
           ))}
+          </div>
 
         </>
       )}
