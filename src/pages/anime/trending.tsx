@@ -1,4 +1,4 @@
-import utilStyles from '../../styles/utils.module.scss'
+// import utilStyles from '../../styles/utils.module.scss'
 import { useEffect, useState } from 'react'
 import AnimeItem from '../../components/animeItem'
 import AnimeListContainer from '../../components/animeListContainer'
@@ -24,8 +24,8 @@ export default function TrendingPage() {
   return (
     <Layout>
       <section>
-        {/* todo: no need for loading state since it is rendered on server side? */}
         <AnimeListContainer>
+          {!topList && <p>Loading</p>}
           {topList && topList.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>
       </section>

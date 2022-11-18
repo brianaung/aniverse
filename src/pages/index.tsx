@@ -9,7 +9,6 @@ export default function Home() {
       </Head>
       <section>
         <h1>WIP</h1>
-        <p>For the time being checkout the trending and recent pages</p>
       </section>
     </Layout>
   )

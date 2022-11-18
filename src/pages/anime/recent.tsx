@@ -1,4 +1,4 @@
-import utilStyles from '../../styles/utils.module.scss'
+// import utilStyles from '../../styles/utils.module.scss'
 import { useEffect, useState } from 'react'
 import AnimeItem from '../../components/animeItem'
 import AnimeListContainer from '../../components/animeListContainer'
@@ -24,6 +24,7 @@ export default function RecentPage() {
     <Layout>
       <section>
         <AnimeListContainer>
+          {!recentList && <p>Loading</p>}
           {recentList && recentList.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>
       </section>
