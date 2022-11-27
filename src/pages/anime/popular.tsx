@@ -3,18 +3,18 @@ import { useEffect, useState } from 'react'
 import AnimeItem from '../../components/animeItem'
 import AnimeListContainer from '../../components/animeListContainer'
 import Layout from '../../components/layout'
-import { getAllTopAnime } from '../../lib/anime'
-import { IAnimeTopResults } from '../../types'
+import { getAllPopularAnime } from '../../lib/anime'
+import { PopularAnimes } from '../../types'
 import Pagination from '../../components/pagination'
 
 /* todo: the first page should be statically generated? */
-export default function TrendingPage() {
+export default function PopularPage() {
   const [page, setPage] = useState('1')
-  const [topList, setTopList] = useState<IAnimeTopResults>()
+  const [topList, setTopList] = useState<PopularAnimes>()
 
   useEffect(() => {
     const fetchData = async (page: string) => {
-      const data = await getAllTopAnime(page)
+      const data = await getAllPopularAnime(page)
       setTopList(data)
     }
 
@@ -29,6 +29,7 @@ export default function TrendingPage() {
           {topList && topList.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>
       </section>
+      {/* add hasnextpage check */}
       {topList && <Pagination page={page} setPage={setPage} />}
     </Layout>
   )

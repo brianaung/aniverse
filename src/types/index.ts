@@ -53,3 +53,33 @@ export interface IVideoSrc {
   quality: string
   isM3U8: boolean
 }
+
+/***************** for anilist api ********************/
+export type PopularAnimes = {
+  currentPage: number
+  hasNextPage: boolean
+  results: AnimeResults[]
+}
+
+export type AnimeResults = {
+  id: string
+  // malId: number
+  title: AnimeTitle
+  image: string
+  // trailer: 
+  description: string
+  cover: string
+  rating: number
+  releasedDate: number
+  totalEpisodes: number
+  genres: [string]
+  duration: number
+  // type: string
+}
+
+type AnimeTitle = {
+  romaji: string
+  english: string
+  native: string
+  userPreferred: string
+}

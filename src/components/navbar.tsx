@@ -15,7 +15,7 @@ export default function Navbar() {
       {/* getAllTopAnime */}
       {/* getAllRecentAnime */}
       <div className={styles.navSelections}>
-        <Link href="/anime/trending">Trending</Link>
+        <Link href="/anime/popular">Popular</Link>
         <Link href="/anime/recent">Recent</Link>
       </div>
 

@@ -1,5 +1,6 @@
-import { IAnimeMinimalInfo, IAnimeRecentResults, IAnimeTopResults } from '../types'
+import { IAnimeMinimalInfo, IAnimeRecentResults, IAnimeTopResults, PopularAnimes } from '../types'
 
+// todo: using meta will remove the need for this function
 export async function getCoverImage(id: string) {
   const res = await fetch(`https://api.consumet.org/anime/enime/${id}`)
   const animeData = await res.json()
@@ -20,6 +21,20 @@ export async function getAllTopAnime(page: string) {
   const topAnimes: IAnimeTopResults = await res.json()
 
   return topAnimes
+}
+
+export async function getAllTrendingAnime(page: string) {
+  const res = await fetch(`https://api.consumet.org/anime/gogoanime/top-airing?page=${page}`)
+  const trendingAnimes: IAnimeTopResults = await res.json()
+
+  return trendingAnimes
+}
+
+export async function getAllPopularAnime(page: string) {
+  const res = await fetch(`https://api.consumet.org/meta/anilist/popular?page=${page}`)
+  const popularAnimes: PopularAnimes = await res.json()
+
+  return popularAnimes
 }
 
 export async function getAllRecentAnime(page: string) {
