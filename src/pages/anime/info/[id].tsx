@@ -2,7 +2,7 @@ import utilStyles from '../../../styles/utils.module.scss'
 import useSWR, { Fetcher } from 'swr'
 import { useRouter } from 'next/router'
 import Layout from '../../../components/layout'
-import { AnimeInfo } from '../../../types'
+import { AnimeEpisode, AnimeInfo } from '../../../types'
 import Image from 'next/image'
 
 const fetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
@@ -12,8 +12,11 @@ export default function AnimeInfoPage() {
   const { id } = router.query
   const { data, error } = useSWR(id ? `/api/anime/info/${id}` : null, fetcher)
 
-  const handlePlay = (epID: string) => {
-    router.push(`/anime/play/${epID}`)
+  const handlePlay = (ep: AnimeEpisode) => {
+    router.push({
+      pathname: `/anime/play`,
+      query: ep
+    })
   }
 
   return (
@@ -31,7 +34,7 @@ export default function AnimeInfoPage() {
           <p>Total Episodes: {data.totalEpisodes}</p>
           <div className={utilStyles.btnListContainer}>
             {data.episodes.map((ep) => (
-              <button className={utilStyles.playBtn} key={ep.id} onClick={() => handlePlay(ep.id)}>
+              <button className={utilStyles.playBtn} key={ep.id} onClick={() => handlePlay(ep)}>
                 ep{ep.number}
               </button>
             ))}

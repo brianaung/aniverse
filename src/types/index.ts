@@ -38,11 +38,6 @@ export interface IAnimeRecentResults {
   results: IAnimeRecentInfo[]
 }
 
-export interface IVideoSrc {
-  url: string
-  quality: string
-  isM3U8: boolean
-} */
 
 /***************** for anilist api ********************/
 export type AnimeInfo = AnimeResults & {
@@ -89,19 +84,25 @@ export type AnimeResults = {
   type: string
 }
 
-type AnimeTitle = {
-  romaji: string
-  english: string
-  native: string
-  userPreferred: string
+export type VideoSrc = {
+  url: string
+  isM3U8: boolean
+  quality: string
 }
 
-type AnimeEpisode = {
+export type AnimeEpisode = {
   id: string
   title: string
   description: string
   number: number
   image: string
+}
+
+type AnimeTitle = {
+  romaji: string
+  english: string
+  native: string
+  userPreferred: string
 }
 
 type Character = {

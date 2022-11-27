@@ -1,7 +1,7 @@
 import styles from './player.module.scss'
 import React, { useEffect, useRef, useState } from 'react'
 import Hls from 'hls.js'
-import { IVideoSrc } from '../types'
+import { VideoSrc } from '../types'
 
 /**
  * returns the video src given the video quality.
@@ -9,7 +9,7 @@ import { IVideoSrc } from '../types'
  * @param quality - video quality string: '360p', '720p', etc.
  * @param allSrc - available video sources.
  */
-const getUrl = (quality: string, allSrc: IVideoSrc[]) => {
+const getUrl = (quality: string, allSrc: VideoSrc[]) => {
   let url = allSrc[0].url
   allSrc.forEach((src) => {
     if (src.quality === quality) {
@@ -19,7 +19,7 @@ const getUrl = (quality: string, allSrc: IVideoSrc[]) => {
   return url
 }
 
-export default function Player({ allSrc }: { allSrc: IVideoSrc[] }) {
+export default function Player({ allSrc }: { allSrc: VideoSrc[] }) {
   const [quality, setQuality] = useState('default')
   const videoRef = useRef<HTMLVideoElement>(null)
   const [src, setSrc] = useState(getUrl(quality, allSrc))
