@@ -14,9 +14,9 @@ export default function AnimeItem({ anime }: { anime: AnimeResults }) {
 
   return (
     <div onClick={handleOpen} className={styles.container}>
-      <Image className={styles.image} src={anime.image} height={240} width={180} alt={anime.title.userPreferred} />
+      <Image className={styles.image} src={anime.image} height={240} width={180} alt={anime.title.english} />
       <Link className={styles.title} href={`/anime/info/${anime.id}`}>
-        {anime.title.userPreferred}
+        {anime.title.english}
       </Link>
     </div>
   )

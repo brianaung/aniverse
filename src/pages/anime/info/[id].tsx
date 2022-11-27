@@ -2,10 +2,10 @@ import utilStyles from '../../../styles/utils.module.scss'
 import useSWR, { Fetcher } from 'swr'
 import { useRouter } from 'next/router'
 import Layout from '../../../components/layout'
-import { IAnimeExtendedInfo } from '../../../types'
+import { AnimeInfo } from '../../../types'
 import Image from 'next/image'
 
-const fetcher: Fetcher<IAnimeExtendedInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
+const fetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
 
 export default function AnimeInfoPage() {
   const router = useRouter()
@@ -22,10 +22,10 @@ export default function AnimeInfoPage() {
       {!data && error && <p>Something went wrong.</p>}
       {data && !error && (
         <>
-          <Image src={data.cover} width={360} height={180} layout="responsive" alt={data.title} />
-          <h2>{data.title}</h2>
+          <Image src={data.cover} width={360} height={180} layout="responsive" alt={data.title.userPreferred} />
+          <h2>{data.title.userPreferred}</h2>
           <h3>{data.releaseDate}</h3>
-          <p>{data.description}</p>
+          <p dangerouslySetInnerHTML={{__html: data.description}} />
 
           {/* return a list of episodes */}
           <p>Total Episodes: {data.totalEpisodes}</p>

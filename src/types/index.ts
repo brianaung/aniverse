@@ -1,4 +1,4 @@
-export interface IEpisode {
+/* export interface IEpisode {
   id: string
   number: number
   url: string
@@ -27,19 +27,9 @@ export interface IAnimeBaseInfo {
   url: string
 }
 
-export interface IAnimeTopInfo extends IAnimeBaseInfo {
-  genres: string[]
-}
-
 export interface IAnimeRecentInfo extends IAnimeBaseInfo {
   episodeId: string
   episodeNumber: number
-}
-
-export interface IAnimeTopResults {
-  currentPage: number
-  hasNextPage: boolean
-  results: IAnimeTopInfo[]
 }
 
 export interface IAnimeRecentResults {
@@ -52,14 +42,36 @@ export interface IVideoSrc {
   url: string
   quality: string
   isM3U8: boolean
-}
+} */
 
 /***************** for anilist api ********************/
+export type AnimeInfo = AnimeResults & {
+  synonyms: string
+  isLicensed: boolean
+  isAdult: boolean
+  countryOfOrigin: string
+  popularity: number
+  color: string
+  status: string
+  startDate: Date
+  endDate: Date
+  nextAiringEpisode: Date
+  season: string
+  studios: [string]
+  subOrDub: "sub" | "dub"
+  // recommendations:
+  characters: [Character]
+  // relations:
+  episodes: [AnimeEpisode]
+}
+
 export type PopularAnimes = {
   currentPage: number
   hasNextPage: boolean
   results: AnimeResults[]
 }
+
+export type TrendingAnimes = PopularAnimes
 
 export type AnimeResults = {
   id: string
@@ -70,11 +82,11 @@ export type AnimeResults = {
   description: string
   cover: string
   rating: number
-  releasedDate: number
+  releaseDate: number
   totalEpisodes: number
   genres: [string]
   duration: number
-  // type: string
+  type: string
 }
 
 type AnimeTitle = {
@@ -82,4 +94,32 @@ type AnimeTitle = {
   english: string
   native: string
   userPreferred: string
+}
+
+type AnimeEpisode = {
+  id: string
+  title: string
+  description: string
+  number: number
+  image: string
+}
+
+type Character = {
+  id: number
+  role: string
+  name: Name
+}
+
+type Name = {
+  first: string
+  last: string
+  full: string
+  native: string
+  userPreferred: string
+}
+
+type Date = {
+  year: number
+  month: number
+  day: number
 }

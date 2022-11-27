@@ -3,18 +3,18 @@ import { useEffect, useState } from 'react'
 import AnimeItem from '../../components/animeItem'
 import AnimeListContainer from '../../components/animeListContainer'
 import Layout from '../../components/layout'
-import { getAllRecentAnime } from '../../lib/anime'
-import { IAnimeRecentResults } from '../../types'
+import { getTrendingAnimes } from '../../lib/anime'
+import { TrendingAnimes } from '../../types'
 import Pagination from '../../components/pagination'
 
-export default function RecentPage() {
+export default function TrendingPage() {
   const [page, setPage] = useState('1')
-  const [recentList, setRecentList] = useState<IAnimeRecentResults>()
+  const [trendingList, setTrendingList] = useState<TrendingAnimes>()
 
   useEffect(() => {
     const fetchData = async (page: string) => {
-      const data = await getAllRecentAnime(page)
-      setRecentList(data)
+      const data = await getTrendingAnimes(page)
+      setTrendingList(data)
     }
 
     fetchData(page)
@@ -24,11 +24,11 @@ export default function RecentPage() {
     <Layout>
       <section>
         <AnimeListContainer>
-          {!recentList && <p>Loading</p>}
-          {recentList && recentList.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
+          {!trendingList && <p>Loading</p>}
+          {trendingList && trendingList.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>
       </section>
-      {recentList && <Pagination page={page} setPage={setPage} />}
+      {trendingList && <Pagination page={page} setPage={setPage} />}
     </Layout>
   )
 }
