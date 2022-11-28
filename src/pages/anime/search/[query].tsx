@@ -31,7 +31,7 @@ export default function SearchResultsPage() {
     }
 
     fetchData(page)
-  }, [page])
+  }, [query, page])
 
   return (
     <Layout>

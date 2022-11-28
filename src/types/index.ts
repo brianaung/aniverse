@@ -70,7 +70,7 @@ export type AnimeInfo = AnimeResult & {
   nextAiringEpisode: Date
   season: string
   studios: [string]
-  subOrDub: "sub" | "dub"
+  subOrDub: 'sub' | 'dub'
   // recommendations:
   characters: [Character]
   // relations:

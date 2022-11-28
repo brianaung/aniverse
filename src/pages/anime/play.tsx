@@ -21,7 +21,11 @@ export default function VideoPage() {
   const router = useRouter()
   const episode: AnimeEpisode = Array.isArray(router.query) ? router.query[0] : router.query
   // IMPORTANT: using normal useSWR will revalidate data (fetching again after intervals) causing the video src link to change
-  const { data, error } = useSWRImmutable(episode && episode.id ? `/api/anime/play/${episode.id}` : null, fetcher, options)
+  const { data, error } = useSWRImmutable(
+    episode && episode.id ? `/api/anime/play/${episode.id}` : null,
+    fetcher,
+    options
+  )
 
   return (
     <Layout>

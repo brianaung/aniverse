@@ -28,7 +28,7 @@ export default function AnimeInfoPage() {
           <Image src={data.cover} width={360} height={180} layout="responsive" alt={data.title.userPreferred} />
           <h2>{data.title.userPreferred}</h2>
           <h3>{data.releaseDate}</h3>
-          <p dangerouslySetInnerHTML={{__html: data.description}} />
+          <p dangerouslySetInnerHTML={{ __html: data.description }} />
 
           {/* return a list of episodes */}
           <p>Total Episodes: {data.totalEpisodes}</p>
