@@ -40,14 +40,31 @@ export interface IAnimeRecentResults {
 
 
 /***************** for anilist api ********************/
-export type AnimeInfo = AnimeResults & {
+export type AnimeResult = {
+  id: string
+  // malId: number
+  title: TitleLang
+  status: string
+  image: string
+  // trailer:
+  cover: string
+  popularity: number
+  description: string
+  rating: number
+  genres: [string]
+  color?: string
+  totalEpisodes: number
+  releaseDate: number
+  duration: number
+  type: string
+}
+
+export type AnimeInfo = AnimeResult & {
   synonyms: string
   isLicensed: boolean
   isAdult: boolean
   countryOfOrigin: string
-  popularity: number
   color: string
-  status: string
   startDate: Date
   endDate: Date
   nextAiringEpisode: Date
@@ -60,29 +77,15 @@ export type AnimeInfo = AnimeResults & {
   episodes: [AnimeEpisode]
 }
 
-export type PopularAnimes = {
+export type AnimeSearchResults = {
   currentPage: number
   hasNextPage: boolean
-  results: AnimeResults[]
+  results: AnimeResult[]
 }
 
-export type TrendingAnimes = PopularAnimes
+export type TrendingAnimes = AnimeSearchResults
 
-export type AnimeResults = {
-  id: string
-  // malId: number
-  title: AnimeTitle
-  image: string
-  // trailer: 
-  description: string
-  cover: string
-  rating: number
-  releaseDate: number
-  totalEpisodes: number
-  genres: [string]
-  duration: number
-  type: string
-}
+export type PopularAnimes = AnimeSearchResults
 
 export type VideoSrc = {
   url: string
@@ -98,7 +101,7 @@ export type AnimeEpisode = {
   image: string
 }
 
-type AnimeTitle = {
+type TitleLang = {
   romaji: string
   english: string
   native: string
@@ -108,10 +111,10 @@ type AnimeTitle = {
 type Character = {
   id: number
   role: string
-  name: Name
+  name: CharacterName
 }
 
-type Name = {
+type CharacterName = {
   first: string
   last: string
   full: string

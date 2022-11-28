@@ -1,31 +1,49 @@
 import { useRouter } from 'next/router'
-import useSWR, { Fetcher } from 'swr'
-import Link from 'next/link'
+// import useSWR, { Fetcher } from 'swr'
+import { useState, useEffect } from 'react'
 import Layout from '../../../components/layout'
 import AnimeItem from '../../../components/animeItem'
 import AnimeListContainer from '../../../components/animeListContainer'
-import { IAnimeMinimalInfo } from '../../../types'
+import { AnimeSearchResults } from '../../../types'
+import { getAnimeSearch } from '../../../lib/anime'
+import Pagination from '../../../components/pagination'
 
 // fetcher for useSWR
-const fetcher: Fetcher<IAnimeMinimalInfo[], string> = (arg: string) => fetch(arg).then((res) => res.json())
+// const fetcher: Fetcher = (arg: string) => fetch(arg).then((res) => res.json())
 
 export default function SearchResultsPage() {
   const router = useRouter()
-  // get .../search/anime/[query]
-  const { query } = router.query
-  const { data, error } = useSWR(query ? `/api/anime/search/${query}` : null, fetcher)
+  const { query } = Array.isArray(router.query) ? router.query[0] : router.query
+  // const { data, error } = useSWR(query ? `/api/anime/search/${query}` : null, fetcher)
+  const [page, setPage] = useState('1')
+  const [searchList, setSearchList] = useState<AnimeSearchResults | null>()
+  const [error, setError] = useState<Error | null>()
+
+  useEffect(() => {
+    const fetchData = async (page: string) => {
+      const { data, error } = await getAnimeSearch(query, page)
+      if (!data) {
+        setError(error)
+        console.log('[Fetch Data] ' + error.message)
+      } else {
+        setSearchList(data)
+      }
+    }
+
+    fetchData(page)
+  }, [page])
 
   return (
     <Layout>
       <p>
         showing results for: <em>{query}</em>
       </p>
-      {!data && !error && <p>Loading</p>}
-      {!data && error && <p>Search not found.</p>}
       <AnimeListContainer>
-        {data && !error && data.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
+        {!searchList && !error && <p>Loading</p>}
+        {!searchList && error && <p>Search not found.</p>}
+        {searchList && !error && searchList.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
       </AnimeListContainer>
-      <Link href="/">Back to home</Link>
+      {searchList && <Pagination page={page} setPage={setPage} />}
     </Layout>
   )
 }

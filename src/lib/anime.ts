@@ -1,45 +1,68 @@
-import { PopularAnimes, TrendingAnimes } from '../types'
+import { AnimeInfo, AnimeResult, AnimeSearchResults, PopularAnimes, TrendingAnimes } from '../types'
 
 /**
  * Fetch and return an array of all top trending animes
  */
 export async function getPopularAnimes(page: string) {
   const res = await fetch(`https://api.consumet.org/meta/anilist/popular?page=${page}`)
+  if (!res.ok) {
+    return {
+      data: null,
+      error: new Error(res.statusText)
+    }
+  }
   const popularAnimes: PopularAnimes = await res.json()
 
-  return popularAnimes
+  return {
+    data: popularAnimes,
+    error: null
+  }
 }
 
 export async function getTrendingAnimes(page: string) {
   const res = await fetch(`https://api.consumet.org/meta/anilist/trending?page=${page}`)
+  if (!res.ok) {
+    return {
+      data: null,
+      error: new Error(res.statusText)
+    }
+  }
   const trendingAnimes: TrendingAnimes = await res.json()
 
-  return trendingAnimes
+  return {
+    data: trendingAnimes,
+    error: null
+  }
 }
 
 /**
  * Fetch and return an array of all matching animes that the user queried.
+ * Filter the search results to only contain relevant ones
  * @param query - The user query string.
  */
-/* export async function getAnimeSearch(query: string) {
-  const page = 1
-  const ret: IAnimeMinimalInfo[] = []
+// todo: improve search results
+export async function getAnimeSearch(query: string, page: string) {
+  const filteredList: AnimeResult[] = []
 
-  const fetchData = async (page: number) => {
-    const res = await fetch(`https://api.consumet.org/anime/gogoanime/${query}?page=${page}`)
-    const data = await res.json()
-    ret.push(...data.results)
-
-    // base case
-    if (!data.hasNextPage) {
-      return ret
-    }
-    // recursive case
-    if (data.hasNextPage) {
-      page++
-      await fetchData(page)
+  const res = await fetch(`https://api.consumet.org/meta/anilist/advanced-search?query=${query}&page=${page}&sort=["POPULARITY_DESC"]`)
+  if (!res.ok) {
+    return {
+      data: null,
+      error: new Error(res.statusText)
     }
   }
-  await fetchData(page)
-  return ret
-} */
+
+  const data = await res.json()
+
+  for (let i=0; i < data.results.length; i++) {
+    const anime: AnimeInfo = data.results[i]
+    if (anime.cover && anime.title.native && anime.title.romaji && anime.title.english && anime.title.userPreferred) {
+      filteredList.push(data.results[i])
+    }
+  }
+
+  return {
+    data: { ...data, results: filteredList } as AnimeSearchResults,
+    error: null
+  }
+}

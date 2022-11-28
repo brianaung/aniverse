@@ -1,5 +1,6 @@
 import styles from './pagination.module.scss'
 
+// todo: only show next/prev button if the next/prev page exists
 export default function Pagination({
   page,
   setPage
