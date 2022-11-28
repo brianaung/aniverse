@@ -23,11 +23,13 @@ const animeFetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).the
 export default function VideoPage() {
   const router = useRouter()
   const { animeID, ep, index } = Array.isArray(router.query) ? router.query[0] : router.query
-  const { data: animeData, error: animeError } = useSWR(animeID ? `/api/anime/info/${animeID}` : null, animeFetcher)
-  const episode = ep ? JSON.parse(ep) : null
+  const { data: animeData } = useSWR(animeID ? `/api/anime/info/${animeID}` : null, animeFetcher)
+  const episode: AnimeEpisode = ep ? JSON.parse(ep) : null
   // IMPORTANT: using normal useSWR will revalidate data (fetching again after intervals) causing the video src link to change
   const { data: epData, error: epError } = useSWRImmutable(
-    episode ? `/api/anime/play/${episode.id}` : null, epFetcher, options
+    episode ? `/api/anime/play/${episode.id}` : null,
+    epFetcher,
+    options
   )
 
   const [prev, setPrev] = useState<AnimeEpisode | null>(null)
@@ -52,7 +54,7 @@ export default function VideoPage() {
         setPrev(prev)
       }
     }
-  }, [animeData])
+  }, [animeData, index])
 
   const handleNext = () => {
     router.push({
@@ -80,15 +82,17 @@ export default function VideoPage() {
     <Layout>
       <h2>{animeData && animeData.title.english}</h2>
       <h3>{episode && episode.title}</h3>
+      <h3>{episode && episode.number}</h3>
       <section>
         {!epData && !epError && <p>Loading</p>}
         {!epData && epError && <p>Error loading video.</p>}
-        {epData && !epError &&
+        {epData && !epError && (
           <>
             <Player allSrc={epData.allSrc} />
             {prev && <button onClick={handlePrev}>prev</button>}
             {next && <button onClick={handleNext}>next</button>}
-          </>}
+          </>
+        )}
       </section>
       <p>{episode && episode.description}</p>
     </Layout>
