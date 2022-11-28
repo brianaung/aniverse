@@ -11,11 +11,17 @@ import Pagination from '../../components/pagination'
 export default function PopularPage() {
   const [page, setPage] = useState('1')
   const [popularList, setPopularList] = useState<PopularAnimes>()
+  const [error, setError] = useState<Error | null>()
 
   useEffect(() => {
     const fetchData = async (page: string) => {
-      const data = await getPopularAnimes(page)
-      setPopularList(data)
+      const { data, error } = await getPopularAnimes(page)
+      if (!data) {
+        setError(error)
+        console.log('[Fetch Data] ' + error.message)
+      } else {
+        setPopularList(data)
+      }
     }
 
     fetchData(page)
@@ -25,8 +31,9 @@ export default function PopularPage() {
     <Layout>
       <section>
         <AnimeListContainer>
-          {!popularList && <p>Loading</p>}
-          {popularList && popularList.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
+          {!popularList && !error && <p>Loading</p>}
+          {!popularList && error && <p>Error loading data.</p>}
+          {popularList && !error && popularList.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>
       </section>
       {/* add hasnextpage check */}
