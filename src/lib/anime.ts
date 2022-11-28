@@ -45,7 +45,7 @@ export async function getAnimeSearch(query: string, page: string) {
   const filteredList: AnimeResult[] = []
 
   const res = await fetch(
-    `https://api.consumet.org/meta/anilist/advanced-search?query=${query}&page=${page}&sort=["POPULARITY_DESC", "UPDATED_AT_DESC", "SCORE_DESC", "UPDATED_AT", "START_DATE_DESC"]`
+    `https://api.consumet.org/meta/anilist/advanced-search?query=${query}&page=${page}&sort=["POPULARITY_DESC", "UPDATED_AT_DESC", "SCORE_DESC", "FAVOURITES", "UPDATED_AT", "START_DATE_DESC", "END_DATE_DESC"]`
   )
   if (!res.ok) {
     return {
