@@ -12,10 +12,14 @@ export default function AnimeInfoPage() {
   const { id } = router.query
   const { data, error } = useSWR(id ? `/api/anime/info/${id}` : null, fetcher)
 
-  const handlePlay = (ep: AnimeEpisode) => {
+  const handlePlay = (ep: AnimeEpisode, index: number) => {
     router.push({
       pathname: `/anime/play`,
-      query: ep
+      query: {
+        animeID: id,
+        ep: JSON.stringify(ep),
+        index
+      }
     })
   }
 
@@ -33,8 +37,8 @@ export default function AnimeInfoPage() {
           {/* return a list of episodes */}
           <p>Total Episodes: {data.totalEpisodes}</p>
           <div className={utilStyles.btnListContainer}>
-            {data.episodes.map((ep) => (
-              <button className={utilStyles.playBtn} key={ep.id} onClick={() => handlePlay(ep)}>
+            {data.episodes.map((ep, index) => (
+              <button className={utilStyles.playBtn} key={ep.id} onClick={() => handlePlay(ep, index)}>
                 ep{ep.number}
               </button>
             ))}

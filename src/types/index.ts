@@ -74,7 +74,7 @@ export type AnimeInfo = AnimeResult & {
   // recommendations:
   characters: [Character]
   // relations:
-  episodes: [AnimeEpisode]
+  episodes: AnimeEpisode[]
 }
 
 export type AnimeSearchResults = {
