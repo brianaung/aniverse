@@ -1,4 +1,4 @@
-export interface IEpisode {
+/* export interface IEpisode {
   id: string
   number: number
   url: string
@@ -27,19 +27,9 @@ export interface IAnimeBaseInfo {
   url: string
 }
 
-export interface IAnimeTopInfo extends IAnimeBaseInfo {
-  genres: string[]
-}
-
 export interface IAnimeRecentInfo extends IAnimeBaseInfo {
   episodeId: string
   episodeNumber: number
-}
-
-export interface IAnimeTopResults {
-  currentPage: number
-  hasNextPage: boolean
-  results: IAnimeTopInfo[]
 }
 
 export interface IAnimeRecentResults {
@@ -48,8 +38,92 @@ export interface IAnimeRecentResults {
   results: IAnimeRecentInfo[]
 }
 
-export interface IVideoSrc {
+
+/***************** for anilist api ********************/
+export type AnimeResult = {
+  id: string
+  // malId: number
+  title: TitleLang
+  status: string
+  image: string
+  // trailer:
+  cover: string
+  popularity: number
+  description: string
+  rating: number
+  genres: [string]
+  color?: string
+  totalEpisodes: number
+  releaseDate: number
+  duration: number
+  type: string
+}
+
+export type AnimeInfo = AnimeResult & {
+  synonyms: string
+  isLicensed: boolean
+  isAdult: boolean
+  countryOfOrigin: string
+  color: string
+  startDate: Date
+  endDate: Date
+  nextAiringEpisode: Date
+  season: string
+  studios: [string]
+  subOrDub: 'sub' | 'dub'
+  // recommendations:
+  characters: [Character]
+  // relations:
+  episodes: AnimeEpisode[]
+}
+
+export type AnimeSearchResults = {
+  currentPage: number
+  hasNextPage: boolean
+  results: AnimeResult[]
+}
+
+export type TrendingAnimes = AnimeSearchResults
+
+export type PopularAnimes = AnimeSearchResults
+
+export type VideoSrc = {
   url: string
-  quality: string
   isM3U8: boolean
+  quality: string
+}
+
+export type AnimeEpisode = {
+  id: string
+  title: string
+  description: string
+  number: number
+  image: string
+}
+
+type TitleLang = {
+  romaji: string
+  english: string
+  native: string
+  userPreferred: string
+}
+
+type Character = {
+  id: number
+  role: string
+  name: CharacterName
+}
+
+type CharacterName = {
+  first: string
+  last: string
+  full: string
+  native: string
+  userPreferred: string
+}
+
+type Date = {
+  year: number
+  month: number
+  day: number
 }

@@ -5,8 +5,8 @@ import { NextApiRequest, NextApiResponse } from 'next'
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const query: { episode: string } = Array.isArray(req.query) ? req.query[0] : req.query
-  const param = query.episode
-  const response = await fetch(`https://api.consumet.org/anime/gogoanime/watch/${param}`)
+  const id = query.episode
+  const response = await fetch(`https://api.consumet.org/meta/anilist/watch/${id}`)
 
   // try catch can also be used if not using useSWR
   if (!response.ok) {

@@ -3,23 +3,24 @@ import { useEffect, useState } from 'react'
 import AnimeItem from '../../components/animeItem'
 import AnimeListContainer from '../../components/animeListContainer'
 import Layout from '../../components/layout'
-import { getTrendingAnimes } from '../../lib/anime'
-import { TrendingAnimes } from '../../types'
+import { getPopularAnimes } from '../../lib/anime'
+import { PopularAnimes } from '../../types'
 import Pagination from '../../components/pagination'
 
-export default function TrendingPage() {
+/* todo: the first page should be statically generated? */
+export default function PopularPage() {
   const [page, setPage] = useState('1')
-  const [trendingList, setTrendingList] = useState<TrendingAnimes | null>()
+  const [popularList, setPopularList] = useState<PopularAnimes>()
   const [error, setError] = useState<Error | null>()
 
   useEffect(() => {
     const fetchData = async (page: string) => {
-      const { data, error } = await getTrendingAnimes(page)
+      const { data, error } = await getPopularAnimes(page)
       if (!data) {
         setError(error)
         console.log('[Fetch Data] ' + error.message)
       } else {
-        setTrendingList(data)
+        setPopularList(data)
       }
     }
 
@@ -30,12 +31,13 @@ export default function TrendingPage() {
     <Layout>
       <section>
         <AnimeListContainer>
-          {!trendingList && !error && <p>Loading</p>}
-          {!trendingList && error && <p>Error loading data.</p>}
-          {trendingList && !error && trendingList.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
+          {!popularList && !error && <p>Loading</p>}
+          {!popularList && error && <p>Error loading data.</p>}
+          {popularList && !error && popularList.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>
       </section>
-      {trendingList && <Pagination page={page} setPage={setPage} />}
+      {/* add hasnextpage check */}
+      {popularList && <Pagination page={page} setPage={setPage} />}
     </Layout>
   )
 }
