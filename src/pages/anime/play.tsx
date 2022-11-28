@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-// import { useEffect, useState } from 'react'
 import useSWRImmutable, { Fetcher } from 'swr'
 import Layout from '../../components/layout'
 import Player from '../../components/player'
