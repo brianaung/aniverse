@@ -26,6 +26,7 @@ export default function Player({ allSrc }: { allSrc: VideoSrc[] }) {
 
   // get new video src whenever the user changes video quality
   useEffect(() => {
+    console.log(quality)
     setSrc(getUrl(quality, allSrc))
   }, [quality, allSrc])
 
@@ -63,7 +64,7 @@ export default function Player({ allSrc }: { allSrc: VideoSrc[] }) {
 
       <p>Current quality: {quality}</p>
 
-      <select defaultValue={quality} onChange={handleQuality}>
+      <select value={quality} onChange={handleQuality}>
         {allSrc.map((src) => (
           <option key={src.url} value={src.quality}>
             {src.quality}
