@@ -32,9 +32,18 @@ export default function AnimeInfoPage() {
       {data && !error && (
         <>
           {/* display anime meta data */}
-          <Image src={data.cover} width={360} height={180} layout="responsive" alt={data.title.userPreferred} />
-          <h2>{data.title.english} {data.title.native}</h2>
-          <h3>{data.releaseDate} | <span style={{fontSize:'16px', fontWeight:'normal'}}>{data.totalEpisodes} episodes</span></h3>
+          <Image src={data.cover} width={240} height={80} layout='responsive' alt={data.title.userPreferred} />
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}>
+            <h1>{data.title.english} [{data.title.native}]</h1>
+            <h3>{data.releaseDate} ({data.status}) | <span style={{fontSize:'18px', fontWeight:'normal'}}>{data.totalEpisodes} episodes</span></h3>
+          </div>
+          {/* todo: style genres into tags */}
+          <div style={{display:'flex',gap:'.5rem'}}>{data.genres.map(genre => <p>{genre}</p>)}</div>
+
           <p dangerouslySetInnerHTML={{ __html: data.description }} />
 
           {/* return a list of episodes */}
@@ -43,7 +52,7 @@ export default function AnimeInfoPage() {
               <div className={utilStyles.playBtn} key={ep.id} onClick={() => handlePlay(ep, index)}>
                 {/* episode image with play button icon */}
                 <div style={{position:'relative'}}>
-                  <Image src={ep.image} width={200} height={200} layout="responsive" alt={ep.title} />
+                  <Image src={ep.image} width={200} height={100} alt={ep.title} />
                   <PlayCircle style={{position:'absolute', top:'50%', left:'50%', marginLeft:'-25px', marginTop:'-25px'}} color='black' width={50} height={50} />
                 </div>
                 {/* ----------------------------------- */}
