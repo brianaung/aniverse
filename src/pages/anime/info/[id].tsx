@@ -83,7 +83,6 @@ export default function AnimeInfoPage() {
             </h4>
           </div>
 
-          {/* todo: seperate genres into tags components */}
           <div style={{ display: 'flex', gap: '.5rem' }}>
             {data.genres.map((genre) => (
               <div

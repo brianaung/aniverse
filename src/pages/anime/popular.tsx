@@ -7,15 +7,16 @@ import { getPopularAnimes } from '../../lib/anime'
 import { PopularAnimes } from '../../types'
 import Pagination from '../../components/pagination'
 
-/* todo: the first page should be statically generated? */
+const perPage = 14
+
 export default function PopularPage() {
-  const [page, setPage] = useState('1')
+  const [page, setPage] = useState(1)
   const [popularList, setPopularList] = useState<PopularAnimes>()
   const [error, setError] = useState<Error | null>()
 
   useEffect(() => {
-    const fetchData = async (page: string) => {
-      const { data, error } = await getPopularAnimes(page)
+    const fetchData = async (page: number) => {
+      const { data, error } = await getPopularAnimes(page, perPage)
       if (!data) {
         setError(error)
         console.log('[Fetch Data] ' + error.message)
