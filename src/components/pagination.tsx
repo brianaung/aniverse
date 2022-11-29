@@ -19,10 +19,10 @@ export default function Pagination({
   return (
     <div className={styles.navBtnContainer}>
       <button className={styles.navBtn} onClick={handlePrev}>
-        prev
+        {'<'}
       </button>
       <button className={styles.navBtn} onClick={handleNext}>
-        next
+        {'>'}
       </button>
     </div>
   )
