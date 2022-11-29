@@ -41,7 +41,7 @@ export async function getTrendingAnimes(page: number, perPage: number) {
  * @param query - The user query string.
  */
 // todo: improve search results
-export async function getAnimeSearch(query: string, page: string) {
+export async function getAnimeSearch(query: string, page: number) {
   const filteredList: AnimeResult[] = []
 
   const res = await fetch(
