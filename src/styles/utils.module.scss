@@ -16,13 +16,13 @@
 .playBtn {
   cursor: pointer;
   // text-align: center;
-  border: solid 1px black;
+  // border: solid 1px black;
   // border-radius: 10px;
   // margin: 0.5rem;
   padding: 0.5rem;
   flex: 1;
-  min-width: 200px;
-  max-width: 200px;
+  min-width: 250px;
+  max-width: 250px;
   transition: background-color 400ms ease;
   &:hover {
     // box-shadow: 2px 2px black;
