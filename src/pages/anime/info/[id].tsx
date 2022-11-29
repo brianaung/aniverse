@@ -52,10 +52,12 @@ export default function AnimeInfoPage() {
           <div style={{width:'100%', height:'auto', maxHeight:'500px', overflow:'hidden'}}>
             <Image style={{width:'100%', height:'auto'}} quality="100" src={data.cover} width={10000} height={100000} alt={data.title.english} />
           </div>
+
           <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
             <h1>{data.title.english}</h1>
             <h4>{data.releaseDate} ({data.status}) | {data.totalEpisodes} episodes</h4>
           </div>
+
           {/* todo: seperate genres into tags components */}
           <div style={{display:'flex',gap:'.5rem'}}>
             {data.genres.map(genre => 
@@ -71,11 +73,13 @@ export default function AnimeInfoPage() {
               </div>
             )}
           </div>
-          <iframe style={{all:'unset', width:'700px', height:'500px'}} src={`https://www.youtube.com/embed/${data.trailer.id}?controls=0&disablekb=1&mute=1&autoplay=1&playlist=${data.trailer.id}&loop=1&cc_load_policy=0&iv_load_policy=3&modestbranding=0&rel=0`} />
 
-          <p style={{fontStyle:'italic'}} dangerouslySetInnerHTML={{ __html: data.description }} />
+          {/*{data.trailer && <iframe style={{all:'unset', width:'1200px', height:'500px'}} src={`https://www.youtube.com/embed/${data.trailer.id}?controls=0&disablekb=1&mute=1&autoplay=1&playlist=${data.trailer.id}&loop=1&cc_load_policy=3&iv_load_policy=3&modestbranding=0&rel=0`} />}
+          */}
+            <p style={{fontStyle:'italic'}} dangerouslySetInnerHTML={{ __html: data.description }} />
 
           {/* return a list of episodes */}
+          <h3>Start Watching</h3>
           <div className={utilStyles.btnListContainer}>
             {data.episodes.map((ep, index) => (
               <div className={utilStyles.playBtn} key={ep.id} onClick={() => handlePlay(ep, index)}>
