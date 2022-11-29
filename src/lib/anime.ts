@@ -3,8 +3,8 @@ import { AnimeInfo, AnimeResult, AnimeSearchResults, PopularAnimes, TrendingAnim
 /**
  * Fetch and return an array of all top trending animes
  */
-export async function getPopularAnimes(page: string) {
-  const res = await fetch(`https://api.consumet.org/meta/anilist/popular?page=${page}`)
+export async function getPopularAnimes(page: number, perPage: number) {
+  const res = await fetch(`https://api.consumet.org/meta/anilist/popular?page=${page}&perPage=${perPage}`)
   if (!res.ok) {
     return {
       data: null,
@@ -19,8 +19,8 @@ export async function getPopularAnimes(page: string) {
   }
 }
 
-export async function getTrendingAnimes(page: string) {
-  const res = await fetch(`https://api.consumet.org/meta/anilist/trending?page=${page}`)
+export async function getTrendingAnimes(page: number, perPage: number) {
+  const res = await fetch(`https://api.consumet.org/meta/anilist/trending?page=${page}&perPage=${perPage}`)
   if (!res.ok) {
     return {
       data: null,
@@ -41,7 +41,7 @@ export async function getTrendingAnimes(page: string) {
  * @param query - The user query string.
  */
 // todo: improve search results
-export async function getAnimeSearch(query: string, page: string) {
+export async function getAnimeSearch(query: string, page: number) {
   const filteredList: AnimeResult[] = []
 
   const res = await fetch(

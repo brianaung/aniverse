@@ -7,14 +7,16 @@ import { getTrendingAnimes } from '../../lib/anime'
 import { TrendingAnimes } from '../../types'
 import Pagination from '../../components/pagination'
 
+const perPage = 14
+
 export default function TrendingPage() {
-  const [page, setPage] = useState('1')
+  const [page, setPage] = useState(1)
   const [trendingList, setTrendingList] = useState<TrendingAnimes | null>()
   const [error, setError] = useState<Error | null>()
 
   useEffect(() => {
-    const fetchData = async (page: string) => {
-      const { data, error } = await getTrendingAnimes(page)
+    const fetchData = async (page: number) => {
+      const { data, error } = await getTrendingAnimes(page, perPage)
       if (!data) {
         setError(error)
         console.log('[Fetch Data] ' + error.message)

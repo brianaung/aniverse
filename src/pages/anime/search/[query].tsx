@@ -15,12 +15,12 @@ export default function SearchResultsPage() {
   const router = useRouter()
   const { query } = Array.isArray(router.query) ? router.query[0] : router.query
   // const { data, error } = useSWR(query ? `/api/anime/search/${query}` : null, fetcher)
-  const [page, setPage] = useState('1')
+  const [page, setPage] = useState(1)
   const [searchList, setSearchList] = useState<AnimeSearchResults | null>()
   const [error, setError] = useState<Error | null>()
 
   useEffect(() => {
-    const fetchData = async (page: string) => {
+    const fetchData = async (page: number) => {
       const { data, error } = await getAnimeSearch(query, page)
       if (!data) {
         setError(error)

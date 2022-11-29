@@ -5,15 +5,15 @@ export default function Pagination({
   page,
   setPage
 }: {
-  page: string
-  setPage: React.Dispatch<React.SetStateAction<string>>
+  page: number
+  setPage: React.Dispatch<React.SetStateAction<number>>
 }) {
   const handlePrev = () => {
-    setPage(Math.max(1, parseInt(page) - 1).toString())
+    setPage(Math.max(1, page - 1))
   }
 
   const handleNext = () => {
-    setPage((parseInt(page) + 1).toString())
+    setPage(page + 1)
   }
 
   return (
