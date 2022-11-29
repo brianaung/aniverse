@@ -6,19 +6,19 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'gogocdn.net'
-        // port: '',
-        // pathname: '/cover/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i.animepahe.ru'
+        hostname: 'artworks.thetvdb.com'
         // port: '',
         // pathname: '/cover/**',
       },
       {
         protocol: 'https',
         hostname: 's4.anilist.co'
+        // port: '',
+        // pathname: '/cover/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.kitsu.io'
         // port: '',
         // pathname: '/cover/**',
       }

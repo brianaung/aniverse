@@ -46,7 +46,7 @@ export type AnimeResult = {
   title: TitleLang
   status: string
   image: string
-  // trailer:
+  trailer: AnimeTrailer
   cover: string
   popularity: number
   description: string
@@ -99,6 +99,12 @@ export type AnimeEpisode = {
   description: string
   number: number
   image: string
+}
+
+type AnimeTrailer = {
+  id: string
+  site: string
+  thumbnail: string
 }
 
 type TitleLang = {

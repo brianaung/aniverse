@@ -1,11 +1,12 @@
 @use 'src/styles/_lib.scss';
 
 .searchInput {
+  background-color: white;
   font-family: inherit;
-  color: lib.$textColor;
+  color: lib.$bgColor;
   height: 2rem;
   width: 10rem;
   border: solid lib.$dividerSize lib.$dividerColor;
-  border-radius: 50px;
+  border-radius: 9999px;
   padding: 0 1rem;
 }
