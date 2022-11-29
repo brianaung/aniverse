@@ -49,8 +49,21 @@ export default function AnimeInfoPage() {
       {data && !error && (
         <>
           {/* display anime meta data */}
-          <div style={{width:'100%', height:'auto', maxHeight:'500px', overflow:'hidden'}}>
+          <div style={{position:'relative',width:'100%', height:'auto', maxHeight:'500px', overflow:'hidden'}}>
             <Image style={{width:'100%', height:'auto'}} quality="100" src={data.cover} width={10000} height={100000} alt={data.title.english} />
+            <a
+              style={{
+                all:'unset',
+                cursor:'pointer',
+                color: 'black',
+                backgroundColor: '#e40059',
+                padding: '.5rem 1rem',
+                borderRadius: '9999px',
+                border: 'solid 1px black',
+                position:'absolute', top:'50%', left:'50%'
+              }}
+              href="#epSection">Watch now
+            </a>
           </div>
 
           <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
@@ -79,8 +92,7 @@ export default function AnimeInfoPage() {
             <p style={{fontStyle:'italic'}} dangerouslySetInnerHTML={{ __html: data.description }} />
 
           {/* return a list of episodes */}
-          <h3>Start Watching</h3>
-          <div className={utilStyles.btnListContainer}>
+          <div id="epSection" className={utilStyles.btnListContainer}>
             {data.episodes.map((ep, index) => (
               <div className={utilStyles.playBtn} key={ep.id} onClick={() => handlePlay(ep, index)}>
                 {/* episode image with play button icon */}
