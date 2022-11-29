@@ -6,7 +6,6 @@ import Searchbar from './searchbar'
 export default function Navbar() {
   return (
     <div className={styles.container}>
-
       <div className={styles.navSelections}>
         <Link href="/">Home</Link>
         <Link href="/anime/popular">Popular</Link>
