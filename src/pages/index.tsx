@@ -1,3 +1,4 @@
+import { Heading } from '@chakra-ui/react'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import AnimeItem from '../components/animeItem'
@@ -20,11 +21,13 @@ export default function Home({
         <title>Aniverse Home</title>
       </Head>
       <section>
-        <h1>Most popular</h1>
+        <Heading as='h2' size='md'>Most popular</Heading>
         <AnimeListContainer>
           {popularAnimes && popularAnimes.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>
-        <h1>Trending now</h1>
+      </section>
+      <section>
+        <Heading as='h2' size='md'>Trending now</Heading>
         <AnimeListContainer>
           {trendingAnimes && trendingAnimes.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>

@@ -6,6 +6,8 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
+  Heading,
+  Text,
   useDisclosure
 } from '@chakra-ui/react'
 import Image from 'next/image'
@@ -15,6 +17,7 @@ import React from 'react'
 import useSWR, { Fetcher } from 'swr'
 import { AnimeResult, AnimeInfo } from '../types'
 import styles from './animeItem.module.scss'
+import utilStyles from '../styles/utils.module.scss'
 import GenreTags from './genreTags'
 
 const fetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
@@ -45,16 +48,18 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
           <DrawerContent>
             <DrawerCloseButton />
             <DrawerHeader>
-              <h1 style={{ color: data.color, textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black' }}>
-                {data.title.english}
-              </h1>
+              <header>
+                <Heading className={utilStyles.textWithStroke} color={data.color} as='h1' size='xl' >
+                  {data.title.english}
+                </Heading>
 
-              {/* todo: clicking on each genre will redirect to similar animes with same genre? */}
-              <GenreTags genres={data.genres} color={data.color} />
+                {/* todo: clicking on each genre will redirect to similar animes with same genre? */}
+                <GenreTags genres={data.genres} color={data.color} />
+              </header>
             </DrawerHeader>
 
             <DrawerBody>
-              <div style={{ width: '100%', height: 'auto', maxHeight: '500px', overflow: 'hidden' }}>
+              <section style={{ width: '100%', height: 'auto', maxHeight: '500px', overflow: 'hidden' }}>
                 <Image
                   style={{ border: 'solid 1px black', width: '100%', height: 'auto' }}
                   quality="100"
@@ -63,13 +68,14 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
                   height={100000}
                   alt={data.title.english}
                 />
-              </div>
-
-              <section style={{ margin: '1rem 0' }}>
-                <p style={{ fontStyle: 'italic' }} dangerouslySetInnerHTML={{ __html: data.description }} />
               </section>
 
-              <div style={{ border: 'solid 5px red' }}>
+              <section style={{ margin: '1rem 0' }}>
+                <Text as='i' dangerouslySetInnerHTML={{ __html: data.description }} />
+              </section>
+
+              {/* todo: style */}
+              <section style={{ border: 'solid 5px red' }}>
                 <h3>todo: present these data in proper fashion</h3>
                 {data.releaseDate} ({data.status}) | {data.totalEpisodes} episodes | duration {data.duration} | rating{' '}
                 {data.rating} | season {data.season} | studios {data.studios} | subordub? {data.subOrDub} |
@@ -88,13 +94,11 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
                     </>
                   ))}
                 </div>
-              </div>
+              </section>
             </DrawerBody>
 
             <DrawerFooter>
               <Link href={`/anime/watch/${anime.id}`}>Start Watching</Link>
-              {/* todo: show this in seperate page when clicked on start watching */}
-              {/* <EpisodeGrids animeID={anime.id} episodes={data.episodes} /> */}
             </DrawerFooter>
           </DrawerContent>
         )}

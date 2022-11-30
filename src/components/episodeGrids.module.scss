@@ -1,12 +1,13 @@
 .container {
+  padding: 1rem;
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.1rem;
   flex-wrap: wrap;
-  max-width: 100%;
+  width: 100%;
 }
 
-.playBtn {
+.episodeBox {
   cursor: pointer;
   padding: 0.5rem;
   flex: 1;
@@ -19,10 +20,24 @@
   }
 }
 
-.videoCaption {
-  // display: inline;
-  text-transform: lowercase;
-  // &::first-letter {
-  //   text-transform: capitalize;
-  // }
+// .videoCaption {
+//   // display: inline-block;
+//   // text-transform: lowercase;
+//   // &::first-letter {
+//   //   text-transform: capitalize;
+//   // }
+// }
+
+.videoThumbnail {
+  position: relative;
+  border: solid 1px black;
 }
+
+.playCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
+}
+
