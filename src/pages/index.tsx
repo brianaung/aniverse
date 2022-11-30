@@ -1,6 +1,7 @@
 import { Heading } from '@chakra-ui/react'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import AnimeItem from '../components/animeItem'
 import AnimeListContainer from '../components/animeListContainer'
 import Layout from '../components/layout'
@@ -22,12 +23,14 @@ export default function Home({
       </Head>
       <section>
         <Heading as='h2' size='md'>Most popular</Heading>
+        <Link href="/anime/popular">view more</Link>
         <AnimeListContainer>
           {popularAnimes && popularAnimes.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>
       </section>
       <section>
         <Heading as='h2' size='md'>Trending now</Heading>
+        <Link href="/anime/trending">view more</Link>
         <AnimeListContainer>
           {trendingAnimes && trendingAnimes.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>
