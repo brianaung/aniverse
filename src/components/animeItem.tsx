@@ -95,10 +95,11 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
                   ))}
                 </div>
               </section>
+
             </DrawerBody>
 
             <DrawerFooter>
-              <Link href={`/anime/watch/${anime.id}`}>Start Watching</Link>
+              <Link className={utilStyles.button} href={`/anime/watch/${anime.id}`}>Start Watching</Link>
             </DrawerFooter>
           </DrawerContent>
         )}
