@@ -58,19 +58,26 @@ export default function Player({ allSrc }: { allSrc: VideoSrc[] }) {
 
   return (
     <div className={styles.container}>
-      <main>
+      <main style={{ position: 'relative' }}>
         <video className={styles.player} ref={videoRef} />
+        <select
+          style={{
+            all: 'unset',
+            color: 'white',
+            backgroundColor: 'black',
+            position: 'absolute',
+            top: '1%',
+            right: '1%'
+          }}
+          value={quality}
+          onChange={handleQuality}>
+          {allSrc.map((src) => (
+            <option key={src.url} value={src.quality}>
+              {src.quality}
+            </option>
+          ))}
+        </select>
       </main>
-
-      <p>Current quality: {quality}</p>
-
-      <select value={quality} onChange={handleQuality}>
-        {allSrc.map((src) => (
-          <option key={src.url} value={src.quality}>
-            {src.quality}
-          </option>
-        ))}
-      </select>
     </div>
   )
 }

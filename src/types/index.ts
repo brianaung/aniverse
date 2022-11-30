@@ -76,6 +76,8 @@ type Character = {
   id: number
   role: string
   name: CharacterName
+  image: string
+  // voiceActors
 }
 
 type CharacterName = {

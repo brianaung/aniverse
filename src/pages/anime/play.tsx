@@ -1,4 +1,5 @@
 // import Link from 'next/link'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import useSWR from 'swr'
@@ -23,7 +24,7 @@ const animeFetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).the
 export default function VideoPage() {
   const router = useRouter()
   const { animeID, ep, index } = Array.isArray(router.query) ? router.query[0] : router.query
-  const { data: animeData } = useSWR(animeID ? `/api/anime/info/${animeID}` : null, animeFetcher)
+  const { data: animeData } = useSWR(animeID ? `/api/anime/watch/${animeID}` : null, animeFetcher)
   const episode: AnimeEpisode = ep ? JSON.parse(ep) : null
   // IMPORTANT: using normal useSWR will revalidate data (fetching again after intervals) causing the video src link to change
   const { data: epData, error: epError } = useSWRImmutable(
@@ -80,9 +81,17 @@ export default function VideoPage() {
 
   return (
     <Layout>
-      <h2>{animeData && animeData.title.english}</h2>
-      <h3>{episode && episode.title}</h3>
-      <h3>{episode && episode.number}</h3>
+      {animeData && episode && (
+        <>
+          <h2>
+            <Link href={`/anime/watch/${animeID}`}>{animeData.title.english}</Link>
+          </h2>
+          <h3>
+            Ep{episode.number} {episode.title} ({animeData.duration}mins)
+          </h3>
+          <p style={{ fontStyle: 'italic' }}>{episode.description}</p>
+        </>
+      )}
       <section>
         {!epData && !epError && <p>Loading</p>}
         {!epData && epError && <p>Error loading video.</p>}
@@ -94,7 +103,6 @@ export default function VideoPage() {
           </>
         )}
       </section>
-      <p>{episode && episode.description}</p>
     </Layout>
   )
 }
