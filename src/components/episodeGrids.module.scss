@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.playBtn {
+  cursor: pointer;
+  padding: 0.5rem;
+  flex: 1;
+  min-width: 250px;
+  max-width: 250px;
+  transition: all 200ms ease-in-out;
+  &:hover {
+    // background-color: #d1d1d1;
+    transform: scale(1.1);
+  }
+}
+
+.videoCaption {
+  // display: inline;
+  text-transform: lowercase;
+  // &::first-letter {
+  //   text-transform: capitalize;
+  // }
+}

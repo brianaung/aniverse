@@ -91,3 +91,12 @@ useEffect(() => {
   // if you set the here the result of fetchData would be Promise<pending>
 }, [episode])
 ```
+
+## Adding a 1px text stroke (does not look good if thickness is over 1px
+
+simply add text shadow to top, right, bottom, left
+can also use
+
+```css
+text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+```

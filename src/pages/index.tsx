@@ -12,13 +12,12 @@ const perPage = 7
 
 // todo: handle loading and error states
 export default function Home({
-    popularAnimesInit,
-    trendingAnimesInit
-  }: {
-    popularAnimesInit: PopularAnimes,
-    trendingAnimesInit: TrendingAnimes
-  }) {
-
+  popularAnimesInit,
+  trendingAnimesInit
+}: {
+  popularAnimesInit: PopularAnimes
+  trendingAnimesInit: TrendingAnimes
+}) {
   const [popularAnimes, setPopularAnimes] = useState<PopularAnimes | null>(null)
   const [trendingAnimes, setTrendingAnimes] = useState<TrendingAnimes | null>(null)
   const [popularPage, setPopularPage] = useState(1)
@@ -64,11 +63,14 @@ export default function Home({
         <AnimeListContainer>
           {!popularAnimes ? (
             <>
-            {popularAnimesInit && popularAnimesInit.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
+              {popularAnimesInit &&
+                popularAnimesInit.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
             </>
           ) : (
             <>
-            {popularAnimes.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
+              {popularAnimes.results.map((anime) => (
+                <AnimeItem key={anime.id} anime={anime} />
+              ))}
             </>
           )}
         </AnimeListContainer>
@@ -77,11 +79,14 @@ export default function Home({
         <AnimeListContainer>
           {!trendingAnimes ? (
             <>
-            {trendingAnimesInit && trendingAnimesInit.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
+              {trendingAnimesInit &&
+                trendingAnimesInit.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
             </>
           ) : (
             <>
-            {trendingAnimes.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
+              {trendingAnimes.results.map((anime) => (
+                <AnimeItem key={anime.id} anime={anime} />
+              ))}
             </>
           )}
         </AnimeListContainer>

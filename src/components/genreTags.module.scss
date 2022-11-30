@@ -1,0 +1,16 @@
+@use 'src/styles/_lib.scss';
+
+.container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.pill {
+  border-radius: 9999px;
+  border: solid lib.$dividerSize lib.$dividerColor;
+  padding: 0 0.5rem;
+  transition: transform 200ms ease;
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
