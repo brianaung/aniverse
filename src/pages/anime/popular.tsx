@@ -1,12 +1,12 @@
 // import utilStyles from '../../styles/utils.module.scss'
+import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import AnimeItem from '../../components/animeItem'
 import AnimeListContainer from '../../components/animeListContainer'
 import Layout from '../../components/layout'
+import Pagination from '../../components/pagination'
 import { getPopularAnimes } from '../../lib/anime'
 import { PopularAnimes } from '../../types'
-import Pagination from '../../components/pagination'
-import Head from 'next/head'
 
 const perPage = 14
 

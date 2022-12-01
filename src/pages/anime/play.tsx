@@ -1,15 +1,14 @@
 // import Link from 'next/link'
-import { Stack, Button, Heading, Text } from '@chakra-ui/react'
+import { Button, Heading, Stack, Text } from '@chakra-ui/react'
+import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import useSWR from 'swr'
-import useSWRImmutable, { Fetcher } from 'swr'
+import { default as useSWR, default as useSWRImmutable, Fetcher } from 'swr'
 import Layout from '../../components/layout'
 import Player from '../../components/player'
-import { AnimeEpisode, AnimeInfo, VideoSrc } from '../../types'
 import utilStyles from '../../styles/utils.module.scss'
-import Head from 'next/head'
+import { AnimeEpisode, AnimeInfo, VideoSrc } from '../../types'
 
 type ApiDataType = {
   allSrc: VideoSrc[]
@@ -85,31 +84,41 @@ export default function VideoPage() {
   return (
     <Layout>
       <Head>
-        <title>{animeData && animeData.title.english} Ep{episode && episode.number}</title>
+        <title>
+          {animeData && animeData.title.english} Ep{episode && episode.number}
+        </title>
       </Head>
-      <Stack spacing='2rem' justifyContent='center'>
+      <Stack spacing="2rem" justifyContent="center">
         {animeData && episode && (
-          <Stack spacing='1rem'>
-            <Heading className={utilStyles.textWithStroke} as='h1' size='xl' color={animeData.color}>
+          <Stack spacing="1rem">
+            <Heading className={utilStyles.textWithStroke} as="h1" size="xl" color={animeData.color}>
               <Link href={`/anime/watch/${animeID}`}>{animeData.title.english}</Link>
             </Heading>
-            <Heading as='h2' size='md'>
+            <Heading as="h2" size="md">
               Ep{episode.number} {episode.title} ({animeData.duration}mins)
             </Heading>
-            <Text as='i'>{episode.description}</Text>
+            <Text as="i">{episode.description}</Text>
           </Stack>
         )}
-        <section>
+        <Stack justifyContent="center" alignItems="center">
           {!epData && !epError && <p>Loading</p>}
           {!epData && epError && <p>Error loading video.</p>}
           {epData && !epError && (
-            <>
+            <Stack direction="row" alignItems="center" gap="1rem">
+              {prev && (
+                <Button colorScheme="black" variant="outline" onClick={handlePrev}>
+                  prev
+                </Button>
+              )}
               <Player allSrc={epData.allSrc} />
-              {prev && <Button onClick={handlePrev}>prev</Button>}
-              {next && <Button onClick={handleNext}>next</Button>}
-            </>
+              {next && (
+                <Button colorScheme="black" variant="outline" onClick={handleNext}>
+                  next
+                </Button>
+              )}
+            </Stack>
           )}
-        </section>
+        </Stack>
       </Stack>
     </Layout>
   )

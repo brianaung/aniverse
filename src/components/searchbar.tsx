@@ -1,5 +1,5 @@
-import styles from './searchbar.module.scss'
 import { useRouter } from 'next/router'
+import styles from './searchbar.module.scss'
 
 export default function Searchbar() {
   const router = useRouter()

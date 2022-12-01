@@ -1,7 +1,7 @@
-import styles from './player.module.scss'
-import React, { useEffect, useRef, useState } from 'react'
 import Hls from 'hls.js'
+import React, { useEffect, useRef, useState } from 'react'
 import { VideoSrc } from '../types'
+import styles from './player.module.scss'
 
 /**
  * returns the video src given the video quality.
@@ -65,6 +65,8 @@ export default function Player({ allSrc }: { allSrc: VideoSrc[] }) {
             all: 'unset',
             color: 'white',
             backgroundColor: 'black',
+            borderRadius: '9999px',
+            padding: '.1rem .5rem',
             position: 'absolute',
             top: '1%',
             right: '1%'

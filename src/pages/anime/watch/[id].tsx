@@ -1,11 +1,11 @@
-import useSWR, { Fetcher } from 'swr'
-import { useRouter } from 'next/router'
-import Layout from '../../../components/layout'
-import { AnimeInfo } from '../../../types'
-import EpisodeGrids from '../../../components/episodeGrids'
 import { Heading } from '@chakra-ui/react'
-import utilStyles from '../../../styles/utils.module.scss'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import useSWR, { Fetcher } from 'swr'
+import EpisodeGrids from '../../../components/episodeGrids'
+import Layout from '../../../components/layout'
+import utilStyles from '../../../styles/utils.module.scss'
+import { AnimeInfo } from '../../../types'
 
 const fetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
 
@@ -24,10 +24,10 @@ export default function AnimeEpListPage() {
       {data && !error && (
         <>
           <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Heading className={utilStyles.textWithStroke} as='h1' size='xl' color={data.color}>
+            <Heading className={utilStyles.textWithStroke} as="h1" size="xl" color={data.color}>
               {data.title.english}
             </Heading>
-            <Heading as='h2' size='sm'>
+            <Heading as="h2" size="sm">
               {data.releaseDate} ({data.status}) | {data.totalEpisodes} episodes | {data.duration} minutes
             </Heading>
           </header>

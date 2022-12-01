@@ -22,14 +22,18 @@ export default function Home({
         <title>hai</title>
       </Head>
       <section>
-        <Heading as='h2' size='md'>Most popular</Heading>
+        <Heading as="h2" size="md">
+          Most popular
+        </Heading>
         <Link href="/anime/popular">view more</Link>
         <AnimeListContainer>
           {popularAnimes && popularAnimes.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>
       </section>
       <section>
-        <Heading as='h2' size='md'>Trending now</Heading>
+        <Heading as="h2" size="md">
+          Trending now
+        </Heading>
         <Link href="/anime/trending">view more</Link>
         <AnimeListContainer>
           {trendingAnimes && trendingAnimes.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
