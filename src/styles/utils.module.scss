@@ -5,19 +5,19 @@
   text-align: center;
 }
 
-// tmp. to display vivid dev message during development
-.devMessage {
-  font-size: 22px;
-  font-weight: 600;
-  color: red;
-  font-style: italic;
-}
-
 .button {
   all: unset;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: .1rem 1rem;
   border-radius: 9999px;
   border: solid 1px black;
   background-color: lib.$primary;
+  transition: transform 200ms ease;
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.textWithStroke {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
