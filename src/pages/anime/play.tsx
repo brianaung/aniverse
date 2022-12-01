@@ -1,10 +1,11 @@
 // import Link from 'next/link'
-import { Button, Heading, Stack, Text } from '@chakra-ui/react'
+import { Button, Heading, Select, Stack, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { default as useSWR, default as useSWRImmutable, Fetcher } from 'swr'
+import { ArrowForwardIcon, ArrowBackIcon } from '@chakra-ui/icons'
 import Layout from '../../components/layout'
 import Player from '../../components/player'
 import utilStyles from '../../styles/utils.module.scss'
@@ -81,6 +82,19 @@ export default function VideoPage() {
     })
   }
 
+  const handleSelectEp = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (animeData) {
+      router.push({
+        pathname: `/anime/play`,
+        query: {
+          animeID: animeID,
+          ep: JSON.stringify(animeData.episodes[parseInt(e.target.value) - 1]),
+          index: parseInt(e.target.value) - 1
+        }
+      })
+    }
+  }
+
   return (
     <Layout>
       <Head>
@@ -89,7 +103,7 @@ export default function VideoPage() {
         </title>
       </Head>
       <Stack spacing="2rem" justifyContent="center">
-        {animeData && episode && (
+        {animeData && (
           <Stack spacing="1rem">
             <Heading className={utilStyles.textWithStroke} as="h1" size="xl" color={animeData.color}>
               <Link href={`/anime/watch/${animeID}`}>{animeData.title.english}</Link>
@@ -100,23 +114,32 @@ export default function VideoPage() {
             <Text as="i">{episode.description}</Text>
           </Stack>
         )}
+
         <Stack justifyContent="center" alignItems="center">
+          {/* select episode in a dropdown selector */}
+          <Stack direction='row' alignItems='center' justifyContent='center'>
+            {prev && (
+              <Button color="black" onClick={handlePrev}>
+                <ArrowBackIcon />
+              </Button>
+            )}
+            <Text>Episode</Text>
+            <Select size='sm' value={episode.number} onChange={handleSelectEp}>
+              {animeData && animeData.episodes.map(ep => (
+                <option>{ep.number}</option>
+              ))}
+            </Select>
+            {next && (
+              <Button color="black" onClick={handleNext}>
+                <ArrowForwardIcon />
+              </Button>
+            )}
+          </Stack>
+
           {!epData && !epError && <p>Loading</p>}
           {!epData && epError && <p>Error loading video.</p>}
           {epData && !epError && (
-            <Stack direction="row" alignItems="center" gap="1rem">
-              {prev && (
-                <Button colorScheme="black" variant="outline" onClick={handlePrev}>
-                  prev
-                </Button>
-              )}
-              <Player allSrc={epData.allSrc} />
-              {next && (
-                <Button colorScheme="black" variant="outline" onClick={handleNext}>
-                  next
-                </Button>
-              )}
-            </Stack>
+            <Player allSrc={epData.allSrc} />
           )}
         </Stack>
       </Stack>

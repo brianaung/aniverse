@@ -1,4 +1,6 @@
-$video-width: 50vw;
+@use 'src/styles/_lib.scss';
+
+$video-width: 60vw;
 $video-height: auto;
 
 .container {
@@ -11,4 +13,5 @@ $video-height: auto;
 .player {
   width: $video-width;
   height: $video-height;
+  border: solid lib.$dividerSize lib.$dividerColor;
 }
