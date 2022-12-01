@@ -6,6 +6,7 @@ import Layout from '../../components/layout'
 import { getTrendingAnimes } from '../../lib/anime'
 import { TrendingAnimes } from '../../types'
 import Pagination from '../../components/pagination'
+import Head from 'next/head'
 
 const perPage = 14
 
@@ -30,6 +31,9 @@ export default function TrendingPage() {
 
   return (
     <Layout>
+      <Head>
+        <title>popular animes</title>
+      </Head>
       <section>
         <AnimeListContainer>
           {!trendingList && !error && <p>Loading</p>}

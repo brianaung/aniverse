@@ -7,6 +7,7 @@ import AnimeListContainer from '../../../components/animeListContainer'
 import { AnimeSearchResults } from '../../../types'
 import { getAnimeSearch } from '../../../lib/anime'
 import Pagination from '../../../components/pagination'
+import Head from 'next/head'
 
 // fetcher for useSWR
 // const fetcher: Fetcher = (arg: string) => fetch(arg).then((res) => res.json())
@@ -35,6 +36,9 @@ export default function SearchResultsPage() {
 
   return (
     <Layout>
+      <Head>
+        <title>search results for {query}</title>
+      </Head>
       <p>showing results for: <em>{query}</em></p>
       <AnimeListContainer>
         {!searchList && !error && <p>Loading</p>}

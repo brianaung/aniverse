@@ -9,6 +9,7 @@ import Layout from '../../components/layout'
 import Player from '../../components/player'
 import { AnimeEpisode, AnimeInfo, VideoSrc } from '../../types'
 import utilStyles from '../../styles/utils.module.scss'
+import Head from 'next/head'
 
 type ApiDataType = {
   allSrc: VideoSrc[]
@@ -83,6 +84,9 @@ export default function VideoPage() {
 
   return (
     <Layout>
+      <Head>
+        <title>{animeData && animeData.title.english} Ep{episode && episode.number}</title>
+      </Head>
       <Stack spacing='2rem' justifyContent='center'>
         {animeData && episode && (
           <Stack spacing='1rem'>

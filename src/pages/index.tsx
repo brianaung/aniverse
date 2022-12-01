@@ -19,7 +19,7 @@ export default function Home({
   return (
     <Layout>
       <Head>
-        <title>Aniverse Home</title>
+        <title>hai</title>
       </Head>
       <section>
         <Heading as='h2' size='md'>Most popular</Heading>
