@@ -19,7 +19,7 @@ export default function PopularPage() {
       const { data, error } = await getPopularAnimes(page, perPage)
       if (!data) {
         setError(error)
-        console.log('[Fetch Data] ' + error.message)
+        console.log(`[Fetch Data @ page ${page}] ` + error.message)
       } else {
         setPopularList(data)
       }

@@ -19,7 +19,7 @@ export default function TrendingPage() {
       const { data, error } = await getTrendingAnimes(page, perPage)
       if (!data) {
         setError(error)
-        console.log('[Fetch Data] ' + error.message)
+        console.log(`[Fetch Data @ page ${page}] ` + error.message)
       } else {
         setTrendingList(data)
       }
