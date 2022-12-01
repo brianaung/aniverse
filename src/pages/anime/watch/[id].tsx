@@ -5,6 +5,7 @@ import { AnimeInfo } from '../../../types'
 import EpisodeGrids from '../../../components/episodeGrids'
 import { Heading } from '@chakra-ui/react'
 import utilStyles from '../../../styles/utils.module.scss'
+import Head from 'next/head'
 
 const fetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
 
@@ -15,6 +16,9 @@ export default function AnimeEpListPage() {
 
   return (
     <Layout>
+      <Head>
+        <title>watch {data && data.title.english}</title>
+      </Head>
       {!data && !error && <p>Loading</p>}
       {!data && error && <p>Something went wrong, please try again later.</p>}
       {data && !error && (

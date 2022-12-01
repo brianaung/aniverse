@@ -1,4 +1,6 @@
 import {
+  Card,
+  CardBody,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -7,6 +9,12 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Heading,
+  SimpleGrid,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   Text,
   useDisclosure
 } from '@chakra-ui/react'
@@ -22,15 +30,9 @@ import GenreTags from './genreTags'
 
 const fetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
 
-// todo: add more meta data
 export default function AnimeItem({ anime }: { anime: AnimeResult }) {
-  // const router = useRouter()
-  /* const handleOpen = () => {
-    router.push(`/anime/info/${anime.id}`)
-  } */
-
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { data } = useSWR(anime.id ? `/api/anime/watch/${anime.id}` : null, fetcher)
+  const { data, error } = useSWR(anime.id ? `/api/anime/watch/${anime.id}` : null, fetcher)
 
   return (
     <>
@@ -44,65 +46,93 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
 
       <Drawer isOpen={isOpen} placement="top" onClose={onClose} size="full">
         <DrawerOverlay />
-        {data && (
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>
-              <header>
-                <Heading className={utilStyles.textWithStroke} color={data.color} as='h1' size='xl' >
-                  {data.title.english}
-                </Heading>
-
-                {/* todo: clicking on each genre will redirect to similar animes with same genre? */}
-                <GenreTags genres={data.genres} color={data.color} />
-              </header>
+            {/* todo: add loading skeletons */}
+            {!data &&  !error && <p>Loading</p>}
+            {!data &&  error && <p>Something went wrong. Please try again later.</p>}
+            {data && !error && (
+            <>
+            <DrawerHeader display='flex' flexDirection='column' gap='1rem'>
+              <Heading className={utilStyles.textWithStroke} color={data.color} as='h1' size='xl' >
+                {data.title.english} <Text fontSize='lg' as='sup'>{data.subOrDub}</Text>
+              </Heading>
+              {/* todo: clicking on each genre will redirect to similar animes with same genre? */}
+              <GenreTags genres={data.genres} color={data.color} />
+              <Text>{data.releaseDate} ({data.status}) | {data.totalEpisodes} episodes</Text>
             </DrawerHeader>
 
-            <DrawerBody>
-              <section style={{ width: '100%', height: 'auto', maxHeight: '500px', overflow: 'hidden' }}>
+            <DrawerBody display='flex' flexDirection='column' gap='1rem'>
                 <Image
-                  style={{ border: 'solid 1px black', width: '100%', height: 'auto' }}
+                  style={{ border: 'solid 1px black', width: '100%', height: 'auto', maxHeight:'500px'}}
                   quality="100"
                   src={data.cover}
                   width={100000}
                   height={100000}
                   alt={data.title.english}
                 />
-              </section>
-
-              <section style={{ margin: '1rem 0' }}>
-                <Text as='i' dangerouslySetInnerHTML={{ __html: data.description }} />
-              </section>
-
-              {/* todo: style */}
-              <section style={{ border: 'solid 5px red' }}>
-                <h3>todo: present these data in proper fashion</h3>
-                {data.releaseDate} ({data.status}) | {data.totalEpisodes} episodes | duration {data.duration} | rating{' '}
-                {data.rating} | season {data.season} | studios {data.studios} | subordub? {data.subOrDub} |
-                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                  characters{' '}
-                  {data.characters.map((c) => (
-                    <>
-                      <p>{c.name.first}</p>
-                      <Image
-                        style={{ border: 'solid 1px black', borderRadius: '9999px' }}
-                        src={c.image}
-                        width={50}
-                        height={50}
-                        alt={c.name.full}
-                      />
-                    </>
-                  ))}
-                </div>
-              </section>
-
+                
+              <Tabs>
+                <TabList>
+                  <Tab>Description</Tab>
+                  <Tab>Characters</Tab>
+                  <Tab>Related</Tab>
+                </TabList>
+                <TabPanels>
+                  <TabPanel>
+                    <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(150px, 1fr))'>
+                      <Card variant='outline'>
+                        <CardBody>
+                          <Heading size='sm'>Rating</Heading>
+                          <Text as='i'>{data.rating}</Text>
+                        </CardBody>
+                      </Card>
+                      <Card variant='outline'>
+                        <CardBody>
+                          <Heading size='sm'>Popularity</Heading>
+                          <Text as='i'>{data.popularity}</Text>
+                        </CardBody>
+                      </Card>
+                      <Card variant='outline'>
+                        <CardBody>
+                          <Heading size='sm'>Season</Heading>
+                          <Text as='i'>{data.season}</Text>
+                        </CardBody>
+                      </Card>
+                      <Card variant='outline'>
+                        <CardBody>
+                          <Heading size='sm'>Origin</Heading>
+                          <Text as='i'>{data.countryOfOrigin}</Text>
+                        </CardBody>
+                      </Card>
+                      <Card variant='outline'>
+                        <CardBody>
+                          <Heading size='sm'>Studio</Heading>
+                          <Text as='i'>{data.studios}</Text>
+                        </CardBody>
+                      </Card>
+                    </SimpleGrid>
+                    <section>
+                      <Text as='i' dangerouslySetInnerHTML={{ __html: data.description }} />
+                    </section>
+                  </TabPanel>
+                  {/* todo: add more data */}
+                  <TabPanel>
+                    N/A
+                  </TabPanel>
+                  <TabPanel>
+                    N/A
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
             </DrawerBody>
 
-            <DrawerFooter>
+            <DrawerFooter justifyContent='center'>
               <Link className={utilStyles.button} href={`/anime/watch/${anime.id}`}>Start Watching</Link>
             </DrawerFooter>
+            </>
+            )}
           </DrawerContent>
-        )}
       </Drawer>
     </>
   )
