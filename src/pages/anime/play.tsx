@@ -1,11 +1,11 @@
 // import Link from 'next/link'
+import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { Button, Heading, Select, Stack, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { default as useSWR, default as useSWRImmutable, Fetcher } from 'swr'
-import { ArrowForwardIcon, ArrowBackIcon } from '@chakra-ui/icons'
 import Layout from '../../components/layout'
 import Player from '../../components/player'
 import utilStyles from '../../styles/utils.module.scss'
@@ -117,17 +117,15 @@ export default function VideoPage() {
 
         <Stack justifyContent="center" alignItems="center">
           {/* select episode in a dropdown selector */}
-          <Stack direction='row' alignItems='center' justifyContent='center'>
+          <Stack direction="row" alignItems="center" justifyContent="center">
             {prev && (
               <Button color="black" onClick={handlePrev}>
                 <ArrowBackIcon />
               </Button>
             )}
             <Text>Episode</Text>
-            <Select size='sm' value={episode.number} onChange={handleSelectEp}>
-              {animeData && animeData.episodes.map(ep => (
-                <option>{ep.number}</option>
-              ))}
+            <Select size="sm" value={episode.number} onChange={handleSelectEp}>
+              {animeData && animeData.episodes.map((ep) => <option key={ep.id}>{ep.number}</option>)}
             </Select>
             {next && (
               <Button color="black" onClick={handleNext}>
@@ -138,9 +136,7 @@ export default function VideoPage() {
 
           {!epData && !epError && <p>Loading</p>}
           {!epData && epError && <p>Error loading video.</p>}
-          {epData && !epError && (
-            <Player allSrc={epData.allSrc} />
-          )}
+          {epData && !epError && <Player allSrc={epData.allSrc} />}
         </Stack>
       </Stack>
     </Layout>
