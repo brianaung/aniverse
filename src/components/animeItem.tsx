@@ -31,7 +31,6 @@ import GenreTags from './genreTags'
 const fetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
 
 export default function AnimeItem({ anime }: { anime: AnimeResult }) {
-
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { data, error } = useSWR(anime.id ? `/api/anime/watch/${anime.id}` : null, fetcher)
 
@@ -72,7 +71,7 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
                   height={100000}
                   alt={data.title.english}
                 />
-
+                
               <Tabs>
                 <TabList>
                   <Tab>Description</Tab>

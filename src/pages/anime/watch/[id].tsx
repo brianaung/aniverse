@@ -19,7 +19,6 @@ export default function AnimeEpListPage() {
       <Head>
         <title>watch {data && data.title.english}</title>
       </Head>
-
       {!data && !error && <p>Loading</p>}
       {!data && error && <p>Something went wrong, please try again later.</p>}
       {data && !error && (
