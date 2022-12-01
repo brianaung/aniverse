@@ -107,9 +107,12 @@ export default function VideoPage() {
           <Stack spacing="1rem">
             <Heading className={utilStyles.textWithStroke} as="h1" size="xl" color={animeData.color}>
               <Link href={`/anime/watch/${animeID}`}>{animeData.title.english}</Link>
+              <Text as="sup" size="lg">
+                {animeData.subOrDub}
+              </Text>
             </Heading>
             <Heading as="h2" size="md">
-              Ep{episode.number} {episode.title} ({animeData.duration}mins)
+              Episode {episode.number} - {episode.title} ({animeData.duration}mins)
             </Heading>
             <Text as="i">{episode.description}</Text>
           </Stack>
@@ -124,7 +127,7 @@ export default function VideoPage() {
               </Button>
             )}
             <Text>Episode</Text>
-            <Select size="sm" value={episode.number} onChange={handleSelectEp}>
+            <Select size="sm" value={episode && episode.number} onChange={handleSelectEp}>
               {animeData && animeData.episodes.map((ep) => <option key={ep.id}>{ep.number}</option>)}
             </Select>
             {next && (
