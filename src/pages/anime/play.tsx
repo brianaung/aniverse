@@ -1,6 +1,5 @@
-// import Link from 'next/link'
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons'
-import { Button, Heading, Select, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, Heading, Select, Skeleton, SkeletonText, Stack, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -24,10 +23,20 @@ const options = {
 }
 const animeFetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
 
+function InfoSkeleton() {
+  return (
+    <Box width="80vw">
+      <Skeleton mt="4" width="30%" height="1.5rem" />
+      <Skeleton mt="4" width="40%" height="1rem" />
+      <SkeletonText mt="4" noOfLines={4} spacing="4" />
+    </Box>
+  )
+}
+
 export default function VideoPage() {
   const router = useRouter()
   const { animeID, ep, index } = Array.isArray(router.query) ? router.query[0] : router.query
-  const { data: animeData } = useSWR(animeID ? `/api/anime/watch/${animeID}` : null, animeFetcher)
+  const { data: animeData, error: animeError } = useSWR(animeID ? `/api/anime/watch/${animeID}` : null, animeFetcher)
   const episode: AnimeEpisode = ep ? JSON.parse(ep) : null
   // IMPORTANT: using normal useSWR will revalidate data (fetching again after intervals) causing the video src link to change
   const { data: epData, error: epError } = useSWRImmutable(
@@ -102,32 +111,29 @@ export default function VideoPage() {
           {animeData && animeData.title.english} Ep{episode && episode.number}
         </title>
       </Head>
-      <Stack spacing="2rem" justifyContent="center">
-        {animeData && (
-          <Stack spacing="1rem">
-            <Heading className={utilStyles.textWithStroke} as="h1" size="xl" color={animeData.color}>
-              <Link href={`/anime/watch/${animeID}`}>{animeData.title.english}</Link>
-              <Text as="sup" size="lg">
-                {animeData.subOrDub}
-              </Text>
-            </Heading>
-            <Heading as="h2" size="md">
-              Episode {episode.number} - {episode.title} ({animeData.duration}mins)
-            </Heading>
-            <Text as="i">{episode.description}</Text>
-          </Stack>
-        )}
-
-        <Stack justifyContent="center" alignItems="center">
+      {!animeData && !animeError && <InfoSkeleton />}
+      {!animeData && animeError && <p>Error loading information.</p>}
+      {animeData && !animeError && (
+        <Stack spacing="1rem">
+          <Heading className={utilStyles.textWithStroke} as="h1" size="xl" color={animeData.color}>
+            <Link href={`/anime/watch/${animeID}`}>{animeData.title.english}</Link>
+            <Text as="sup" size="lg">
+              {animeData.subOrDub}
+            </Text>
+          </Heading>
+          <Heading as="h2" size="md">
+            Episode {episode.number} - {episode.title} ({animeData.duration}mins)
+          </Heading>
+          <Text as="i">{episode.description}</Text>
           {/* select episode in a dropdown selector */}
-          <Stack direction="row" alignItems="center" justifyContent="center">
+          <Stack alignSelf="center" direction="row" alignItems="center" justifyContent="center">
             {prev && (
               <Button color="black" onClick={handlePrev}>
                 <ArrowBackIcon />
               </Button>
             )}
             <Text>Episode</Text>
-            <Select size="sm" value={episode && episode.number} onChange={handleSelectEp}>
+            <Select size="sm" value={episode.number} onChange={handleSelectEp}>
               {animeData && animeData.episodes.map((ep) => <option key={ep.id}>{ep.number}</option>)}
             </Select>
             {next && (
@@ -136,11 +142,12 @@ export default function VideoPage() {
               </Button>
             )}
           </Stack>
-
-          {!epData && !epError && <p>Loading</p>}
-          {!epData && epError && <p>Error loading video.</p>}
-          {epData && !epError && <Player allSrc={epData.allSrc} />}
         </Stack>
+      )}
+      <Stack>
+        {!epData && !epError && <Skeleton alignSelf="center" mt="8" width="60vw" height="200px" />}
+        {!epData && epError && <p>Error loading video.</p>}
+        {epData && !epError && <Player allSrc={epData.allSrc} />}
       </Stack>
     </Layout>
   )
