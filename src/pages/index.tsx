@@ -21,6 +21,7 @@ export default function Home({
       <Head>
         <title>hai</title>
       </Head>
+
       <section>
         <Heading as="h2" size="md">
           Most popular
@@ -30,6 +31,7 @@ export default function Home({
           {popularAnimes && popularAnimes.results.map((anime) => <AnimeItem key={anime.id} anime={anime} />)}
         </AnimeListContainer>
       </section>
+
       <section>
         <Heading as="h2" size="md">
           Trending now

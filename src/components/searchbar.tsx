@@ -1,3 +1,4 @@
+import { SearchIcon } from '@chakra-ui/icons'
 import { useRouter } from 'next/router'
 import styles from './searchbar.module.scss'
 
@@ -11,8 +12,14 @@ export default function Searchbar() {
 
   return (
     <>
-      <form onSubmit={handleInput}>
-        <input id="searchbar" className={styles.searchInput} placeholder="search..." />
+      <form style={{ position: 'relative' }} onSubmit={handleInput}>
+        <input
+          style={{ paddingLeft: '2rem' }}
+          id="searchbar"
+          className={styles.searchInput}
+          placeholder="Search Anime, Manga"
+        />
+        <SearchIcon position="absolute" top="2" left="2" />
       </form>
     </>
   )

@@ -2,11 +2,29 @@
 
 .container {
   max-width: lib.$mainWidth;
-  padding: 0 1rem;
+  min-height: 100vh; // todo: is it really necessary?
   margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.sidebar {
+  width: 20%;
+  padding: 2rem;
+  border: solid 1px red;
+}
+
+.main {
+  width: 80%;
+  padding: 0 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
+  border: solid 1px blue;
+}
+
+.footer {
+  padding-top: 3rem;
+  margin-top: auto;
 }
