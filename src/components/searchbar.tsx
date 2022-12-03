@@ -16,9 +16,8 @@ export default function Searchbar() {
   // focus to search input box on keydown
   useEffect(() => {
     const handleFocus = (e: KeyboardEvent) => {
-      e.preventDefault()
-      // if (e.ctrlKey && e.key === 'k' || e.ctrlKey && e.key === 'K') {
       if (e.ctrlKey && (e.key === 'k' || e.key === 'K')) {
+        e.preventDefault()
         searchBoxRef.current?.focus();
       }
 
