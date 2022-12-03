@@ -18,16 +18,15 @@ export default function Searchbar() {
     const handleFocus = (e: KeyboardEvent) => {
       if (e.ctrlKey && (e.key === 'k' || e.key === 'K')) {
         e.preventDefault()
-        searchBoxRef.current?.focus();
+        searchBoxRef.current?.focus()
       }
-
     }
     // todo: learn more abt vanilla js
-    document.addEventListener('keydown', handleFocus);
+    document.addEventListener('keydown', handleFocus)
     return function cleanup() {
-      document.removeEventListener('keydown', handleFocus);
+      document.removeEventListener('keydown', handleFocus)
     }
-  },[])
+  }, [])
 
   return (
     <>
@@ -39,7 +38,15 @@ export default function Searchbar() {
           placeholder="Search Anime, Manga"
           ref={searchBoxRef}
         />
-        <span style={{position:'absolute',right:'1%',top:'2%'}}><Kbd><Text as='abbr' title='control'>ctrl</Text></Kbd> + <Kbd>K</Kbd></span>
+        <span style={{ position: 'absolute', right: '1%', top: '2%' }}>
+          <Kbd>
+            <Text as="abbr" title="control">
+              ctrl
+            </Text>
+          </Kbd>
+          <Text display="inline">+</Text>
+          <Kbd>K</Kbd>
+        </span>
         <SearchIcon position="absolute" top="2" left="2" />
       </form>
     </>
