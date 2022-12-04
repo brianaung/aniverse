@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   CardBody,
   Drawer,
@@ -128,9 +129,11 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
               </DrawerBody>
 
               <DrawerFooter justifyContent="center">
-                <Link className={utilStyles.button} href={`/anime/watch/${anime.id}`}>
-                  Start Watching
-                </Link>
+                <Button>
+                  <Link href={`/anime/watch/${anime.id}`}>
+                    Start Watching
+                  </Link>
+                </Button>
               </DrawerFooter>
             </>
           )}

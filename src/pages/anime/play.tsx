@@ -114,7 +114,7 @@ export default function VideoPage() {
       {!animeData && !animeError && <InfoSkeleton />}
       {!animeData && animeError && <p>Error loading information.</p>}
       {animeData && !animeError && (
-        <Stack spacing="1rem">
+        <Stack m='1rem' spacing="1rem">
           <Heading className={utilStyles.textWithStroke} as="h1" size="xl" color={animeData.color}>
             <Link href={`/anime/watch/${animeID}`}>{animeData.title.english}</Link>
             <Text as="sup" size="lg">
@@ -128,7 +128,7 @@ export default function VideoPage() {
           {/* select episode in a dropdown selector */}
           <Stack alignSelf="center" direction="row" alignItems="center" justifyContent="center">
             {prev && (
-              <Button color="black" onClick={handlePrev}>
+              <Button onClick={handlePrev}>
                 <ArrowBackIcon />
               </Button>
             )}
@@ -137,7 +137,7 @@ export default function VideoPage() {
               {animeData && animeData.episodes.map((ep) => <option key={ep.id}>{ep.number}</option>)}
             </Select>
             {next && (
-              <Button color="black" onClick={handleNext}>
+              <Button onClick={handleNext}>
                 <ArrowForwardIcon />
               </Button>
             )}
@@ -145,7 +145,7 @@ export default function VideoPage() {
         </Stack>
       )}
       <Stack>
-        {!epData && !epError && <Skeleton alignSelf="center" mt="8" width="60vw" height="200px" />}
+        {!epData && !epError && <Skeleton alignSelf="center" mt="4" width="60vw" height="230px" />}
         {!epData && epError && <p>Error loading video.</p>}
         {epData && !epError && <Player allSrc={epData.allSrc} />}
       </Stack>

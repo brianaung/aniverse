@@ -1,3 +1,4 @@
+import { Text } from '@chakra-ui/react'
 import styles from './genreTags.module.scss'
 
 /* taken from stack overflow */
@@ -27,9 +28,8 @@ export default function GenreTags({ genres, color }: { genres: string[]; color: 
           key={genre}
           style={{
             backgroundColor: `${color || 'black'}`,
-            color: contrastColor
           }}>
-          {genre}
+          <Text fontSize='sm' color={contrastColor}>{genre}</Text>
         </div>
       ))}
     </div>

@@ -5,18 +5,18 @@
   text-align: center;
 }
 
-.button {
-  all: unset;
-  cursor: pointer;
-  padding: 0.1rem 1rem;
-  border-radius: 9999px;
-  border: solid 1px black;
-  background-color: lib.$primary;
-  transition: transform 200ms ease;
-  &:hover {
-    transform: translateY(-2px);
-  }
-}
+// .button {
+//   all: unset;
+//   cursor: pointer;
+//   padding: 0.1rem 1rem;
+//   border-radius: 9999px;
+//   border: solid 1px black;
+//   background-color: lib.$primary;
+//   transition: transform 200ms ease;
+//   &:hover {
+//     transform: translateY(-2px);
+//   }
+// }
 
 .textWithStroke {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
