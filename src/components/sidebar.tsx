@@ -12,8 +12,8 @@ export default function Sidebar() {
         </Heading>
         <Stack p="3">
           <Link href="/anime/popular">Most Popular</Link>
-          <Link href="/anime/trending">Trending</Link>
-          <Link href="/">Recent</Link>
+          <Link href="/anime/trending">Trending Now</Link>
+          <Link href="/">New Releases</Link>
         </Stack>
       </div>
       {/*
