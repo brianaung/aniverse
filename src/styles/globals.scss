@@ -7,6 +7,7 @@ body {
   scroll-behavior: smooth;
   padding: 0;
   margin: 0;
+  // using chakra ui now so this is not relevant
   font-family: 'Inter', Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
   line-height: lib.$lineHeight;
   font-size: lib.$fontBody;
@@ -38,7 +39,7 @@ img {
 //   }
 //   body {
 //     color: #ffffff;
-//     background: #121212;
+//     background: #1a202c;
 //   }
 // }
 //
