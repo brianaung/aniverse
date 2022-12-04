@@ -8,22 +8,27 @@ import Sidebar from './sidebar'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <link rel="icon" href="/makima.ico" />
       </Head>
-      <div className={styles.sidebar}>
-        <Sidebar />
-      </div>
-      <div className={styles.main}>
-        <Navbar />
-        <main>{children}</main>
-        <footer className={styles.footer}>
-          <Text fontSize="sm" as="cite">
-            created by <Link href="https://github.com/brianaung">@brianaung</Link>
-          </Text>
-        </footer>
-      </div>
+      <section className={styles.banner}>
+        <Text size='lg'>v1.0.0 lorem ipsum foo bar baz</Text>
+      </section>
+      <section className={styles.container}>
+        <div className={styles.sidebar}>
+          <Sidebar />
+        </div>
+        <div className={styles.main}>
+          <Navbar />
+          <main>{children}</main>
+          <footer className={styles.footer}>
+            <Text fontSize="sm" as="cite">
+              created by <Link href="https://github.com/brianaung">@brianaung</Link>
+            </Text>
+          </footer>
+        </div>
+      </section>
     </div>
   )
 }

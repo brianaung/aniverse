@@ -9,6 +9,15 @@
   justify-content: center;
 }
 
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  // todo: change banner color
+  background-color: teal;
+}
+
 .sidebar {
   width: 20%;
   padding: 2rem;
