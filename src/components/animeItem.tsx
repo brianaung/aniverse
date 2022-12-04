@@ -63,7 +63,7 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
                 {/* todo: clicking on each genre will redirect to similar animes with same genre? */}
                 <GenreTags genres={data.genres} color={data.color} />
                 <Text>
-                  {data.releaseDate} ({data.status}) | {data.totalEpisodes} episodes
+                  {data.releaseDate} ({data.status})
                 </Text>
               </DrawerHeader>
 
@@ -86,6 +86,12 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
                   <TabPanels>
                     <TabPanel>
                       <SimpleGrid spacing={4} templateColumns="repeat(auto-fill, minmax(150px, 1fr))">
+                        <Card variant="outline">
+                          <CardBody>
+                            <Heading size="sm">Episodes</Heading>
+                            <Text as="i">{data.totalEpisodes}</Text>
+                          </CardBody>
+                        </Card>
                         <Card variant="outline">
                           <CardBody>
                             <Heading size="sm">Rating</Heading>

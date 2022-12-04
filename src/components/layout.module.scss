@@ -9,17 +9,18 @@
   justify-content: center;
 }
 
-.banner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  // todo: change banner color
-  background-color: teal;
-}
+// .banner {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 50px;
+//   // todo: change banner color
+//   background-color: teal;
+// }
 
 .sidebar {
   width: 20%;
+  min-width: 250px;
   padding: 2rem;
 }
 

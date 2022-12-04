@@ -30,17 +30,33 @@ const theme = extendTheme({
         'primary': {
           border: 'solid 1px black',
           bg: 'primary.500',
-          '&:hover': {
+          color: 'black',
+          _hover: {
             transform: 'translateY(-2px)'
-          }
+          },
+        },
+        'searchbar': {
+          border: 'solid 1px black',
+          fontWeight: '400',
         }
       },
       defaultProps: {
         variant: 'primary',
-        colorScheme: 'primary',
-        color: 'black',
       }
     },
+    Input: {
+      variants: {
+        'primary': {
+          field: {
+            border: 'solid 1px black',
+            minWidth: '350px',
+          },
+        }
+      },
+      defaultProps: {
+        variant: 'primary',
+      }
+    }
   }
 })
 

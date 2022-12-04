@@ -100,3 +100,28 @@ can also use
 ```css
 text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 ```
+
+## Focus on element with keyboard controls
+```tsx
+const fooRef = useRef<HTMLInputElement>(null)
+
+useEffect(() => {
+  const handleFocus = (e: KeyboardEvent) => {
+    if (e.ctrlKey && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault()
+      fooRef.current?.focus()
+    }
+  }
+  // todo: learn more abt vanilla js
+  document.addEventListener('keydown', handleFocus)
+  return function cleanup() {
+    document.removeEventListener('keydown', handleFocus)
+  }
+}, [])
+
+return (
+  ...
+  <input ref={fooRef} ...
+  ...
+)
+```

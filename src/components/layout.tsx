@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <Head>
         <link rel="icon" href="/makima.ico" />
       </Head>
-      <Box display='flex' justifyContent='center' alignItems='center' bg='secondary.500' border='solid 1px black' height={50}>
+      <Box display='flex' justifyContent='center' alignItems='center' bg='secondary.500' color='black' border='solid 1px black' height={50}>
         <Text size='lg'>v1.0.0 lorem ipsum foo bar baz</Text>
       </Box>
       <section className={styles.container}>
