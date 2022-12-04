@@ -5,12 +5,26 @@ const colorConfig: ThemeConfig = {
   useSystemColorMode: false,
 }
 
+// todo: choose color palette
 const theme = extendTheme({ 
+  // set initial colormode
   colorConfig,
+
+  // set global style (mainly used to dark and light theme bg and font color)
+  styles: {
+    global: ({ colorMode }: { colorMode: string }) => ({
+      body: {
+        bg: colorMode === 'dark' ? 'black' : 'white',
+        color: colorMode === 'dark' ? 'white' : 'black'
+      }
+    }),
+  },
+
   fonts: {
     heading: `'Inter', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`,
     body: `'Inter', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`,
   },
+
   colors: {
     primary: {
       100: '#c6f6d5',
@@ -23,6 +37,8 @@ const theme = extendTheme({
       900: '#c6f6d5',
     }
   },
+
+  // override component styles
   components: {
     Button: {
       variants: {
