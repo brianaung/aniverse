@@ -21,8 +21,8 @@ const theme = extendTheme({
   },
 
   fonts: {
-    heading: `'Inter', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`,
-    body: `'Inter', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`,
+    heading: `'Raleway', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`,
+    body: `'Raleway', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`,
   },
 
   colors: {

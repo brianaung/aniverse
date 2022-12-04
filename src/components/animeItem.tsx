@@ -124,7 +124,7 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
                         </Card>
                       </SimpleGrid>
                       <section>
-                        <Text as="i" dangerouslySetInnerHTML={{ __html: data.description }} />
+                        <Text dangerouslySetInnerHTML={{ __html: data.description }} />
                       </section>
                     </TabPanel>
                     {/* todo: add more data */}

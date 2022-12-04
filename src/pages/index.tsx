@@ -24,7 +24,7 @@ export default function Home({
 
       <section>
         <Heading as="h2" size="md">
-          Most popular
+          MOST POPULAR
         </Heading>
         <Link href="/anime/popular">view more</Link>
         <AnimeListContainer>
@@ -34,7 +34,7 @@ export default function Home({
 
       <section>
         <Heading as="h2" size="md">
-          Trending now
+          TRENDING NOW
         </Heading>
         <Link href="/anime/trending">view more</Link>
         <AnimeListContainer>
