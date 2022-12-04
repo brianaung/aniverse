@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   CardBody,
   Drawer,
@@ -62,7 +63,7 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
                 {/* todo: clicking on each genre will redirect to similar animes with same genre? */}
                 <GenreTags genres={data.genres} color={data.color} />
                 <Text>
-                  {data.releaseDate} ({data.status}) | {data.totalEpisodes} episodes
+                  {data.releaseDate} ({data.status})
                 </Text>
               </DrawerHeader>
 
@@ -85,6 +86,12 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
                   <TabPanels>
                     <TabPanel>
                       <SimpleGrid spacing={4} templateColumns="repeat(auto-fill, minmax(150px, 1fr))">
+                        <Card variant="outline">
+                          <CardBody>
+                            <Heading size="sm">Episodes</Heading>
+                            <Text as="i">{data.totalEpisodes}</Text>
+                          </CardBody>
+                        </Card>
                         <Card variant="outline">
                           <CardBody>
                             <Heading size="sm">Rating</Heading>
@@ -117,7 +124,7 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
                         </Card>
                       </SimpleGrid>
                       <section>
-                        <Text as="i" dangerouslySetInnerHTML={{ __html: data.description }} />
+                        <Text dangerouslySetInnerHTML={{ __html: data.description }} />
                       </section>
                     </TabPanel>
                     {/* todo: add more data */}
@@ -128,9 +135,11 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
               </DrawerBody>
 
               <DrawerFooter justifyContent="center">
-                <Link className={utilStyles.button} href={`/anime/watch/${anime.id}`}>
-                  Start Watching
-                </Link>
+                <Button>
+                  <Link href={`/anime/watch/${anime.id}`}>
+                    Start Watching
+                  </Link>
+                </Button>
               </DrawerFooter>
             </>
           )}

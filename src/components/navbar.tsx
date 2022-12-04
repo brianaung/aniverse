@@ -1,18 +1,17 @@
+import { Button, useColorMode } from '@chakra-ui/react'
 import styles from './navbar.module.scss'
-// import utilStyles from '../styles/utils.module.scss'
-import Link from 'next/link'
 import Searchbar from './searchbar'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 export default function Navbar() {
+  const { colorMode, toggleColorMode } = useColorMode()
+
   return (
     <div className={styles.container}>
-      <div className={styles.navSelections}>
-        <Link href="/">Home</Link>
-        <Link href="/anime/popular">Popular</Link>
-        <Link href="/anime/trending">Trending</Link>
-      </div>
-
       <Searchbar />
+      <Button onClick={toggleColorMode}>
+        {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+      </Button>
     </div>
   )
 }
