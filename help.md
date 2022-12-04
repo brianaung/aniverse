@@ -102,6 +102,7 @@ text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 ```
 
 ## Focus on element with keyboard controls
+
 ```tsx
 const fooRef = useRef<HTMLInputElement>(null)
 

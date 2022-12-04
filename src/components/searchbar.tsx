@@ -1,12 +1,21 @@
 import { SearchIcon } from '@chakra-ui/icons'
-import { ModalOverlay, ModalContent, Button, Input, InputLeftElement, InputGroup, Kbd, Text, InputRightElement, useDisclosure, Modal } from '@chakra-ui/react'
+import {
+  Button,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Kbd,
+  Modal,
+  ModalContent,
+  ModalOverlay,
+  useDisclosure
+} from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { useEffect, useRef } from 'react'
-// import styles from './searchbar.module.scss'
-//
+import { useEffect } from 'react'
+
 function KeybindIcon() {
   return (
-    <span style={{minWidth:'100px'}}>
+    <span style={{ minWidth: '100px' }}>
       <Kbd>Ctrl</Kbd> + <Kbd>K</Kbd>
     </span>
   )
@@ -38,11 +47,11 @@ export default function Searchbar() {
     return function cleanup() {
       document.removeEventListener('keydown', handleFocus)
     }
-  }, [])
+  }, [onOpen])
 
   return (
     <>
-      <Button onClick={onOpen} leftIcon={<SearchIcon />} rightIcon={<KeybindIcon />} variant='searchbar'>
+      <Button onClick={onOpen} leftIcon={<SearchIcon />} rightIcon={<KeybindIcon />} variant="searchbar">
         Search Anime, Manga
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -50,14 +59,10 @@ export default function Searchbar() {
         <ModalContent>
           <form onSubmit={handleInput}>
             <InputGroup>
-              <InputLeftElement
-                pointerEvents='none'
-                children={<SearchIcon />}
-              />
-              <Input
-                id="searchbar"
-                placeholder="Search Anime, Manga"
-              />
+              <InputLeftElement pointerEvents="none">
+                <SearchIcon />
+              </InputLeftElement>
+              <Input id="searchbar" placeholder="Search Anime, Manga" />
             </InputGroup>
           </form>
         </ModalContent>

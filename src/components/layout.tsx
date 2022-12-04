@@ -1,4 +1,4 @@
-import { Text, Box } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
@@ -12,9 +12,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <Head>
         <link rel="icon" href="/makima.ico" />
       </Head>
-      <Box display='flex' justifyContent='center' alignItems='center' bg='secondary.500' color='black' border='solid 1px black' height={50}>
-        <Text size='lg'>v1.0.0 lorem ipsum foo bar baz</Text>
+      {/* a place to add version changes notes to display to users */}
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        bg="secondary.500"
+        color="black"
+        border="solid 1px black"
+        height={50}>
+        <Text size="lg">
+          🎉 v1.0.0 out now. view <Link href="https://github.com/brianaung/aniverse/releases">changes</Link> 🎉
+        </Text>
       </Box>
+      {/* -------------------------------------------------------- */}
       <section className={styles.container}>
         <div className={styles.sidebar}>
           <Sidebar />

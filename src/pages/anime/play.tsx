@@ -114,7 +114,7 @@ export default function VideoPage() {
       {!animeData && !animeError && <InfoSkeleton />}
       {!animeData && animeError && <p>Error loading information.</p>}
       {animeData && !animeError && (
-        <Stack m='1rem' spacing="1rem">
+        <Stack m="1rem" spacing="1rem">
           <Heading className={utilStyles.textWithStroke} as="h1" size="xl" color={animeData.color}>
             <Link href={`/anime/watch/${animeID}`}>{animeData.title.english}</Link>
             <Text as="sup" size="lg">

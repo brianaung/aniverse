@@ -136,9 +136,7 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
 
               <DrawerFooter justifyContent="center">
                 <Button>
-                  <Link href={`/anime/watch/${anime.id}`}>
-                    Start Watching
-                  </Link>
+                  <Link href={`/anime/watch/${anime.id}`}>Start Watching</Link>
                 </Button>
               </DrawerFooter>
             </>

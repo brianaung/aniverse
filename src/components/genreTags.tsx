@@ -27,9 +27,11 @@ export default function GenreTags({ genres, color }: { genres: string[]; color: 
           className={styles.pill}
           key={genre}
           style={{
-            backgroundColor: `${color || 'black'}`,
+            backgroundColor: `${color || 'black'}`
           }}>
-          <Text fontSize='sm' color={contrastColor}>{genre}</Text>
+          <Text fontSize="sm" color={contrastColor}>
+            {genre}
+          </Text>
         </div>
       ))}
     </div>

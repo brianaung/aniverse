@@ -2,11 +2,11 @@ import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
 
 const colorConfig: ThemeConfig = {
   initialColorMode: 'light',
-  useSystemColorMode: false,
+  useSystemColorMode: false
 }
 
 // todo: choose color palette
-const theme = extendTheme({ 
+const theme = extendTheme({
   // set initial colormode
   colorConfig,
 
@@ -17,24 +17,24 @@ const theme = extendTheme({
         bg: colorMode === 'dark' ? 'black' : 'white',
         color: colorMode === 'dark' ? 'white' : 'black'
       }
-    }),
+    })
   },
 
   fonts: {
     heading: `'Raleway', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`,
-    body: `'Raleway', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`,
+    body: `'Raleway', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`
   },
 
   colors: {
     primary: {
       100: '#c6f6d5',
       500: '#c6f6d5',
-      900: '#c6f6d5',
+      900: '#c6f6d5'
     },
     secondary: {
       100: '#c6f6d5',
       500: '#c6f6d5',
-      900: '#c6f6d5',
+      900: '#c6f6d5'
     }
   },
 
@@ -43,34 +43,34 @@ const theme = extendTheme({
     Button: {
       variants: {
         // primary button style for the brand
-        'primary': {
+        primary: {
           border: 'solid 1px black',
           bg: 'primary.500',
           color: 'black',
           _hover: {
             transform: 'translateY(-2px)'
-          },
+          }
         },
-        'searchbar': {
+        searchbar: {
           border: 'solid 1px black',
-          fontWeight: '400',
+          fontWeight: '400'
         }
       },
       defaultProps: {
-        variant: 'primary',
+        variant: 'primary'
       }
     },
     Input: {
       variants: {
-        'primary': {
+        primary: {
           field: {
             border: 'solid 1px black',
-            minWidth: '350px',
-          },
+            minWidth: '350px'
+          }
         }
       },
       defaultProps: {
-        variant: 'primary',
+        variant: 'primary'
       }
     }
   }

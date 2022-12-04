@@ -1,7 +1,7 @@
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import { Button, useColorMode } from '@chakra-ui/react'
 import styles from './navbar.module.scss'
 import Searchbar from './searchbar'
-import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -9,9 +9,7 @@ export default function Navbar() {
   return (
     <div className={styles.container}>
       <Searchbar />
-      <Button onClick={toggleColorMode}>
-        {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-      </Button>
+      <Button onClick={toggleColorMode}>{colorMode === 'light' ? <MoonIcon /> : <SunIcon />}</Button>
     </div>
   )
 }
