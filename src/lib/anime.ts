@@ -40,7 +40,6 @@ export async function getTrendingAnimes(page: number, perPage: number) {
  * Filter the search results to only contain relevant ones
  * @param query - The user query string.
  */
-// todo: improve search results
 export async function getAnimeSearch(query: string, page: number) {
   const filteredList: AnimeResult[] = []
 

@@ -2,12 +2,12 @@
 
 // @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+// using chakra ui now so these tag selector styles are not relevant???
 html,
 body {
   scroll-behavior: smooth;
   padding: 0;
   margin: 0;
-  // using chakra ui now so this is not relevant
   // font-family: 'Inter', Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
   line-height: lib.$lineHeight;
   font-size: lib.$fontBody;
