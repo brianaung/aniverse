@@ -1,6 +1,4 @@
 import {
-  Tooltip,
-  Stack,
   Button,
   Card,
   CardBody,
@@ -19,10 +17,10 @@ import {
   TabPanels,
   Tabs,
   Text,
+  Tooltip,
   useDisclosure
 } from '@chakra-ui/react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 // import { useRouter } from 'next/router'
 import useSWR, { Fetcher } from 'swr'
@@ -30,7 +28,6 @@ import useSWR, { Fetcher } from 'swr'
 import { AnimeInfo, AnimeResult } from '../types'
 import styles from './animeItem.module.scss'
 import GenreTags from './genreTags'
-import { StarIcon } from '@chakra-ui/icons'
 
 const fetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
 
@@ -47,7 +44,9 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
         <Image className={styles.image} src={anime.image} height={240} width={180} alt={anime.title.english} />
 
         <Tooltip label={anime.title.english}>
-          <Text noOfLines={1} textTransform='lowercase'>{anime.title.english}</Text>
+          <Text noOfLines={1} textTransform="lowercase">
+            {anime.title.english}
+          </Text>
         </Tooltip>
       </div>
 
@@ -140,9 +139,7 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
               </DrawerBody>
 
               <DrawerFooter justifyContent="center">
-                <Button onClick={() => router.push(`/anime/watch/${anime.id}`)}>
-                  Start Watching
-                </Button>
+                <Button onClick={() => router.push(`/anime/watch/${anime.id}`)}>Start Watching</Button>
               </DrawerFooter>
             </>
           )}

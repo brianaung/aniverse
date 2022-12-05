@@ -25,7 +25,7 @@ const theme = extendTheme({
       100: '#c6f6d5',
       500: '#c6f6d5',
       900: '#c6f6d5'
-    },
+    }
   },
 
   // set global style (mainly used to dark and light theme bg and font color)
@@ -38,7 +38,6 @@ const theme = extendTheme({
     })
   },
 
-
   // override component styles
   components: {
     Button: {
@@ -48,8 +47,10 @@ const theme = extendTheme({
           border: 'solid 1px black',
           bg: 'primary.500',
           color: 'black',
+          transition: 'all 200ms ease',
           _hover: {
-            transform: 'translateY(-2px)'
+            // transform: 'translateY(-2px)'
+            filter: 'drop-shadow(5px 5px 0px black)'
           }
         },
         searchbar: {
@@ -73,7 +74,7 @@ const theme = extendTheme({
       defaultProps: {
         variant: 'primary'
       }
-    },
+    }
   }
 })
 

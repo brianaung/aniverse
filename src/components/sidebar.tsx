@@ -8,7 +8,7 @@ export default function Sidebar() {
       <Link href="/">Home</Link>
       <div className={styles.sectionContainer}>
         <Heading as="h3" size="sm">
-          Anime
+          ANIME
         </Heading>
         <Stack p="3">
           <Link href="/anime/popular">Most Popular</Link>

@@ -2,7 +2,7 @@ import { Text } from '@chakra-ui/react'
 import styles from './genreTags.module.scss'
 
 /* taken from stack overflow */
-function pickContrastColor(bgColor: string, lightColor: string, darkColor: string) {
+/* function pickContrastColor(bgColor: string, lightColor: string, darkColor: string) {
   const color = bgColor.charAt(0) === '#' ? bgColor.substring(1, 7) : bgColor
   const r = parseInt(color.substring(0, 2), 16) // hexToR
   const g = parseInt(color.substring(2, 4), 16) // hexToG
@@ -16,20 +16,15 @@ function pickContrastColor(bgColor: string, lightColor: string, darkColor: strin
   })
   const L = 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]
   return L > 0.179 ? darkColor : lightColor
-}
+} */
 
 export default function GenreTags({ genres, color }: { genres: string[]; color: string }) {
-  const contrastColor = pickContrastColor(`${color}`, 'white', 'black')
+  // const contrastColor = pickContrastColor(`${color}`, 'white', 'black')
   return (
     <div className={styles.container}>
       {genres.map((genre) => (
-        <div
-          className={styles.pill}
-          key={genre}
-          style={{
-            backgroundColor: `${color || 'black'}`
-          }}>
-          <Text fontSize="sm" color={contrastColor}>
+        <div className={styles.pill} key={genre}>
+          <Text fontSize="sm" color="black">
             {genre}
           </Text>
         </div>
