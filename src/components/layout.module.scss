@@ -9,14 +9,6 @@
   justify-content: center;
 }
 
-// .banner {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 50px;
-//   background-color: teal;
-// }
-
 .sidebar {
   width: 20%;
   min-width: 250px;
@@ -43,18 +35,43 @@
 
 .scrollText {
   position: absolute;
-  transform: translateX(100%);
-  width: 100%;
-  margin: 0;
   text-align: center;
-  animation: scroll-animation 30s linear infinite;
+  width: 60%;
+  margin: 0;
+
+  -moz-transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+  // apply animation
+  -moz-animation: scroll-animation 15s linear infinite;
+  -webkit-transform: scroll-animation 15s linear infinite;
+  animation: scroll-animation 15s linear infinite;
+
+  @-moz-keyframes scroll-animation {
+    0% {
+      -moz-transform: translateX(100%);
+    }
+    100% {
+      -moz-transform: translateX(-100%);
+    }
+  }
+
+  @-webkit-keyframes scroll-animation {
+    0% {
+      -webkit-transform: translateX(100%);
+    }
+    100% {
+      -webkit-transform: translateX(-100%);
+    }
+  }
+
+  @keyframes scroll-animation {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
 }
 
-@keyframes scroll-animation {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
