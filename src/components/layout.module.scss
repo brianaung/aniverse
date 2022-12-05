@@ -35,3 +35,26 @@
   padding-top: 3rem;
   margin-top: auto;
 }
+
+.scrollContainer {
+  overflow: hidden;
+  position: relative;
+}
+
+.scrollText {
+  position: absolute;
+  transform: translateX(100%);
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  animation: scroll-animation 30s linear infinite;
+}
+
+@keyframes scroll-animation {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
