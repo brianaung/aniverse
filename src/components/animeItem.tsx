@@ -21,6 +21,7 @@ import {
 } from '@chakra-ui/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 // import { useRouter } from 'next/router'
 import useSWR, { Fetcher } from 'swr'
 import utilStyles from '../styles/utils.module.scss'
@@ -34,6 +35,8 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { data, error } = useSWR(anime.id ? `/api/anime/watch/${anime.id}` : null, fetcher)
 
+  const router = useRouter()
+
   return (
     <>
       {/* anime item component */}
@@ -44,6 +47,7 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
         </Link>
       </div>
 
+      {/* anime info page drawer */}
       <Drawer isOpen={isOpen} placement="top" onClose={onClose} size="full">
         <DrawerOverlay />
         <DrawerContent>
@@ -135,8 +139,8 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
               </DrawerBody>
 
               <DrawerFooter justifyContent="center">
-                <Button>
-                  <Link href={`/anime/watch/${anime.id}`}>Start Watching</Link>
+                <Button onClick={() => router.push(`/anime/watch/${anime.id}`)}>
+                  Start Watching
                 </Button>
               </DrawerFooter>
             </>
