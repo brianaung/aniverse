@@ -10,6 +10,24 @@ const theme = extendTheme({
   // set initial colormode
   colorConfig,
 
+  fonts: {
+    heading: `'Raleway', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`,
+    body: `'Inter', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`
+  },
+
+  colors: {
+    primary: {
+      100: '#c6f6d5',
+      500: '#ffffff',
+      900: '#c6f6d5'
+    },
+    secondary: {
+      100: '#c6f6d5',
+      500: '#c6f6d5',
+      900: '#c6f6d5'
+    },
+  },
+
   // set global style (mainly used to dark and light theme bg and font color)
   styles: {
     global: ({ colorMode }: { colorMode: string }) => ({
@@ -20,23 +38,6 @@ const theme = extendTheme({
     })
   },
 
-  fonts: {
-    heading: `'Raleway', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`,
-    body: `'Raleway', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`
-  },
-
-  colors: {
-    primary: {
-      100: '#c6f6d5',
-      500: '#c6f6d5',
-      900: '#c6f6d5'
-    },
-    secondary: {
-      100: '#c6f6d5',
-      500: '#c6f6d5',
-      900: '#c6f6d5'
-    },
-  },
 
   // override component styles
   components: {
