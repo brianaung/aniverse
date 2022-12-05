@@ -2,7 +2,6 @@ import Image from 'next/image'
 import { AnimeEpisode } from '../types'
 // import {PlayCircle} from '@styled-icons/bootstrap/PlayCircle'
 import { Text } from '@chakra-ui/react'
-import { PlayCircle } from '@styled-icons/material-twotone/PlayCircle'
 import { useRouter } from 'next/router'
 import styles from './episodeGrids.module.scss'
 
@@ -27,7 +26,6 @@ export default function EpisodeGrids({ animeID, episodes }: { animeID: string; e
           {/* episode image with play button icon */}
           <div className={styles.videoThumbnail}>
             <Image src={ep.image} width={250} height={150} alt={ep.title} />
-            <PlayCircle className={styles.playCircle} color="black" width={50} height={50} />
           </div>
           {/* ----------------------------------- */}
           <Text as="em">

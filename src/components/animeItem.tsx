@@ -1,4 +1,6 @@
 import {
+  Tooltip,
+  Stack,
   Button,
   Card,
   CardBody,
@@ -24,10 +26,11 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 // import { useRouter } from 'next/router'
 import useSWR, { Fetcher } from 'swr'
-import utilStyles from '../styles/utils.module.scss'
+// import utilStyles from '../styles/utils.module.scss'
 import { AnimeInfo, AnimeResult } from '../types'
 import styles from './animeItem.module.scss'
 import GenreTags from './genreTags'
+import { StarIcon } from '@chakra-ui/icons'
 
 const fetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
 
@@ -42,9 +45,10 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
       {/* anime item component */}
       <div onClick={onOpen} className={styles.container}>
         <Image className={styles.image} src={anime.image} height={240} width={180} alt={anime.title.english} />
-        <Link className={styles.title} href={`/anime/watch/${anime.id}`}>
-          {anime.title.english}
-        </Link>
+
+        <Tooltip label={anime.title.english}>
+          <Text noOfLines={1} textTransform='lowercase'>{anime.title.english}</Text>
+        </Tooltip>
       </div>
 
       {/* anime info page drawer */}
@@ -58,11 +62,8 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
           {data && !error && (
             <>
               <DrawerHeader display="flex" flexDirection="column" gap="1rem">
-                <Heading className={utilStyles.textWithStroke} color={data.color} as="h1" size="xl">
-                  {data.title.english}{' '}
-                  <Text fontSize="lg" as="sup">
-                    {data.subOrDub}
-                  </Text>
+                <Heading as="h1" size="xl">
+                  {data.title.english}
                 </Heading>
                 {/* todo: clicking on each genre will redirect to similar animes with same genre? */}
                 <GenreTags genres={data.genres} color={data.color} />

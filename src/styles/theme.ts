@@ -35,7 +35,7 @@ const theme = extendTheme({
       100: '#c6f6d5',
       500: '#c6f6d5',
       900: '#c6f6d5'
-    }
+    },
   },
 
   // override component styles
@@ -72,7 +72,7 @@ const theme = extendTheme({
       defaultProps: {
         variant: 'primary'
       }
-    }
+    },
   }
 })
 
