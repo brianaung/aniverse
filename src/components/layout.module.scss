@@ -1,8 +1,9 @@
 @use 'src/styles/_lib.scss';
 
 .container {
-  max-width: lib.$mainWidth;
+  width: lib.$mainWidth;
   min-height: 100vh; // is it really necessary?
+  // to center when width is not 100%
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -11,13 +12,14 @@
 
 .sidebar {
   width: 20%;
-  min-width: 250px;
+  min-width: 230px;
   padding: 2rem;
+  display: block;
 }
 
 .main {
-  width: 80%;
-  padding: 0 2rem;
+  width: auto;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,4 +28,28 @@
 .footer {
   padding-top: 3rem;
   margin-top: auto;
+}
+
+// mobile breakpoint
+@media only screen and (max-width: 30rem) {
+  .container {
+    width: lib.$tabletWidth;
+  }
+
+  // hide sidebar
+  .sidebar {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 30rem) {
+  .container {
+    width: lib.$tabletWidth;
+  }
+}
+
+@media only screen and (min-width: 60rem) {
+  .container {
+    width: lib.$mainWidth;
+  }
 }

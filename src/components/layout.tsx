@@ -19,10 +19,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         alignItems="center"
         bg="primary.500"
         color="black"
-        border="solid 1px black"
-        height={50}>
-        <Text size="lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+        borderBottom="solid 1px black"
+        height='50px'
+        width='100%'
+      >
+        <Text as='b' fontSize={['xs', 'sm', 'md', null, null, null]}>
+          Lorem ipsum dolor sit amet
         </Text>
       </Box>
       {/* -------------------------------------------------------- */}

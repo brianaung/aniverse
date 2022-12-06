@@ -1,5 +1,5 @@
-import { MoonIcon, SunIcon } from '@chakra-ui/icons'
-import { Button, useColorMode } from '@chakra-ui/react'
+import { HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { Show, Button, useColorMode } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import styles from './navbar.module.scss'
 import Searchbar from './searchbar'
@@ -24,6 +24,10 @@ export default function Navbar() {
 
   return (
     <div className={styles.container}>
+      <Show below='md'>
+        {/* todo: create a menu dropdown or drawer */}
+        <Button variant='ghost'><HamburgerIcon /></Button>
+      </Show>
       <Searchbar />
       <Button onClick={toggleColorMode}>{colorMode === 'light' ? <MoonIcon /> : <SunIcon />}</Button>
     </div>
