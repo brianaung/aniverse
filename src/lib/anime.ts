@@ -55,10 +55,12 @@ export async function getAnimeSearch(query: string, page: number, perPage: numbe
 
   const data = await res.json()
 
-  for (let i = 0; i < data.results.length; i++) {
-    const anime: AnimeInfo = data.results[i]
-    if (anime.cover && anime.title.native && anime.title.romaji && anime.title.english && anime.title.userPreferred) {
-      filteredList.push(data.results[i])
+  if (data.results) {
+    for (let i = 0; i < data.results.length; i++) {
+      const anime: AnimeInfo = data.results[i]
+      if (anime.cover && anime.title.native && anime.title.romaji && anime.title.english && anime.title.userPreferred) {
+        filteredList.push(data.results[i])
+      }
     }
   }
 
