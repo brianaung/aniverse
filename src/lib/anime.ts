@@ -40,11 +40,11 @@ export async function getTrendingAnimes(page: number, perPage: number) {
  * Filter the search results to only contain relevant ones
  * @param query - The user query string.
  */
-export async function getAnimeSearch(query: string, page: number) {
+export async function getAnimeSearch(query: string, page: number, perPage: number) {
   const filteredList: AnimeResult[] = []
 
   const res = await fetch(
-    `https://api.consumet.org/meta/anilist/advanced-search?query=${query}&page=${page}&sort=["POPULARITY_DESC", "UPDATED_AT_DESC", "SCORE_DESC", "FAVOURITES", "UPDATED_AT", "START_DATE_DESC", "END_DATE_DESC"]`
+    `https://api.consumet.org/meta/anilist/advanced-search?query=${query}&page=${page}&perPage=${perPage}&sort=["POPULARITY_DESC", "UPDATED_AT_DESC", "SCORE_DESC", "FAVOURITES", "UPDATED_AT", "START_DATE_DESC", "END_DATE_DESC"]`
   )
   if (!res.ok) {
     return {
@@ -55,10 +55,12 @@ export async function getAnimeSearch(query: string, page: number) {
 
   const data = await res.json()
 
-  for (let i = 0; i < data.results.length; i++) {
-    const anime: AnimeInfo = data.results[i]
-    if (anime.cover && anime.title.native && anime.title.romaji && anime.title.english && anime.title.userPreferred) {
-      filteredList.push(data.results[i])
+  if (data.results) {
+    for (let i = 0; i < data.results.length; i++) {
+      const anime: AnimeInfo = data.results[i]
+      if (anime.cover && anime.title.native && anime.title.romaji && anime.title.english && anime.title.userPreferred) {
+        filteredList.push(data.results[i])
+      }
     }
   }
 
