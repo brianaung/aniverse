@@ -33,7 +33,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
         <div className={styles.main}>
           <Navbar />
-          <main>{children}</main>
+          {children}
           <footer className={styles.footer}>
             <Text fontSize="sm" as="cite">
               created by <Link href="https://github.com/brianaung">@brianaung</Link>

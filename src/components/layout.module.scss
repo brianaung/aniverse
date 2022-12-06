@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  border: solid 1px red;
 }
 
 .sidebar {
@@ -17,11 +18,12 @@
 }
 
 .main {
-  width: auto;
-  padding: 0 0.5rem;
+  width: 80%;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: solid 1px blue;
 }
 
 .footer {
@@ -38,6 +40,10 @@
   // hide sidebar
   .sidebar {
     display: none;
+  }
+  // and let main takes all space
+  .main {
+    width: 100%;
   }
 }
 

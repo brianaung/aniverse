@@ -113,7 +113,7 @@ export default function VideoPage() {
       {!animeData && !animeError && <InfoSkeleton />}
       {!animeData && animeError && <p>Error loading information.</p>}
       {animeData && !animeError && (
-        <Stack m="1rem" spacing="1rem">
+        <Stack width="100%" m="1rem" spacing="1rem">
           <Heading as="h1" size="xl">
             <Link href={`/anime/info/${animeData.id}`}>{animeData.title.english}</Link>
           </Heading>

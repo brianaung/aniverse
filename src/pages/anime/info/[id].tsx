@@ -50,7 +50,7 @@ export default function AnimeInfoPage() {
       {!data && !error && <p>Loading</p>}
       {!data && error && <p>Something went wrong, please try again later.</p>}
       {data && !error && (
-        <Stack gap=".2rem">
+        <Stack width="100%" gap=".2rem">
           {/* anime info page drawer */}
           {/* todo: add loading skeletons */}
           <Heading as="h1" size="xl">
