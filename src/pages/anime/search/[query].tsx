@@ -11,6 +11,7 @@ import { AnimeSearchResults } from '../../../types'
 
 // fetcher for useSWR
 // const fetcher: Fetcher = (arg: string) => fetch(arg).then((res) => res.json())
+const perPage = 10
 
 export default function SearchResultsPage() {
   const router = useRouter()
@@ -22,7 +23,7 @@ export default function SearchResultsPage() {
 
   useEffect(() => {
     const fetchData = async (page: number) => {
-      const { data, error } = await getAnimeSearch(query, page)
+      const { data, error } = await getAnimeSearch(query, page, perPage)
       if (!data) {
         setError(error)
         console.log('[Fetch Data] ' + error.message)
