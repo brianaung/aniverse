@@ -8,8 +8,8 @@ export default function CharactersList({ characters }: { characters: CharacterIn
     <>
       <Box className={styles.container}>
         {characters.map((c) => (
-          <Stack key={c.id}>
-            <Image className={styles.image} src={c.image} width={200} height={200} alt={c.name.full} />
+          <Stack key={c.id} align="center">
+            <Image className={styles.image} src={c.image} width={100} height={100} alt={c.name.full} />
             <Text as="b" fontSize="xs" noOfLines={1} textAlign="center" textTransform="uppercase">
               {c.name.full}
             </Text>

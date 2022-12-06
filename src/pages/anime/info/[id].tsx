@@ -76,7 +76,7 @@ export default function AnimeInfoPage() {
             Start Watching
           </Button>
 
-          <Tabs>
+          <Tabs overflow="scroll" isFitted variant="enclosed" size="sm">
             <TabList>
               <Tab>About</Tab>
               <Tab>Episodes</Tab>
@@ -87,38 +87,38 @@ export default function AnimeInfoPage() {
             <TabPanels>
               {/* About */}
               <TabPanel>
-                <SimpleGrid mb="4" spacing={4} templateColumns="repeat(auto-fill, minmax(150px, 1fr))">
-                  <Card variant="outline">
+                <SimpleGrid mb="4" spacing={2} templateColumns="repeat(auto-fill, minmax(130px, 1fr))">
+                  <Card size="sm" align="center" variant="outline">
                     <CardBody>
                       <Heading size="sm">Episodes</Heading>
                       <Text as="i">{data.totalEpisodes}</Text>
                     </CardBody>
                   </Card>
-                  <Card variant="outline">
+                  <Card size="sm" align="center" variant="outline">
                     <CardBody>
                       <Heading size="sm">Rating</Heading>
                       <Text as="i">{data.rating}</Text>
                     </CardBody>
                   </Card>
-                  <Card variant="outline">
+                  <Card size="sm" align="center" variant="outline">
                     <CardBody>
                       <Heading size="sm">Popularity</Heading>
                       <Text as="i">{data.popularity}</Text>
                     </CardBody>
                   </Card>
-                  <Card variant="outline">
+                  <Card size="sm" align="center" variant="outline">
                     <CardBody>
                       <Heading size="sm">Season</Heading>
                       <Text as="i">{data.season}</Text>
                     </CardBody>
                   </Card>
-                  <Card variant="outline">
+                  <Card size="sm" align="center" variant="outline">
                     <CardBody>
                       <Heading size="sm">Origin</Heading>
                       <Text as="i">{data.countryOfOrigin}</Text>
                     </CardBody>
                   </Card>
-                  <Card variant="outline">
+                  <Card size="sm" align="center" variant="outline">
                     <CardBody>
                       <Heading size="sm">Studio</Heading>
                       <Text as="i">{data.studios}</Text>
@@ -143,7 +143,7 @@ export default function AnimeInfoPage() {
                   <a
                     target="_blank"
                     rel="noreferrer"
-                    href={`https://www.google.com/search?q=list-of-${data.title.english}-characters`}>
+                    href={`https://www.google.com/search?q=List of ${data.title.english} Characters`}>
                     and more
                   </a>
                 </Text>

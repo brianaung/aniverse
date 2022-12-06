@@ -122,7 +122,7 @@ export default function VideoPage() {
           </Heading>
           <Text>{episode.description}</Text>
           {/* select episode in a dropdown selector */}
-          <Stack alignSelf="center" direction="row" alignItems="center" justifyContent="center">
+          <Stack alignSelf="center" direction="row" align="center">
             {prev && (
               <Button onClick={handlePrev}>
                 <ArrowBackIcon />
