@@ -113,7 +113,6 @@ useEffect(() => {
       fooRef.current?.focus()
     }
   }
-  // todo: learn more abt vanilla js
   document.addEventListener('keydown', handleFocus)
   return function cleanup() {
     document.removeEventListener('keydown', handleFocus)

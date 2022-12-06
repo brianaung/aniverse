@@ -36,7 +36,7 @@ function InfoSkeleton() {
 export default function VideoPage() {
   const router = useRouter()
   const { animeID, ep, index } = Array.isArray(router.query) ? router.query[0] : router.query
-  const { data: animeData, error: animeError } = useSWR(animeID ? `/api/anime/watch/${animeID}` : null, animeFetcher)
+  const { data: animeData, error: animeError } = useSWR(animeID ? `/api/anime/info/${animeID}` : null, animeFetcher)
   const episode: AnimeEpisode = ep ? JSON.parse(ep) : null
   // IMPORTANT: using normal useSWR will revalidate data (fetching again after intervals) causing the video src link to change
   const { data: epData, error: epError } = useSWRImmutable(
@@ -116,7 +116,7 @@ export default function VideoPage() {
       {animeData && !animeError && (
         <Stack m="1rem" spacing="1rem">
           <Heading className={utilStyles.textWithStroke} as="h1" size="xl" color={animeData.color}>
-            <Link href={`/anime/watch/${animeID}`}>{animeData.title.english}</Link>
+            <Link href={`/anime/info/${animeID}`}>{animeData.title.english}</Link>
             <Text as="sup" size="lg">
               {animeData.subOrDub}
             </Text>

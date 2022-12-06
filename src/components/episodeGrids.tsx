@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { AnimeEpisode } from '../types'
 // import {PlayCircle} from '@styled-icons/bootstrap/PlayCircle'
-import { Text } from '@chakra-ui/react'
+import { Text, Tooltip } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import styles from './episodeGrids.module.scss'
 
@@ -23,14 +23,12 @@ export default function EpisodeGrids({ animeID, episodes }: { animeID: string; e
     <section id="epSection" className={styles.container}>
       {episodes.map((ep, index) => (
         <div className={styles.episodeBox} key={ep.id} onClick={() => handlePlay(ep, index)}>
-          {/* episode image with play button icon */}
-          <div className={styles.videoThumbnail}>
-            <Image src={ep.image} width={250} height={150} alt={ep.title} />
-          </div>
-          {/* ----------------------------------- */}
-          <Text as="em">
-            E{ep.number} - <span className={styles.videoCaption}>{ep.title}</span>
-          </Text>
+          <Image className={styles.videoThumbnail} src={ep.image} width={220} height={130} alt={ep.title} />
+          <Tooltip textTransform="lowercase" label={ep.title}>
+            <Text as="b" fontSize="xs" noOfLines={1} textTransform="uppercase">
+              E{ep.number} - {ep.title}
+            </Text>
+          </Tooltip>
         </div>
       ))}
     </section>

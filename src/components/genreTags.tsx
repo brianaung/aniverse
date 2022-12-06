@@ -18,7 +18,8 @@ import styles from './genreTags.module.scss'
   return L > 0.179 ? darkColor : lightColor
 } */
 
-export default function GenreTags({ genres, color }: { genres: string[]; color: string }) {
+// todo: remove color
+export default function GenreTags({ genres }: { genres: string[] }) {
   // const contrastColor = pickContrastColor(`${color}`, 'white', 'black')
   return (
     <div className={styles.container}>
