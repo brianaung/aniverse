@@ -100,6 +100,18 @@ export default function Searchbar() {
               </InputLeftElement>
               <Input onChange={handleInput} id="searchbar" placeholder="Search Anime, Manga" />
             </InputGroup>
+            <InputGroup>
+              {/* 
+              # todo:
+              add search filteroptions:
+              * type
+              * season
+              * format
+              * genres
+              * year
+              * status
+              */}
+            </InputGroup>
           </form>
           {/* show search results as you type */}
           {/* todo: style the results */}
