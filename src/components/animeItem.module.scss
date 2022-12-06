@@ -1,24 +1,25 @@
 @use '../styles/_lib.scss';
 
 .container {
+  position: relative;
   min-width: 180px;
   max-width: 180px;
+  // background-color: white;
   flex: 1;
-}
-
-.image {
-  min-height: 240px;
-  max-height: 240px;
-  border-radius: lib.$borderRadius;
-  border: solid lib.$dividerSize lib.$dividerColor;
-  // property duration timing-function(ease, ...)  delay
   transition: transform 200ms ease 0s;
   &:hover {
     transform: translateY(-4px);
   }
 }
 
-.title {
-  display: block;
-  text-align: center;
+.image {
+  min-height: 240px;
+  max-height: 240px;
+  // border-radius: lib.$borderRadius;
+  border: solid lib.$dividerSize lib.$dividerColor;
+  // property duration timing-function(ease, ...)  delay
+  // transition: all 200ms ease;
+  // &:hover {
+  //   filter: drop-shadow(5px 5px 0px #000000);
+  // }
 }

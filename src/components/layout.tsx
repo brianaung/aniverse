@@ -17,12 +17,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        bg="secondary.500"
+        bg="primary.500"
         color="black"
         border="solid 1px black"
         height={50}>
         <Text size="lg">
-          🎉 v1.0.0 out now. view <Link href="https://github.com/brianaung/aniverse/releases">changes</Link> 🎉
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
         </Text>
       </Box>
       {/* -------------------------------------------------------- */}
