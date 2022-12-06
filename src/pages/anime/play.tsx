@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react'
 import { default as useSWR, default as useSWRImmutable, Fetcher } from 'swr'
 import Layout from '../../components/layout'
 import Player from '../../components/player'
-import utilStyles from '../../styles/utils.module.scss'
 import { AnimeEpisode, AnimeInfo, VideoSrc } from '../../types'
 
 type ApiDataType = {
@@ -115,16 +114,13 @@ export default function VideoPage() {
       {!animeData && animeError && <p>Error loading information.</p>}
       {animeData && !animeError && (
         <Stack m="1rem" spacing="1rem">
-          <Heading className={utilStyles.textWithStroke} as="h1" size="xl" color={animeData.color}>
-            <Link href={`/anime/info/${animeID}`}>{animeData.title.english}</Link>
-            <Text as="sup" size="lg">
-              {animeData.subOrDub}
-            </Text>
+          <Heading as="h1" size="xl">
+            <Link href={`/anime/info/${animeData.id}`}>{animeData.title.english}</Link>
           </Heading>
           <Heading as="h2" size="md">
             Episode {episode.number} - {episode.title} ({animeData.duration}mins)
           </Heading>
-          <Text as="i">{episode.description}</Text>
+          <Text>{episode.description}</Text>
           {/* select episode in a dropdown selector */}
           <Stack alignSelf="center" direction="row" alignItems="center" justifyContent="center">
             {prev && (

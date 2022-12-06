@@ -27,10 +27,10 @@ export type AnimeInfo = AnimeResult & {
   endDate: Date
   nextAiringEpisode: Date
   season: string
-  studios: [string]
+  studios: string[]
   subOrDub: 'sub' | 'dub'
-  // recommendations:
-  characters: [Character]
+  recommendations: AnimeResult[]
+  characters: CharacterInfo[]
   // relations:
   episodes: AnimeEpisode[]
 }
@@ -72,7 +72,7 @@ type TitleLang = {
   userPreferred: string
 }
 
-type Character = {
+export type CharacterInfo = {
   id: number
   role: string
   name: CharacterName

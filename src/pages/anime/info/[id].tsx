@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   CardBody,
   Heading,
@@ -15,10 +16,13 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import useSWR, { Fetcher } from 'swr'
+import AnimeItem from '../../../components/animeItem'
+import AnimeListContainer from '../../../components/animeListContainer'
+import CharactersList from '../../../components/charactersList'
 import EpisodeGrids from '../../../components/episodeGrids'
 import GenreTags from '../../../components/genreTags'
 import Layout from '../../../components/layout'
-import { AnimeInfo } from '../../../types'
+import { AnimeEpisode, AnimeInfo } from '../../../types'
 
 const fetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
 
@@ -26,6 +30,17 @@ export default function AnimeInfoPage() {
   const router = useRouter()
   const { id } = Array.isArray(router.query) ? router.query[0] : router.query
   const { data, error } = useSWR(id ? `/api/anime/info/${id}` : null, fetcher)
+
+  const handleStartWatching = (ep: AnimeEpisode, index: number) => {
+    router.push({
+      pathname: `/anime/play`,
+      query: {
+        animeID: data?.id,
+        ep: JSON.stringify(ep),
+        index
+      }
+    })
+  }
 
   return (
     <Layout>
@@ -56,6 +71,11 @@ export default function AnimeInfoPage() {
             alt={data.title.english}
           />
 
+          {/* todo: start or continue watching by tracking user watch progress? */}
+          <Button alignSelf="center" onClick={() => handleStartWatching(data.episodes[0], 0)}>
+            Start Watching
+          </Button>
+
           <Tabs>
             <TabList>
               <Tab>About</Tab>
@@ -65,6 +85,7 @@ export default function AnimeInfoPage() {
             </TabList>
 
             <TabPanels>
+              {/* About */}
               <TabPanel>
                 <SimpleGrid mb="4" spacing={4} templateColumns="repeat(auto-fill, minmax(150px, 1fr))">
                   <Card variant="outline">
@@ -108,17 +129,36 @@ export default function AnimeInfoPage() {
                   <Text dangerouslySetInnerHTML={{ __html: data.description }} />
                 </section>
               </TabPanel>
-              {/* todo: add more data */}
+
+              {/* Episodes */}
               <TabPanel>
                 {/* return a list of episodes */}
                 <EpisodeGrids animeID={id} episodes={data.episodes} />
               </TabPanel>
-              <TabPanel>N/A</TabPanel>
-              <TabPanel>N/A</TabPanel>
+
+              {/* Characters */}
+              <TabPanel display="flex" flexDirection="column" alignItems="center">
+                <CharactersList characters={data.characters} />
+                <Text>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`https://www.google.com/search?q=list-of-${data.title.english}-characters`}>
+                    and more
+                  </a>
+                </Text>
+              </TabPanel>
+
+              {/* Related */}
+              <TabPanel>
+                <AnimeListContainer>
+                  {data.recommendations.map((anime) => (
+                    <AnimeItem key={anime.id} anime={anime} />
+                  ))}
+                </AnimeListContainer>
+              </TabPanel>
             </TabPanels>
           </Tabs>
-
-          {/*<Button onClick={() => router.push(`/anime/info/${data.id}`)}>Start Watching</Button>*/}
         </Stack>
       )}
     </Layout>
