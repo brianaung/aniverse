@@ -1,8 +1,19 @@
 import { HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons'
-import { Button, Show, useColorMode } from '@chakra-ui/react'
+import {
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerOverlay,
+  Show,
+  useColorMode,
+  useDisclosure
+} from '@chakra-ui/react'
 import { useEffect } from 'react'
 import styles from './navbar.module.scss'
 import Searchbar from './searchbar'
+import Sidebar from './sidebar'
 
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -22,13 +33,25 @@ export default function Navbar() {
     }
   }, [toggleColorMode])
 
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
   return (
     <div className={styles.container}>
       <Show below="md">
         {/* todo: create a menu dropdown or drawer */}
-        <Button variant="ghost">
+        <Button onClick={onOpen} variant="ghost">
           <HamburgerIcon />
         </Button>
+
+        <Drawer size="full" placement="left" onClose={onClose} isOpen={isOpen}>
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerBody>
+              <Sidebar />
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </Show>
       <Searchbar />
       <Button onClick={toggleColorMode}>{colorMode === 'light' ? <MoonIcon /> : <SunIcon />}</Button>
