@@ -1,6 +1,5 @@
 import { SearchIcon } from '@chakra-ui/icons'
 import {
-  Show,
   Button,
   Input,
   InputGroup,
@@ -9,6 +8,7 @@ import {
   Modal,
   ModalContent,
   ModalOverlay,
+  Show,
   Stack,
   Text,
   useDisclosure
@@ -86,13 +86,18 @@ export default function Searchbar() {
 
   return (
     <>
-      <Show above='md'>
-        <Button className={styles.largeSearch} onClick={onOpen} leftIcon={<SearchIcon />} rightIcon={<KeybindIcon />} variant="searchbar">
+      <Show above="md">
+        <Button
+          className={styles.largeSearch}
+          onClick={onOpen}
+          leftIcon={<SearchIcon />}
+          rightIcon={<KeybindIcon />}
+          variant="searchbar">
           Search Anime, Manga
         </Button>
       </Show>
-      <Show below='md'>
-        <Button variant='ghost' marginLeft='auto' className={styles.smallSearch} onClick={onOpen}>
+      <Show below="md">
+        <Button variant="ghost" marginLeft="auto" className={styles.smallSearch} onClick={onOpen}>
           <SearchIcon />
         </Button>
       </Show>
@@ -102,7 +107,7 @@ export default function Searchbar() {
         {/* note: some default styles from modalcontent are removed for showing query results
             as you type in my own style (in a seperate box)
         */}
-        <ModalContent mx='1rem' gap="1rem" bg="none" boxShadow="0">
+        <ModalContent mx="1rem" gap="1rem" bg="none" boxShadow="0">
           <form onSubmit={handleSubmit}>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
@@ -126,7 +131,14 @@ export default function Searchbar() {
           {/* show search results as you type */}
           {/* todo: style the results */}
           {searchData && searchData.length > 0 && (
-            <Stack border="solid 1px black" bg="white" gap="1rem" p="1rem" borderRadius="5px" maxH='50vh' overflow='scroll'>
+            <Stack
+              border="solid 1px black"
+              bg="white"
+              gap="1rem"
+              p="1rem"
+              borderRadius="5px"
+              maxH="50vh"
+              overflow="scroll">
               {searchData.map((anime) => (
                 <Stack direction="row" key={anime.id}>
                   <Text as="b" fontSize="sm" noOfLines={1} textTransform="uppercase">

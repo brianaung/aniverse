@@ -3,7 +3,6 @@
 .container {
   width: lib.$mainWidth;
   min-height: 100vh; // is it really necessary?
-  // to center when width is not 100%
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -19,7 +18,7 @@
 
 .main {
   width: auto;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +32,7 @@
 // mobile breakpoint
 @media only screen and (max-width: 30rem) {
   .container {
-    width: lib.$tabletWidth;
+    width: lib.$mobileWidth;
   }
 
   // hide sidebar
