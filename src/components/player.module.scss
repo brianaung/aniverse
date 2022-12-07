@@ -1,18 +1,21 @@
 @use 'src/styles/_lib.scss';
 
-$video-width: 60vw;
+$video-width: 70%;
 $video-height: auto;
 
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: solid 1px red;
+  width: $video-width;
 }
 
 .player {
-  width: $video-width;
-  height: $video-height;
+  width: 100%;
+  height: auto;
   border: solid lib.$dividerSize lib.$dividerColor;
 }
 

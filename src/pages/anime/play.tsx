@@ -24,10 +24,10 @@ const animeFetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).the
 
 function InfoSkeleton() {
   return (
-    <Box width="80vw">
+    <Box width="90%">
       <Skeleton mt="4" width="30%" height="1.5rem" />
-      <Skeleton mt="4" width="40%" height="1rem" />
-      <SkeletonText mt="4" noOfLines={4} spacing="4" />
+      <Skeleton mt="4" width="50%" height="1rem" />
+      <SkeletonText mt="4" noOfLines={5} spacing="4" />
     </Box>
   )
 }
@@ -140,8 +140,15 @@ export default function VideoPage() {
           </Stack>
         </Stack>
       )}
-      <Stack>
-        {!epData && !epError && <Skeleton alignSelf="center" mt="4" width="60vw" height="230px" />}
+      <Stack width="100%" align="center">
+        {!epData && !epError && (
+          <Skeleton
+            alignSelf="center"
+            mt="4"
+            width={['90%', '80%', '70%', '60%', null, null]}
+            height={['160px', '200px', null, '240px', '280px', '500px']}
+          />
+        )}
         {!epData && epError && <p>Error loading video.</p>}
         {epData && !epError && <Player allSrc={epData.allSrc} />}
       </Stack>
