@@ -8,7 +8,7 @@
   display: block;
   // make it sticky
   position: sticky;
-  top: calc(lib.$navbarH + 1rem);
+  top: lib.$navbarH;
   z-index: 2;
   overflow: scroll;
   // border: solid 1px red;

@@ -19,14 +19,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         justifyContent="center"
         alignItems="center"
         borderBottom="solid 1px black"
-        height="3rem"
+        minHeight="3rem"
         width="100%">
-        <Text fontSize={['xs', 'sm', 'md', null, null, null, null]}>Lorem ipsum dolor sit amet</Text>
+        <Text fontSize={['sm', null, 'md', null, 'lg', null, null]}>🎉 v1.0.0 out now! 🎉</Text>
       </Box>
       {/* -------------------------------------------------------- */}
 
       {/* THIS IS THE MAIN LAYOUT FOR THE ENTIRE WEBPAGE */}
-      <Stack w={['90%', null, '80%', null, '70%', '60%', '50%']} m="0 auto">
+      <Stack gap="1rem" w={['90%', null, '80%', null, '70%', '60%', '50%']} m="0 auto">
         <Navbar />
         <main>
           {' '}
