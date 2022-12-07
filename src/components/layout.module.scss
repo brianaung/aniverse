@@ -17,12 +17,12 @@
 .body {
   width: 80%;
   min-height: calc(100vh - lib.$navbarH - 4rem);
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 1;
-  // border: solid 1px blue;
 }
 
 .footer {
