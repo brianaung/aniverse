@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Stack, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
@@ -22,12 +22,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         borderBottom="solid 1px black"
         height="50px"
         width="100%">
-        <Text as="b" fontSize={['xs', 'sm', 'md', null, null, null]}>
+        <Text as="b" fontSize={['xs', 'sm', 'md', null, null, null, null]}>
           Lorem ipsum dolor sit amet
         </Text>
       </Box>
       {/* -------------------------------------------------------- */}
-      <section className={styles.container}>
+      <Stack direction="row" w={['100%', null, '90%', null, '80%', '70%', '60%']} className={styles.container}>
         <div className={styles.sidebar}>
           <Sidebar />
         </div>
@@ -40,7 +40,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </Text>
           </footer>
         </div>
-      </section>
+      </Stack>
     </div>
   )
 }

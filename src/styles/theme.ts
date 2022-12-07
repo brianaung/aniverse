@@ -5,10 +5,20 @@ const colorConfig: ThemeConfig = {
   useSystemColorMode: false
 }
 
+const breakpoints = {
+  sm: '30em',
+  md: '48em',
+  lg: '62em',
+  xl: '80em',
+  '2xl': '96em',
+  '3xl': '110em'
+}
+
 // todo: choose color palette
 const theme = extendTheme({
   // set initial colormode
   colorConfig,
+  breakpoints,
 
   fonts: {
     heading: `'Raleway', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`,

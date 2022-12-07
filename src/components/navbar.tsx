@@ -37,7 +37,7 @@ export default function Navbar() {
 
   return (
     <div className={styles.container}>
-      <Show below="md">
+      <Show below="lg">
         {/* todo: create a menu dropdown or drawer */}
         <Button onClick={onOpen} variant="ghost">
           <HamburgerIcon />

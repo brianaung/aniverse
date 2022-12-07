@@ -86,7 +86,7 @@ export default function Searchbar() {
 
   return (
     <>
-      <Show above="md">
+      <Show above="lg">
         <Button
           className={styles.largeSearch}
           onClick={onOpen}
@@ -96,7 +96,7 @@ export default function Searchbar() {
           Search Anime, Manga
         </Button>
       </Show>
-      <Show below="md">
+      <Show below="lg">
         <Button variant="ghost" marginLeft="auto" className={styles.smallSearch} onClick={onOpen}>
           <SearchIcon />
         </Button>

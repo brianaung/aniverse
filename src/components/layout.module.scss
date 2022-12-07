@@ -1,13 +1,11 @@
 @use 'src/styles/_lib.scss';
 
 .container {
-  width: lib.$mainWidth;
+  // width: lib.$mainWidth;
   min-height: 100vh; // is it really necessary?
   margin: 0 auto;
-  display: flex;
-  flex-direction: row;
   justify-content: center;
-  border: solid 1px red;
+  // border: solid 1px red;
 }
 
 .sidebar {
@@ -15,6 +13,7 @@
   min-width: 230px;
   padding: 2rem;
   display: block;
+  // border: solid 1px green;
 }
 
 .main {
@@ -23,7 +22,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: solid 1px blue;
+  // border: solid 1px blue;
 }
 
 .footer {
@@ -32,29 +31,17 @@
 }
 
 // mobile breakpoint
-@media only screen and (max-width: 30rem) {
+@media only screen and (max-width: 62rem) {
   .container {
     width: lib.$mobileWidth;
   }
 
-  // hide sidebar
+  // hide sidebar (hide below='md')
   .sidebar {
     display: none;
   }
   // and let main takes all space
   .main {
     width: 100%;
-  }
-}
-
-@media only screen and (min-width: 30rem) {
-  .container {
-    width: lib.$tabletWidth;
-  }
-}
-
-@media only screen and (min-width: 60rem) {
-  .container {
-    width: lib.$mainWidth;
   }
 }
