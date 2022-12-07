@@ -2,11 +2,17 @@
 
 .container {
   width: 100%;
-  min-height: 3rem;
-  margin-bottom: 2rem;
+  height: lib.$navbarH;
+  padding: 1rem 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+  // make it sticky
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  // todo: should follow color theme
+  background: white;
 }

@@ -8,39 +8,46 @@ import Sidebar from './sidebar'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
+    <>
       <Head>
         <link rel="icon" href="/makima.ico" />
       </Head>
       {/* a place to add version changes notes to display to users */}
+      {/* todo: handle really long text*/}
       <Box
         display="flex"
         justifyContent="center"
         alignItems="center"
-        bg="primary.500"
-        color="black"
         borderBottom="solid 1px black"
-        height="50px"
+        height="3rem"
         width="100%">
-        <Text as="b" fontSize={['xs', 'sm', 'md', null, null, null, null]}>
-          Lorem ipsum dolor sit amet
-        </Text>
+        <Text fontSize={['xs', 'sm', 'md', null, null, null, null]}>Lorem ipsum dolor sit amet</Text>
       </Box>
       {/* -------------------------------------------------------- */}
-      <Stack direction="row" w={['100%', null, '90%', null, '80%', '70%', '60%']} className={styles.container}>
-        <div className={styles.sidebar}>
-          <Sidebar />
-        </div>
-        <div className={styles.main}>
-          <Navbar />
-          {children}
-          <footer className={styles.footer}>
-            <Text fontSize="sm" as="cite">
-              created by <Link href="https://github.com/brianaung">@brianaung</Link>
-            </Text>
-          </footer>
-        </div>
+
+      {/* THIS IS THE MAIN LAYOUT FOR THE ENTIRE WEBPAGE */}
+      <Stack w={['90%', null, '80%', null, '70%', '60%', '50%']} m="0 auto">
+        <Navbar />
+        <main>
+          {' '}
+          {/* main content: sidebar and body */}
+          <Stack direction="row" w="100%" h="100%">
+            <div className={styles.sidebar}>
+              <Sidebar />
+            </div>
+
+            <div className={styles.body} style={{ marginLeft: '0' }}>
+              {children}
+
+              <footer className={styles.footer}>
+                <Text fontSize="sm" as="cite">
+                  created by <Link href="https://github.com/brianaung">@brianaung</Link>
+                </Text>
+              </footer>
+            </div>
+          </Stack>
+        </main>
       </Stack>
-    </div>
+    </>
   )
 }

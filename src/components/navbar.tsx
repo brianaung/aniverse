@@ -43,11 +43,11 @@ export default function Navbar() {
           <HamburgerIcon />
         </Button>
 
-        <Drawer size="full" placement="left" onClose={onClose} isOpen={isOpen}>
+        <Drawer size="sm" placement="left" onClose={onClose} isOpen={isOpen}>
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerBody>
+            <DrawerBody display="flex" alignSelf="center" justifyContent="center" pt="5rem">
               <Sidebar />
             </DrawerBody>
           </DrawerContent>
