@@ -53,9 +53,8 @@ export const getStaticProps: GetStaticProps = async () => {
     const trendingAnimes = await getTrendingAnimes(page, 5)
 
     // handle error
-    if ((popularAnimes.error || !popularAnimes.data) ||
-      (trendingAnimes.error || !trendingAnimes.data)) {
-      return { notFound: true };
+    if (popularAnimes.error || !popularAnimes.data || trendingAnimes.error || !trendingAnimes.data) {
+      return { notFound: true }
     }
 
     return {
@@ -65,6 +64,6 @@ export const getStaticProps: GetStaticProps = async () => {
       }
     }
   } catch (e) {
-    return { notFound: true };
+    return { notFound: true }
   }
 }
