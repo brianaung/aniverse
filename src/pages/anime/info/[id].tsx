@@ -154,7 +154,6 @@ export default function AnimeInfoPage() {
       {data && !error && (
         <Stack width="100%" gap=".2rem">
           {/* anime info page drawer */}
-          {/* todo: add loading skeletons */}
           <Heading as="h1" size="xl">
             {data.title.english}
           </Heading>
