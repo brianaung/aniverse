@@ -5,14 +5,13 @@ import { Text, Tooltip } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import styles from './episodeGrids.module.scss'
 
-export default function EpisodeGrids({ animeID, episodes }: { animeID: string; episodes: AnimeEpisode[] }) {
+export default function EpisodeGrids({ animeId, episodes }: { animeId: string; episodes: AnimeEpisode[] }) {
   const router = useRouter()
 
   const handlePlay = (ep: AnimeEpisode, index: number) => {
     router.push({
-      pathname: `/anime/play`,
+      pathname: `/anime/play/${animeId}`,
       query: {
-        animeID: animeID,
         ep: JSON.stringify(ep),
         index
       }

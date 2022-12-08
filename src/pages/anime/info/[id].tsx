@@ -100,9 +100,8 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
 
   const handleStartWatching = (ep: AnimeEpisode, index: number) => {
     router.push({
-      pathname: `/anime/play`,
+      pathname: `/anime/play/${animeId}`,
       query: {
-        animeID: data?.id,
         ep: JSON.stringify(ep),
         index
       }
@@ -156,7 +155,7 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
                 <AboutInfo data={data} />
               </TabPanel>
               <TabPanel>
-                <EpisodeGrids animeID={data.id} episodes={data.episodes} />
+                <EpisodeGrids animeId={data.id} episodes={data.episodes} />
               </TabPanel>
               <TabPanel display="flex" flexDirection="column" alignItems="center">
                 <CharactersInfo data={data} />
@@ -187,7 +186,7 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                <EpisodeGrids animeID={data.id} episodes={data.episodes} />
+                <EpisodeGrids animeId={data.id} episodes={data.episodes} />
               </AccordionPanel>
             </AccordionItem>
             <AccordionItem>
@@ -218,10 +217,7 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
   // caching
   // the cached value will be fresh for 1day(86400s), after that a revalidation request is needed to refresh to stale value. The stale value will still be usable if more req is made within 1hr(3600s) after becoming stale.
-  context.res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=86400, stale-while-revalidate=3600'
-  )
+  context.res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=3600')
 
   const { id } = Array.isArray(context.query) ? context.query[0] : context.query
 
