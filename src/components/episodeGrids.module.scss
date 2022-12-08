@@ -1,17 +1,18 @@
 .container {
-  padding: 1rem;
+  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  width: 100%;
+  gap: 1rem;
+  border: solid 1px red;
 }
 
 .episodeBox {
   cursor: pointer;
-  padding: 0.5rem;
   flex: 1;
-  min-width: 250px;
-  max-width: 250px;
+  min-width: 200px;
+  max-width: 200px;
   transition: all 200ms ease-in-out;
   &:hover {
     transform: scale(1.05);

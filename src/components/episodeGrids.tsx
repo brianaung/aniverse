@@ -20,10 +20,10 @@ export default function EpisodeGrids({ animeID, episodes }: { animeID: string; e
   }
 
   return (
-    <section id="epSection" className={styles.container}>
+    <div className={styles.container}>
       {episodes.map((ep, index) => (
         <div className={styles.episodeBox} key={ep.id} onClick={() => handlePlay(ep, index)}>
-          <Image className={styles.videoThumbnail} src={ep.image} width={220} height={130} alt={ep.title} />
+          <Image className={styles.videoThumbnail} src={ep.image} width={200} height={120} alt={ep.title} />
           <Tooltip textTransform="lowercase" label={ep.title}>
             <Text as="b" fontSize="xs" noOfLines={1} textTransform="uppercase">
               E{ep.number} - {ep.title}
@@ -31,6 +31,6 @@ export default function EpisodeGrids({ animeID, episodes }: { animeID: string; e
           </Tooltip>
         </div>
       ))}
-    </section>
+    </div>
   )
 }

@@ -37,25 +37,27 @@ function AboutInfo({ data }: { data: AnimeInfo }) {
     <>
       <SimpleGrid mb="4" spacing={2} templateColumns="repeat(auto-fill, minmax(100px, 1fr))">
         <Card size="sm" align="center" variant="outline">
-          <CardBody display='flex' flexDirection='column' alignItems='center'>
+          <CardBody display="flex" flexDirection="column" alignItems="center">
             <Heading size="sm">Episodes</Heading>
             <Text as="i">{data.totalEpisodes}</Text>
           </CardBody>
         </Card>
         <Card size="sm" align="center" variant="outline">
-          <CardBody display='flex' flexDirection='column' alignItems='center'>
+          <CardBody display="flex" flexDirection="column" alignItems="center">
             <Heading size="sm">Rating</Heading>
-            <Text textAlign='center' as="i">{data.rating}</Text>
+            <Text textAlign="center" as="i">
+              {data.rating}
+            </Text>
           </CardBody>
         </Card>
         <Card size="sm" align="center" variant="outline">
-          <CardBody display='flex' flexDirection='column' alignItems='center'>
+          <CardBody display="flex" flexDirection="column" alignItems="center">
             <Heading size="sm">Popularity</Heading>
             <Text as="i">{data.popularity}</Text>
           </CardBody>
         </Card>
         <Card size="sm" align="center" variant="outline">
-          <CardBody display='flex' flexDirection='column' alignItems='center'>
+          <CardBody display="flex" flexDirection="column" alignItems="center">
             <Heading size="sm">Origin</Heading>
             <Text as="i">{data.countryOfOrigin}</Text>
           </CardBody>
@@ -131,7 +133,7 @@ export default function AnimeInfoPage() {
           </Text>
 
           <Image
-            style={{ border: 'solid 1px black', width: '100%', height: 'auto', maxHeight: '500px' }}
+            style={{ border: 'solid 1px black', width: '100%', height: 'auto', minHeight: '120px', maxHeight: '500px' }}
             quality="100"
             src={data.cover}
             width={100000}
@@ -140,13 +142,16 @@ export default function AnimeInfoPage() {
           />
 
           {/* todo: start or continue watching by tracking user watch progress? */}
-          <Button size={['xs',null,'sm',null,'md',null,'lg']} alignSelf="center" onClick={() => handleStartWatching(data.episodes[0], 0)}>
+          <Button
+            size={['xs', null, 'sm', null, 'md', null, 'lg']}
+            alignSelf="center"
+            onClick={() => handleStartWatching(data.episodes[0], 0)}>
             Start Watching
           </Button>
 
           {/* tabs in larger display */}
           <Show above="md">
-            <Tabs overflow="scroll" isFitted variant="enclosed" size="sm">
+            <Tabs isFitted variant="enclosed" size="sm">
               <TabList>
                 <Tab>About</Tab>
                 <Tab>Episodes</Tab>
