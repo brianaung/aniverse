@@ -4,12 +4,15 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Box,
   Button,
   Card,
   CardBody,
   Heading,
   Show,
   SimpleGrid,
+  Skeleton,
+  SkeletonText,
   Stack,
   Tab,
   TabList,
@@ -96,6 +99,35 @@ function RelatedInfo({ data }: { data: AnimeInfo }) {
   )
 }
 
+function InfoPageSkeleton() {
+  return (
+    <Box width="100%">
+      {/* Heading Section */}
+      <Skeleton mt="4" width="50%" height="1.5rem" />
+      <Stack mt="4" direction="row" align="center" width="100%">
+        <Skeleton width="3rem" height="1rem" borderRadius="9999px" />
+        <Skeleton width="3rem" height="1rem" borderRadius="9999px" />
+        <Skeleton width="3rem" height="1rem" borderRadius="9999px" />
+        <Skeleton width="3rem" height="1rem" borderRadius="9999px" />
+      </Stack>
+      <SkeletonText mt="4" noOfLines={1} spacing="4" width="30%" />
+      {/* Cover Image */}
+      <Skeleton mt="4" mx="auto" width="80%" height={['100px', '120px', '140px', '160px', '180px', '200px', '220px']} />
+      <Skeleton mt="4" mx="auto" width="5rem" height="2rem" />
+      {/* Divider */}
+      <Skeleton mt="4" mx="auto" width="100%" height=".1rem" />
+      {/* Tab Section */}
+      <Stack mt="4" direction="row" justifyContent="center" align="center" width="100%">
+        <Skeleton width="20%" height="2rem" />
+        <Skeleton width="20%" height="2rem" />
+        <Skeleton width="20%" height="2rem" />
+        <Skeleton width="20%" height="2rem" />
+      </Stack>
+      <SkeletonText mt="4" noOfLines={10} spacing="4" width="100%" />
+    </Box>
+  )
+}
+
 export default function AnimeInfoPage() {
   const router = useRouter()
   const { id } = Array.isArray(router.query) ? router.query[0] : router.query
@@ -117,7 +149,7 @@ export default function AnimeInfoPage() {
       <Head>
         <title>watch {data && data.title.english}</title>
       </Head>
-      {!data && !error && <p>Loading</p>}
+      {!data && !error && <InfoPageSkeleton />}
       {!data && error && <p>Something went wrong, please try again later.</p>}
       {data && !error && (
         <Stack width="100%" gap=".2rem">

@@ -22,7 +22,7 @@ const options = {
 }
 const animeFetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
 
-function InfoSkeleton() {
+function VideoPageSkeleton() {
   return (
     <Box width="90%">
       <Skeleton mt="4" width="30%" height="1.5rem" />
@@ -110,7 +110,7 @@ export default function VideoPage() {
           {animeData && animeData.title.english} Ep{episode && episode.number}
         </title>
       </Head>
-      {!animeData && !animeError && <InfoSkeleton />}
+      {!animeData && !animeError && <VideoPageSkeleton />}
       {!animeData && animeError && <p>Error loading information.</p>}
       {animeData && !animeError && (
         <Stack width="100%" m="1rem" spacing="1rem">
