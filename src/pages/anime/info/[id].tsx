@@ -1,8 +1,14 @@
 import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
   Button,
   Card,
   CardBody,
   Heading,
+  Show,
   SimpleGrid,
   Stack,
   Tab,
@@ -25,6 +31,80 @@ import Layout from '../../../components/layout'
 import { AnimeEpisode, AnimeInfo } from '../../../types'
 
 const fetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
+
+function AboutInfo({ data }: { data: AnimeInfo }) {
+  return (
+    <>
+      <SimpleGrid mb="4" spacing={2} templateColumns="repeat(auto-fill, minmax(130px, 1fr))">
+        <Card size="sm" align="center" variant="outline">
+          <CardBody>
+            <Heading size="sm">Episodes</Heading>
+            <Text as="i">{data.totalEpisodes}</Text>
+          </CardBody>
+        </Card>
+        <Card size="sm" align="center" variant="outline">
+          <CardBody>
+            <Heading size="sm">Rating</Heading>
+            <Text as="i">{data.rating}</Text>
+          </CardBody>
+        </Card>
+        <Card size="sm" align="center" variant="outline">
+          <CardBody>
+            <Heading size="sm">Popularity</Heading>
+            <Text as="i">{data.popularity}</Text>
+          </CardBody>
+        </Card>
+        <Card size="sm" align="center" variant="outline">
+          <CardBody>
+            <Heading size="sm">Season</Heading>
+            <Text as="i">{data.season}</Text>
+          </CardBody>
+        </Card>
+        <Card size="sm" align="center" variant="outline">
+          <CardBody>
+            <Heading size="sm">Origin</Heading>
+            <Text as="i">{data.countryOfOrigin}</Text>
+          </CardBody>
+        </Card>
+        <Card size="sm" align="center" variant="outline">
+          <CardBody>
+            <Heading size="sm">Studio</Heading>
+            <Text as="i">{data.studios}</Text>
+          </CardBody>
+        </Card>
+      </SimpleGrid>
+      <section>
+        <Text dangerouslySetInnerHTML={{ __html: data.description }} />
+      </section>
+    </>
+  )
+}
+
+function CharactersInfo({ data }: { data: AnimeInfo }) {
+  return (
+    <>
+      <CharactersList characters={data.characters} />
+      <Text>
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href={`https://www.google.com/search?q=List of ${data.title.english} Characters`}>
+          and more
+        </a>
+      </Text>
+    </>
+  )
+}
+
+function RelatedInfo({ data }: { data: AnimeInfo }) {
+  return (
+    <AnimeListContainer>
+      {data.recommendations.map((anime) => (
+        <AnimeItem key={anime.id} anime={anime} />
+      ))}
+    </AnimeListContainer>
+  )
+}
 
 export default function AnimeInfoPage() {
   const router = useRouter()
@@ -76,89 +156,74 @@ export default function AnimeInfoPage() {
             Start Watching
           </Button>
 
-          <Tabs overflow="scroll" isFitted variant="enclosed" size="sm">
-            <TabList>
-              <Tab>About</Tab>
-              <Tab>Episodes</Tab>
-              <Tab>Characters</Tab>
-              <Tab>Related</Tab>
-            </TabList>
+          {/* tabs in larger display */}
+          <Show above="md">
+            <Tabs overflow="scroll" isFitted variant="enclosed" size="sm">
+              <TabList>
+                <Tab>About</Tab>
+                <Tab>Episodes</Tab>
+                <Tab>Characters</Tab>
+                <Tab>Related</Tab>
+              </TabList>
+              <TabPanels>
+                <TabPanel>
+                  <AboutInfo data={data} />
+                </TabPanel>
+                <TabPanel>
+                  <EpisodeGrids animeID={id} episodes={data.episodes} />
+                </TabPanel>
+                <TabPanel display="flex" flexDirection="column" alignItems="center">
+                  <CharactersInfo data={data} />
+                </TabPanel>
+                <TabPanel>
+                  <RelatedInfo data={data} />
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          </Show>
 
-            <TabPanels>
-              {/* About */}
-              <TabPanel>
-                <SimpleGrid mb="4" spacing={2} templateColumns="repeat(auto-fill, minmax(130px, 1fr))">
-                  <Card size="sm" align="center" variant="outline">
-                    <CardBody>
-                      <Heading size="sm">Episodes</Heading>
-                      <Text as="i">{data.totalEpisodes}</Text>
-                    </CardBody>
-                  </Card>
-                  <Card size="sm" align="center" variant="outline">
-                    <CardBody>
-                      <Heading size="sm">Rating</Heading>
-                      <Text as="i">{data.rating}</Text>
-                    </CardBody>
-                  </Card>
-                  <Card size="sm" align="center" variant="outline">
-                    <CardBody>
-                      <Heading size="sm">Popularity</Heading>
-                      <Text as="i">{data.popularity}</Text>
-                    </CardBody>
-                  </Card>
-                  <Card size="sm" align="center" variant="outline">
-                    <CardBody>
-                      <Heading size="sm">Season</Heading>
-                      <Text as="i">{data.season}</Text>
-                    </CardBody>
-                  </Card>
-                  <Card size="sm" align="center" variant="outline">
-                    <CardBody>
-                      <Heading size="sm">Origin</Heading>
-                      <Text as="i">{data.countryOfOrigin}</Text>
-                    </CardBody>
-                  </Card>
-                  <Card size="sm" align="center" variant="outline">
-                    <CardBody>
-                      <Heading size="sm">Studio</Heading>
-                      <Text as="i">{data.studios}</Text>
-                    </CardBody>
-                  </Card>
-                </SimpleGrid>
-                <section>
-                  <Text dangerouslySetInnerHTML={{ __html: data.description }} />
-                </section>
-              </TabPanel>
+          {/* accordions in smaller display */}
+          <Show below="md">
+            <Accordion allowToggle defaultIndex={0}>
+              <AccordionItem>
+                <AccordionButton>
+                  About
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel>
+                  <AboutInfo data={data} />
+                </AccordionPanel>
+              </AccordionItem>
 
-              {/* Episodes */}
-              <TabPanel>
-                {/* return a list of episodes */}
-                <EpisodeGrids animeID={id} episodes={data.episodes} />
-              </TabPanel>
-
-              {/* Characters */}
-              <TabPanel display="flex" flexDirection="column" alignItems="center">
-                <CharactersList characters={data.characters} />
-                <Text>
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href={`https://www.google.com/search?q=List of ${data.title.english} Characters`}>
-                    and more
-                  </a>
-                </Text>
-              </TabPanel>
-
-              {/* Related */}
-              <TabPanel>
-                <AnimeListContainer>
-                  {data.recommendations.map((anime) => (
-                    <AnimeItem key={anime.id} anime={anime} />
-                  ))}
-                </AnimeListContainer>
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
+              <AccordionItem>
+                <AccordionButton>
+                  Episodes
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel>
+                  <EpisodeGrids animeID={id} episodes={data.episodes} />
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem>
+                <AccordionButton>
+                  Characters
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel>
+                  <CharactersInfo data={data} />
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem>
+                <AccordionButton>
+                  Related
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel>
+                  <RelatedInfo data={data} />
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+          </Show>
         </Stack>
       )}
     </Layout>

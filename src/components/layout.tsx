@@ -1,4 +1,4 @@
-import { Box, Stack, Text } from '@chakra-ui/react'
+import { Center, Stack, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
@@ -14,15 +14,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </Head>
       {/* a place to add version changes notes to display to users */}
       {/* todo: handle really long text*/}
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        borderBottom="solid 1px black"
-        minHeight="3rem"
-        width="100%">
+      <Center borderBottom="solid 1px black" minHeight="3rem" width="100%">
         <Text fontSize={['sm', null, 'md', null, 'lg', null, null]}>🎉 v1.0.0 out now! 🎉</Text>
-      </Box>
+      </Center>
       {/* -------------------------------------------------------- */}
 
       {/* THIS IS THE MAIN LAYOUT FOR THE ENTIRE WEBPAGE */}
