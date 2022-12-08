@@ -35,41 +35,29 @@ const fetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((re
 function AboutInfo({ data }: { data: AnimeInfo }) {
   return (
     <>
-      <SimpleGrid mb="4" spacing={2} templateColumns="repeat(auto-fill, minmax(130px, 1fr))">
+      <SimpleGrid mb="4" spacing={2} templateColumns="repeat(auto-fill, minmax(100px, 1fr))">
         <Card size="sm" align="center" variant="outline">
-          <CardBody>
+          <CardBody display='flex' flexDirection='column' alignItems='center'>
             <Heading size="sm">Episodes</Heading>
             <Text as="i">{data.totalEpisodes}</Text>
           </CardBody>
         </Card>
         <Card size="sm" align="center" variant="outline">
-          <CardBody>
+          <CardBody display='flex' flexDirection='column' alignItems='center'>
             <Heading size="sm">Rating</Heading>
-            <Text as="i">{data.rating}</Text>
+            <Text textAlign='center' as="i">{data.rating}</Text>
           </CardBody>
         </Card>
         <Card size="sm" align="center" variant="outline">
-          <CardBody>
+          <CardBody display='flex' flexDirection='column' alignItems='center'>
             <Heading size="sm">Popularity</Heading>
             <Text as="i">{data.popularity}</Text>
           </CardBody>
         </Card>
         <Card size="sm" align="center" variant="outline">
-          <CardBody>
-            <Heading size="sm">Season</Heading>
-            <Text as="i">{data.season}</Text>
-          </CardBody>
-        </Card>
-        <Card size="sm" align="center" variant="outline">
-          <CardBody>
+          <CardBody display='flex' flexDirection='column' alignItems='center'>
             <Heading size="sm">Origin</Heading>
             <Text as="i">{data.countryOfOrigin}</Text>
-          </CardBody>
-        </Card>
-        <Card size="sm" align="center" variant="outline">
-          <CardBody>
-            <Heading size="sm">Studio</Heading>
-            <Text as="i">{data.studios}</Text>
           </CardBody>
         </Card>
       </SimpleGrid>
@@ -152,7 +140,7 @@ export default function AnimeInfoPage() {
           />
 
           {/* todo: start or continue watching by tracking user watch progress? */}
-          <Button alignSelf="center" onClick={() => handleStartWatching(data.episodes[0], 0)}>
+          <Button size={['xs',null,'sm',null,'md',null,'lg']} alignSelf="center" onClick={() => handleStartWatching(data.episodes[0], 0)}>
             Start Watching
           </Button>
 
