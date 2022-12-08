@@ -216,7 +216,15 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+  // caching
+  // the cached value will be fresh for 1day(86400s), after that a revalidation request is needed to refresh to stale value. The stale value will still be usable if more req is made within 1hr(3600s) after becoming stale.
+  context.res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=86400, stale-while-revalidate=3600'
+  )
+
   const { id } = Array.isArray(context.query) ? context.query[0] : context.query
+
   try {
     const { data, error } = await getAnimeInfo(id)
     if (error || !data) {
