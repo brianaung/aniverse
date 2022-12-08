@@ -100,7 +100,7 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
 
   const handleStartWatching = (ep: AnimeEpisode, index: number) => {
     router.push({
-      pathname: `/anime/play/${animeId}`,
+      pathname: `/anime/play/${data.id}`,
       query: {
         ep: JSON.stringify(ep),
         index
