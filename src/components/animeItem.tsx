@@ -23,7 +23,7 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
       </Stack>
 
       <Image
-        style={{ border: 'solid 1px black', width: '100%', height: 'auto', maxHeight: '240px' }}
+        style={{ border: 'solid 1px black', width: '100%', height: 'auto', maxHeight: '280px' }}
         quality="100"
         src={anime.image}
         width={100000}
