@@ -1,27 +1,23 @@
 import Image from 'next/image'
-import { AnimeEpisode } from '../types'
+import { AnimeInfo } from '../types'
 // import {PlayCircle} from '@styled-icons/bootstrap/PlayCircle'
 import { Text, Tooltip } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import styles from './episodeGrids.module.scss'
 
-export default function EpisodeGrids({ animeId, episodes }: { animeId: string; episodes: AnimeEpisode[] }) {
+export default function EpisodeGrids({ data }: { data: AnimeInfo }) {
+  const episodes = data.episodes
+
   const router = useRouter()
 
-  const handlePlay = (ep: AnimeEpisode, index: number) => {
-    router.push({
-      pathname: `/anime/play/${animeId}`,
-      query: {
-        ep: JSON.stringify(ep),
-        index
-      }
-    })
+  const handlePlay = (index: number) => {
+    router.push(`/anime/play/${data.id}?ep=${index}`)
   }
 
   return (
     <div className={styles.container}>
       {episodes.map((ep, index) => (
-        <div className={styles.episodeBox} key={ep.id} onClick={() => handlePlay(ep, index)}>
+        <div className={styles.episodeBox} key={ep.id} onClick={() => handlePlay(index + 1)}>
           <Image
             className={styles.videoThumbnail}
             src={ep.image}

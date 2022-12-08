@@ -29,7 +29,7 @@ import EpisodeGrids from '../../../components/episodeGrids'
 import GenreTags from '../../../components/genreTags'
 import Layout from '../../../components/layout'
 import { getAnimeInfo } from '../../../lib/anime'
-import { AnimeEpisode, AnimeInfo } from '../../../types'
+import { AnimeInfo } from '../../../types'
 
 function AboutInfo({ data }: { data: AnimeInfo }) {
   return (
@@ -98,14 +98,8 @@ function RelatedInfo({ data }: { data: AnimeInfo }) {
 export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
   const router = useRouter()
 
-  const handleStartWatching = (ep: AnimeEpisode, index: number) => {
-    router.push({
-      pathname: `/anime/play/${data.id}`,
-      query: {
-        ep: JSON.stringify(ep),
-        index
-      }
-    })
+  const handleStartWatching = (index: number) => {
+    router.push(`/anime/play/${data.id}?ep=${index}`)
   }
 
   return (
@@ -137,7 +131,7 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
         <Button
           size={['xs', null, 'sm', null, 'md', null, 'lg']}
           alignSelf="center"
-          onClick={() => handleStartWatching(data.episodes[0], 0)}>
+          onClick={() => handleStartWatching(1)}>
           Start Watching
         </Button>
 
@@ -155,7 +149,7 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
                 <AboutInfo data={data} />
               </TabPanel>
               <TabPanel>
-                <EpisodeGrids animeId={data.id} episodes={data.episodes} />
+                <EpisodeGrids data={data} />
               </TabPanel>
               <TabPanel display="flex" flexDirection="column" alignItems="center">
                 <CharactersInfo data={data} />
@@ -186,7 +180,7 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                <EpisodeGrids animeId={data.id} episodes={data.episodes} />
+                <EpisodeGrids data={data} />
               </AccordionPanel>
             </AccordionItem>
             <AccordionItem>

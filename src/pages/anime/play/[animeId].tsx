@@ -1,5 +1,5 @@
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons'
-import { Box, Button, Heading, Select, Skeleton, SkeletonText, Stack, Text } from '@chakra-ui/react'
+import { Button, Heading, Select, Skeleton, Stack, Text } from '@chakra-ui/react'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -22,23 +22,17 @@ const options = {
   revalidateOnFocus: false,
   revalidateOnReconnect: false
 }
-// const animeFetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
 
-function VideoPageSkeleton() {
-  return (
-    <Box width="90%">
-      <Skeleton mt="4" width="30%" height="1.5rem" />
-      <Skeleton mt="4" width="50%" height="1rem" />
-      <SkeletonText mt="4" noOfLines={5} spacing="4" />
-    </Box>
-  )
-}
-
+// todo: is SSR best for this page?? should i just use client side rendering instead?
 export default function VideoPage({ animeData }: { animeData: AnimeInfo }) {
   const router = useRouter()
-  const { animeId, ep, index } = Array.isArray(router.query) ? router.query[0] : router.query
-  // const { data: animeData, error: animeError } = useSWR(animeID ? `/api/anime/info/${animeID}` : null, animeFetcher)
-  const episode: AnimeEpisode = ep ? JSON.parse(ep) : null
+  // ep:  1 2 3 4 ... (to display right ep number in url for UX)
+  // idx: 0 1 2 3 ...
+  const { ep } = Array.isArray(router.query) ? router.query[0] : router.query
+  const index = parseInt(ep) - 1
+
+  const episode = animeData ? animeData.episodes[index] : null
+
   // IMPORTANT: using normal useSWR will revalidate data (fetching again after intervals) causing the video src link to change
   const { data: epData, error: epError } = useSWRImmutable(
     episode ? `/api/anime/play/${episode.id}` : null,
@@ -52,8 +46,8 @@ export default function VideoPage({ animeData }: { animeData: AnimeInfo }) {
   // check for prev and next episodes
   useEffect(() => {
     if (animeData) {
-      const prev = animeData.episodes[parseInt(index) - 1]
-      const next = animeData.episodes[parseInt(index) + 1]
+      const prev = animeData.episodes[index - 1]
+      const next = animeData.episodes[index + 1]
       if (!prev && !next) {
         setPrev(null)
         setNext(null)
@@ -71,37 +65,15 @@ export default function VideoPage({ animeData }: { animeData: AnimeInfo }) {
   }, [animeData, index])
 
   const handleNext = () => {
-    router.push({
-      pathname: `/anime/play/${animeId}`,
-      query: {
-        ep: JSON.stringify(next),
-        index: parseInt(index) + 1
-      }
-    })
+    router.push(`/anime/play/${animeData.id}?ep=${parseInt(ep) + 1}`)
   }
 
   const handlePrev = () => {
-    router.push({
-      pathname: `/anime/play`,
-      query: {
-        animeID: animeId,
-        ep: JSON.stringify(prev),
-        index: parseInt(index) - 1
-      }
-    })
+    router.push(`/anime/play/${animeData.id}?ep=${parseInt(ep) - 1}`)
   }
 
   const handleSelectEp = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (animeData) {
-      router.push({
-        pathname: `/anime/play`,
-        query: {
-          animeID: animeId,
-          ep: JSON.stringify(animeData.episodes[parseInt(e.target.value) - 1]),
-          index: parseInt(e.target.value) - 1
-        }
-      })
-    }
+    router.push(`/anime/play/${animeData.id}?ep=${e.target.value}`)
   }
 
   return (
@@ -111,44 +83,48 @@ export default function VideoPage({ animeData }: { animeData: AnimeInfo }) {
           {animeData && animeData.title.english} Ep{episode && episode.number}
         </title>
       </Head>
-      <Stack width="100%" m="1rem" spacing="1rem">
-        <Heading as="h1" size="xl">
-          <Link href={`/anime/info/${animeData.id}`}>{animeData.title.english}</Link>
-        </Heading>
-        <Heading as="h2" size="md">
-          Episode {episode.number} - {episode.title} ({animeData.duration}mins)
-        </Heading>
-        <Text>{episode.description}</Text>
-        {/* select episode in a dropdown selector */}
-        <Stack alignSelf="center" direction="row" align="center">
-          {prev && (
-            <Button onClick={handlePrev}>
-              <ArrowBackIcon />
-            </Button>
-          )}
-          <Text>Episode</Text>
-          <Select size="sm" value={episode.number} onChange={handleSelectEp}>
-            {animeData && animeData.episodes.map((ep) => <option key={ep.id}>{ep.number}</option>)}
-          </Select>
-          {next && (
-            <Button onClick={handleNext}>
-              <ArrowForwardIcon />
-            </Button>
-          )}
-        </Stack>
-      </Stack>
-      <Stack width="100%" align="center">
-        {!epData && !epError && (
-          <Skeleton
-            alignSelf="center"
-            mt="4"
-            width={['90%', '80%', '70%', '60%', null, null]}
-            height={['160px', '200px', null, '240px', '280px', '500px']}
-          />
-        )}
-        {!epData && epError && <p>Error loading video.</p>}
-        {epData && !epError && <Player allSrc={epData.allSrc} />}
-      </Stack>
+      {animeData && episode && (
+        <>
+          <Stack width="100%" m="1rem" spacing="1rem">
+            <Heading as="h1" size="xl">
+              <Link href={`/anime/info/${animeData.id}`}>{animeData.title.english}</Link>
+            </Heading>
+            <Heading as="h2" size="md">
+              Episode {episode.number} - {episode.title} ({animeData.duration}mins)
+            </Heading>
+            <Text>{episode.description}</Text>
+            {/* select episode in a dropdown selector */}
+            <Stack alignSelf="center" direction="row" align="center">
+              {prev && (
+                <Button variant="ghost" onClick={handlePrev}>
+                  <ArrowBackIcon />
+                </Button>
+              )}
+              <Text>Episode</Text>
+              <Select size="sm" value={episode.number} onChange={handleSelectEp}>
+                {animeData && animeData.episodes.map((ep) => <option key={ep.id}>{ep.number}</option>)}
+              </Select>
+              {next && (
+                <Button variant="ghost" onClick={handleNext}>
+                  <ArrowForwardIcon />
+                </Button>
+              )}
+            </Stack>
+          </Stack>
+          <Stack width="100%" align="center">
+            {!epData && !epError && (
+              <Skeleton
+                alignSelf="center"
+                mt="4"
+                width={['90%', '80%', '70%', '60%', null, null]}
+                height={['100px', '120px', '140px', '160px', '180px', '200px', '220px']}
+              />
+            )}
+            {!epData && epError && <p>Error loading video.</p>}
+            {epData && !epError && <Player allSrc={epData.allSrc} />}
+          </Stack>
+        </>
+      )}
     </Layout>
   )
 }
@@ -159,7 +135,6 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
   context.res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=3600')
 
   const { animeId } = Array.isArray(context.query) ? context.query[0] : context.query
-  console.log(animeId)
 
   try {
     const { data, error } = await getAnimeInfo(animeId)
