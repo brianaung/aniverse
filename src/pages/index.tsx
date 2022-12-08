@@ -22,7 +22,7 @@ export default function Home({
         <title>hai</title>
       </Head>
 
-      <section>
+      <section style={{ width: '100%' }}>
         <Heading as="h2" size="md">
           MOST POPULAR
         </Heading>
@@ -32,7 +32,7 @@ export default function Home({
         </AnimeListContainer>
       </section>
 
-      <section>
+      <section style={{ width: '100%' }}>
         <Heading as="h2" size="md">
           TRENDING NOW
         </Heading>

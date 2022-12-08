@@ -22,12 +22,12 @@ const options = {
 }
 const animeFetcher: Fetcher<AnimeInfo, string> = (arg: string) => fetch(arg).then((res) => res.json())
 
-function InfoSkeleton() {
+function VideoPageSkeleton() {
   return (
-    <Box width="80vw">
+    <Box width="90%">
       <Skeleton mt="4" width="30%" height="1.5rem" />
-      <Skeleton mt="4" width="40%" height="1rem" />
-      <SkeletonText mt="4" noOfLines={4} spacing="4" />
+      <Skeleton mt="4" width="50%" height="1rem" />
+      <SkeletonText mt="4" noOfLines={5} spacing="4" />
     </Box>
   )
 }
@@ -110,10 +110,10 @@ export default function VideoPage() {
           {animeData && animeData.title.english} Ep{episode && episode.number}
         </title>
       </Head>
-      {!animeData && !animeError && <InfoSkeleton />}
+      {!animeData && !animeError && <VideoPageSkeleton />}
       {!animeData && animeError && <p>Error loading information.</p>}
       {animeData && !animeError && (
-        <Stack m="1rem" spacing="1rem">
+        <Stack width="100%" m="1rem" spacing="1rem">
           <Heading as="h1" size="xl">
             <Link href={`/anime/info/${animeData.id}`}>{animeData.title.english}</Link>
           </Heading>
@@ -122,7 +122,7 @@ export default function VideoPage() {
           </Heading>
           <Text>{episode.description}</Text>
           {/* select episode in a dropdown selector */}
-          <Stack alignSelf="center" direction="row" alignItems="center" justifyContent="center">
+          <Stack alignSelf="center" direction="row" align="center">
             {prev && (
               <Button onClick={handlePrev}>
                 <ArrowBackIcon />
@@ -140,8 +140,15 @@ export default function VideoPage() {
           </Stack>
         </Stack>
       )}
-      <Stack>
-        {!epData && !epError && <Skeleton alignSelf="center" mt="4" width="60vw" height="230px" />}
+      <Stack width="100%" align="center">
+        {!epData && !epError && (
+          <Skeleton
+            alignSelf="center"
+            mt="4"
+            width={['90%', '80%', '70%', '60%', null, null]}
+            height={['160px', '200px', null, '240px', '280px', '500px']}
+          />
+        )}
         {!epData && epError && <p>Error loading video.</p>}
         {epData && !epError && <Player allSrc={epData.allSrc} />}
       </Stack>

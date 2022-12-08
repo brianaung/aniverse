@@ -1,29 +1,44 @@
 @use 'src/styles/_lib.scss';
 
-.container {
-  max-width: lib.$mainWidth;
-  min-height: 100vh; // is it really necessary?
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
 .sidebar {
   width: 20%;
-  min-width: 250px;
-  padding: 2rem;
+  height: lib.$sidebarH;
+  min-width: 230px;
+  // padding: 2rem;
+  display: block;
+  // make it sticky
+  position: sticky;
+  top: lib.$navbarH;
+  z-index: 2;
+  overflow: scroll;
+  // border: solid 1px red;
 }
 
-.main {
+.body {
   width: 80%;
-  padding: 0 2rem;
+  min-height: calc(100vh - lib.$navbarH - 4rem);
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  z-index: 1;
 }
 
 .footer {
   padding-top: 3rem;
   margin-top: auto;
+}
+
+// mobile breakpoint
+@media only screen and (max-width: 62rem) {
+  // hide sidebar (hide below='md')
+  .sidebar {
+    display: none;
+  }
+
+  // and let main takes all space
+  .body {
+    width: 100%;
+  }
 }

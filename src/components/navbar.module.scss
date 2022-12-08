@@ -1,22 +1,18 @@
 @use 'src/styles/_lib.scss';
 
-$barHeight: 3rem;
-
 .container {
   width: 100%;
-  min-height: $barHeight;
+  height: lib.$navbarH;
+  padding: 1rem 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  gap: 0.5rem;
+  // make it sticky
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  // todo: should follow color theme
+  background: white;
 }
-
-// .navSelections {
-//   padding: 1rem;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-evenly;
-//   align-items: center;
-//   gap: 3rem;
-// }

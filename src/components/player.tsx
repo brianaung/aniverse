@@ -1,3 +1,4 @@
+import { Stack } from '@chakra-ui/react'
 import Hls from 'hls.js'
 import React, { useEffect, useRef, useState } from 'react'
 import { VideoSrc } from '../types'
@@ -57,29 +58,27 @@ export default function Player({ allSrc }: { allSrc: VideoSrc[] }) {
   }
 
   return (
-    <div className={styles.container}>
-      <main style={{ position: 'relative' }}>
-        <video className={styles.player} ref={videoRef} />
-        <select
-          style={{
-            all: 'unset',
-            color: 'white',
-            backgroundColor: 'black',
-            borderRadius: '9999px',
-            padding: '.1rem .5rem',
-            position: 'absolute',
-            top: '1%',
-            right: '1%'
-          }}
-          value={quality}
-          onChange={handleQuality}>
-          {allSrc.map((src) => (
-            <option key={src.url} value={src.quality}>
-              {src.quality}
-            </option>
-          ))}
-        </select>
-      </main>
-    </div>
+    <Stack position="relative" align="center" w={['90%', '80%', '70%', '60%', null, null]}>
+      <video className={styles.player} ref={videoRef} />
+      <select
+        style={{
+          all: 'unset',
+          color: 'white',
+          backgroundColor: 'black',
+          borderRadius: '9999px',
+          padding: '.1rem .5rem',
+          position: 'absolute',
+          top: '1%',
+          right: '1%'
+        }}
+        value={quality}
+        onChange={handleQuality}>
+        {allSrc.map((src) => (
+          <option key={src.url} value={src.quality}>
+            {src.quality}
+          </option>
+        ))}
+      </select>
+    </Stack>
   )
 }
