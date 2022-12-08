@@ -48,13 +48,23 @@ export default function Home({
 // loading top 5 for each categories at startup (for SEO?)
 export const getStaticProps: GetStaticProps = async () => {
   const page = 1
-  const popularAnimes = await getPopularAnimes(page, 5)
-  const trendingAnimes = await getTrendingAnimes(page, 5)
+  try {
+    const popularAnimes = await getPopularAnimes(page, 5)
+    const trendingAnimes = await getTrendingAnimes(page, 5)
 
-  return {
-    props: {
-      popularAnimes: popularAnimes.data,
-      trendingAnimes: trendingAnimes.data
+    // handle error
+    if ((popularAnimes.error || !popularAnimes.data) ||
+      (trendingAnimes.error || !trendingAnimes.data)) {
+      return { notFound: true };
     }
+
+    return {
+      props: {
+        popularAnimes: popularAnimes.data,
+        trendingAnimes: trendingAnimes.data
+      }
+    }
+  } catch (e) {
+    return { notFound: true };
   }
 }
