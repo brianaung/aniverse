@@ -1,5 +1,6 @@
-import { useRouter } from 'next/router'
+import { Skeleton, SkeletonCircle, Stack } from '@chakra-ui/react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import AnimeItem from '../../../components/animeItem'
 import AnimeListContainer from '../../../components/animeListContainer'
@@ -7,28 +8,27 @@ import Layout from '../../../components/layout'
 import Pagination from '../../../components/pagination'
 import { getAnimeSearch } from '../../../lib/anime'
 import { AnimeSearchResults } from '../../../types'
-import { Stack, Box, Skeleton, SkeletonText, SkeletonCircle } from '@chakra-ui/react'
 
 const perPage = 10
 
 function AnimeItemSkeleton() {
   return (
-      <Stack
-        w={['100px', '120px', '140px', '160px', '180px', '200px']}
-        h={['180px', '200px', '220px', '240px', '260px', '280px']}>
-        <Skeleton w='100%%' h='100%' />
-        <Skeleton w='80%' h='.5rem' />
-        <Stack direction='row' justifyContent='space-between'>
-          <Skeleton w='30%' h='.5rem' />
-          <Skeleton w='30%' h='.5rem' />
-        </Stack>
-        <Stack direction='row' justifyContent='flex-start' gap='.1rem'>
-          <SkeletonCircle size='3' />
-          <SkeletonCircle size='3' />
-          <SkeletonCircle size='3' />
-          <SkeletonCircle size='3' />
-        </Stack>
+    <Stack
+      w={['100px', '120px', '140px', '160px', '180px', '200px']}
+      h={['180px', '200px', '220px', '240px', '260px', '280px']}>
+      <Skeleton w="100%%" h="100%" />
+      <Skeleton w="80%" h=".5rem" />
+      <Stack direction="row" justifyContent="space-between">
+        <Skeleton w="30%" h=".5rem" />
+        <Skeleton w="30%" h=".5rem" />
       </Stack>
+      <Stack direction="row" justifyContent="flex-start" gap=".1rem">
+        <SkeletonCircle size="3" />
+        <SkeletonCircle size="3" />
+        <SkeletonCircle size="3" />
+        <SkeletonCircle size="3" />
+      </Stack>
+    </Stack>
   )
 }
 

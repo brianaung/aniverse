@@ -34,14 +34,14 @@
 
 @keyframes swing {
   50% {
-    transform: rotate(-3deg)
+    transform: rotate(-3deg);
   }
 }
 
 @keyframes steamLarge {
   0% {
     stroke-dashoffset: 13;
-    opacity: .6;
+    opacity: 0.6;
   }
   100% {
     stroke-dashoffset: 39;
@@ -52,7 +52,7 @@
 @keyframes steamSmall {
   10% {
     stroke-dashoffset: 9;
-    opacity: .6;
+    opacity: 0.6;
   }
   80% {
     stroke-dashoffset: 27;
