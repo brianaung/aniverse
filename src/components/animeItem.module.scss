@@ -9,11 +9,21 @@
   }
 }
 
+.animeImg {
+  border: solid 1px black;
+  width: '100%';
+}
+
 // image size range: 120px - 200px
 @media only screen and (max-width: 48em) {
   .container {
     min-width: 120px;
     max-width: 120px;
+  }
+
+  .animeImg {
+    min-height: 180px;
+    max-height: 180px;
   }
 }
 
@@ -22,6 +32,11 @@
     min-width: 140px;
     max-width: 140px;
   }
+
+  .animeImg {
+    min-height: 200px;
+    max-height: 200px;
+  }
 }
 
 @media only screen and (min-width: 62em) {
@@ -29,18 +44,33 @@
     min-width: 160px;
     max-width: 160px;
   }
+
+  .animeImg {
+    min-height: 220px;
+    max-height: 220px;
+  }
 }
 
 @media only screen and (min-width: 80em) {
   .container {
-    min-width: 180px;
-    max-width: 180px;
+    min-width: 170px;
+    max-width: 170px;
+  }
+
+  .animeImg {
+    min-height: 240px;
+    max-height: 240px;
   }
 }
 
 @media only screen and (min-width: 96em) {
   .container {
-    min-width: 200px;
-    max-width: 200px;
+    min-width: 180px;
+    max-width: 180px;
+  }
+
+  .animeImg {
+    min-height: 260px;
+    max-height: 260px;
   }
 }

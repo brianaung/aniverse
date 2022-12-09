@@ -24,7 +24,7 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
 
       {/* todo: make all images have equal height (for bugs: search gintama, chainsaw man */}
       <Image
-        style={{ border: 'solid 1px black', width: '100%', height: 'auto', maxHeight: '280px' }}
+        className={styles.animeImg}
         quality="100"
         src={anime.image}
         width={100000}
