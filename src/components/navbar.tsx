@@ -1,4 +1,4 @@
-import { HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { HamburgerIcon, MoonIcon } from '@chakra-ui/icons'
 import {
   Button,
   Drawer,
@@ -7,11 +7,11 @@ import {
   DrawerContent,
   DrawerOverlay,
   Show,
-  useColorMode,
+  // useColorMode,
   useDisclosure,
   useToast
 } from '@chakra-ui/react'
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import styles from './navbar.module.scss'
 import Searchbar from './searchbar'
 import Sidebar from './sidebar'
@@ -59,19 +59,23 @@ export default function Navbar() {
       </Show>
       <Searchbar />
       {/*<Button onClick={toggleColorMode}>{colorMode === 'light' ? <MoonIcon /> : <SunIcon />}</Button>*/}
-      <Button onClick={() => 
-        toast({
-          title: 'SIKE!',
-          description: "There is no dark mode, yet. So as Gintoki once said, \"Keep the room well lit and watch from a distance, okay?\"",
-          status: 'error',
-          duration: 8000,
-          isClosable: true,
-          containerStyle: {
-            border: 'solid 1px black',
-            borderRadius: '8px',
-          },
-        })
-      }><MoonIcon /></Button>
+      <Button
+        onClick={() =>
+          toast({
+            title: 'SIKE!',
+            description:
+              'There is no dark mode, yet. So as Gintoki once said, "Keep the room well lit and watch from a distance, okay?"',
+            status: 'error',
+            duration: 8000,
+            isClosable: true,
+            containerStyle: {
+              border: 'solid 1px black',
+              borderRadius: '8px'
+            }
+          })
+        }>
+        <MoonIcon />
+      </Button>
     </div>
   )
 }
