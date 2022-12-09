@@ -69,3 +69,19 @@ export async function getAnimeSearch(query: string, page: number, perPage: numbe
     error: null
   }
 }
+
+export async function getAnimeInfo(id: string) {
+  const res = await fetch(`https://api.consumet.org/meta/anilist/info/${id}`)
+  if (!res.ok) {
+    return {
+      data: null,
+      error: new Error(res.statusText)
+    }
+  }
+  const data: AnimeInfo = await res.json()
+
+  return {
+    data,
+    error: null
+  }
+}
