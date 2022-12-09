@@ -2,13 +2,14 @@ import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { Button } from '@chakra-ui/react'
 import styles from './pagination.module.scss'
 
-// todo: only show next/prev button if the next/prev page exists
 export default function Pagination({
   page,
-  setPage
+  setPage,
+  hasNextPage
 }: {
   page: number
   setPage: React.Dispatch<React.SetStateAction<number>>
+  hasNextPage: boolean
 }) {
   const handlePrev = () => {
     setPage(Math.max(1, page - 1))
@@ -20,12 +21,16 @@ export default function Pagination({
 
   return (
     <div className={styles.navBtnContainer}>
-      <Button onClick={handlePrev}>
-        <ArrowBackIcon />
-      </Button>
-      <Button onClick={handleNext}>
-        <ArrowForwardIcon />
-      </Button>
+      {page !== 1 && (
+        <Button onClick={handlePrev}>
+          <ArrowBackIcon />
+        </Button>
+      )}
+      {hasNextPage && (
+        <Button onClick={handleNext}>
+          <ArrowForwardIcon />
+        </Button>
+      )}
     </div>
   )
 }

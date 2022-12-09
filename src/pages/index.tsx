@@ -8,7 +8,6 @@ import Layout from '../components/layout'
 import { getPopularAnimes, getTrendingAnimes } from '../lib/anime'
 import { PopularAnimes, TrendingAnimes } from '../types'
 
-// todo: handle loading and error states
 export default function Home({
   popularAnimes,
   trendingAnimes

@@ -23,7 +23,6 @@ const options = {
   revalidateOnReconnect: false
 }
 
-// todo: is SSR best for this page?? should i just use client side rendering instead?
 export default function VideoPage({ animeData }: { animeData: AnimeInfo }) {
   const router = useRouter()
   // ep:  1 2 3 4 ... (to display right ep number in url for UX)
