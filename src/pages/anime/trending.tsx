@@ -1,3 +1,4 @@
+import { Button } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import useSWR, { Fetcher } from 'swr'
@@ -5,7 +6,6 @@ import AnimeItem from '../../components/animeItem'
 import AnimeListContainer from '../../components/animeListContainer'
 import AnimeListLoading from '../../components/animeListLoading'
 import Layout from '../../components/layout'
-import Pagination from '../../components/pagination'
 import { TrendingAnimes } from '../../types'
 
 const fetcher: Fetcher<TrendingAnimes> = (arg: string) => fetch(arg).then((res) => res.json())
@@ -37,8 +37,14 @@ function SinglePage({ page, setNext }: { page: number; setNext: React.Dispatch<R
 }
 
 export default function TrendingPage() {
-  const [page, setPage] = useState(1)
   const [hasNext, setNext] = useState(false)
+
+  const [cnt, setCnt] = useState(1)
+  const pages = []
+  for (let i = 1; i < cnt + 1; i++) {
+    // for the api we are using, pg 0 and 1 has same data so skip 0
+    pages.push(<SinglePage key={i} page={i} setNext={setNext} />)
+  }
 
   return (
     <Layout>
@@ -47,14 +53,8 @@ export default function TrendingPage() {
       </Head>
 
       {/* results page */}
-      <SinglePage page={page} setNext={setNext} />
-
-      {/* render next page inside hidden div (pre fetch data so faster and better ux) */}
-      <div style={{ display: 'none' }}>
-        <SinglePage page={page + 1} setNext={setNext} />
-      </div>
-
-      <Pagination page={page} setPage={setPage} hasNextPage={hasNext} />
+      {pages}
+      {hasNext && <Button onClick={() => setCnt(cnt + 1)}>Load More</Button>}
     </Layout>
   )
 }

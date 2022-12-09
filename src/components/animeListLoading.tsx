@@ -31,8 +31,6 @@ export default function AnimeListLoading() {
       <AnimeItemSkeleton />
       <AnimeItemSkeleton />
       <AnimeItemSkeleton />
-      <AnimeItemSkeleton />
-      <AnimeItemSkeleton />
     </AnimeListContainer>
   )
 }

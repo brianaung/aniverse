@@ -1,4 +1,4 @@
-import { AnimeInfo, AnimeResult, AnimeSearchResults, PopularAnimes, TrendingAnimes } from '../types'
+import { AnimeInfo, AnimeSearchResults, PopularAnimes, TrendingAnimes } from '../types'
 
 /**
  * Fetch and return an array of all top trending animes
@@ -41,7 +41,7 @@ export async function getTrendingAnimes(page: number, perPage: number) {
  * @param query - The user query string.
  */
 export async function getAnimeSearch(query: string, page: number, perPage: number) {
-  const filteredList: AnimeResult[] = []
+  // const filteredList: AnimeResult[] = []
 
   const res = await fetch(
     `https://api.consumet.org/meta/anilist/advanced-search?query=${query}&page=${page}&perPage=${perPage}&sort=["POPULARITY_DESC", "UPDATED_AT_DESC", "SCORE_DESC", "FAVOURITES", "UPDATED_AT", "START_DATE_DESC", "END_DATE_DESC"]`
@@ -53,19 +53,20 @@ export async function getAnimeSearch(query: string, page: number, perPage: numbe
     }
   }
 
-  const data = await res.json()
+  const data: AnimeSearchResults = await res.json()
 
-  if (data.results) {
+  /* if (data.results) {
     for (let i = 0; i < data.results.length; i++) {
       const anime: AnimeInfo = data.results[i]
       if (anime.cover && anime.title.native && anime.title.romaji && anime.title.english && anime.title.userPreferred) {
         filteredList.push(data.results[i])
       }
     }
-  }
+  } */
 
   return {
-    data: { ...data, results: filteredList } as AnimeSearchResults,
+    // data: { ...data, results: filteredList } as AnimeSearchResults,
+    data,
     error: null
   }
 }
