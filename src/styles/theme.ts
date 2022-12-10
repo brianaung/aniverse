@@ -21,14 +21,17 @@ const theme = extendTheme({
   breakpoints,
 
   fonts: {
-    heading: `'Raleway', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`,
-    body: `'Inter', -apple-system, BlinkMacSystemFont, SegoeUI, Roboto, sans-serif`
+    heading: `'Montserrat', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, SegoeUI, sans-serif`,
+    body: `'Montserrat', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, SegoeUI, sans-serif`
   },
 
   colors: {
+    bg: {
+      500: '#fgf4e4',
+    },
     primary: {
       100: '#c6f6d5',
-      500: '#ffffff',
+      500: '#db929d',
       900: '#c6f6d5'
     },
     secondary: {
@@ -42,8 +45,8 @@ const theme = extendTheme({
   styles: {
     global: ({ colorMode }: { colorMode: string }) => ({
       body: {
-        bg: colorMode === 'dark' ? 'black' : 'white',
-        color: colorMode === 'dark' ? 'white' : 'black'
+        bg: colorMode === 'dark' ? 'black' : '#fbf4e4',
+        color: colorMode === 'dark' ? 'white' : '#323232'
       }
     })
   },
@@ -65,6 +68,7 @@ const theme = extendTheme({
         },
         searchbar: {
           border: 'solid 1px black',
+          bg: 'white',
           fontWeight: '400'
         }
       },
