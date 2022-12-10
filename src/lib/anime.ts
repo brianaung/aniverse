@@ -1,5 +1,23 @@
 import { AnimeInfo, AnimeSearchResults, PopularAnimes, TrendingAnimes } from '../types'
 
+export async function getAnimeByGenres(genres: string[], page: number, perPage: number) {
+  const res = await fetch(
+    `https://api.consumet.org/meta/anilist/genre?genres=${genres}&page=${page}&perPage=${perPage}`
+  )
+
+  if (!res.ok) {
+    return {
+      data: null,
+      error: new Error(res.statusText)
+    }
+  }
+  const data = await res.json()
+  return {
+    data,
+    error: null
+  }
+}
+
 /**
  * Fetch and return an array of all top trending animes
  */
