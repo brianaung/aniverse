@@ -11,7 +11,7 @@
 
 /* loading tea cup animation */
 .tea {
-  --secondary: black;
+  --secondary: var(--chakra-colors-fg-500);
 }
 
 #teabag {
