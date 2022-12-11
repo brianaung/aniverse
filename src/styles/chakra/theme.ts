@@ -37,7 +37,7 @@ const theme = extendTheme({
   },
 
   // override component styles
-  components: componentStyles,
+  components: componentStyles
 })
 
 export default theme

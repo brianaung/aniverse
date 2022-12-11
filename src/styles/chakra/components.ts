@@ -30,6 +30,7 @@ export const componentStyles = {
       primary: {
         field: {
           border: 'solid 2px black',
+          bg: 'white',
           minWidth: '350px'
         }
       }
@@ -38,15 +39,18 @@ export const componentStyles = {
       variant: 'primary'
     }
   },
-  Card: {
+  Select: {
     variants: {
       primary: {
-        border: 'solid 2px black',
+        field: {
+          border: 'solid 2px black',
+          bg: 'white'
+        }
       }
     },
     defaultProps: {
       variant: 'primary'
     }
   },
-  Tabs: tabsTheme,
+  Tabs: tabsTheme
 }

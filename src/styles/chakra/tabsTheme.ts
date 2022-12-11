@@ -1,8 +1,7 @@
 import { tabsAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
-const { definePartsStyle, defineMultiStyleConfig } =
-  createMultiStyleConfigHelpers(tabsAnatomy.keys)
+const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(tabsAnatomy.keys)
 
 const baseStyle = definePartsStyle({
   tab: {
@@ -11,12 +10,12 @@ const baseStyle = definePartsStyle({
     borderRight: 'solid 2px black',
     borderLeft: 'solid 2px black',
     _selected: {
-      borderBottom: 'none',
-    },
+      borderBottom: 'none'
+    }
   },
   tabpanels: {
-    border: 'solid 2px black',
-  },
+    border: 'solid 2px black'
+  }
 })
 
 export const tabsTheme = defineMultiStyleConfig({ baseStyle })

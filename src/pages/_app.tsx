@@ -6,8 +6,8 @@ import { Analytics } from '@vercel/analytics/react'
 import type { AppProps } from 'next/app'
 import Router from 'next/router'
 import { useEffect, useState } from 'react'
-import '../styles/globals.scss'
 import theme from '../styles/chakra/theme'
+import '../styles/globals.scss'
 import utilStyles from '../styles/utils.module.scss'
 
 function LoadingAnimation() {
