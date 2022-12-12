@@ -32,6 +32,11 @@ const theme = extendTheme({
         padding: '0',
         margin: '0',
         scrollBehavior: 'smooth'
+      },
+      button: {
+        _hover: {
+          bg: 'none'
+        }
       }
     })
   },

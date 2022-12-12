@@ -63,8 +63,7 @@ export default function Navbar() {
         onClick={() =>
           toast({
             title: 'SIKE!',
-            description:
-              'There is no dark mode, yet. So as Gintoki once said, "Keep the room well lit and watch from a distance, okay?"',
+            description: 'There is no dark mode, yet. So keep the room well lit and watch from a distance, okay?',
             status: 'error',
             duration: 8000,
             isClosable: true,

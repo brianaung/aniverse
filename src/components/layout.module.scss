@@ -1,6 +1,8 @@
 @use 'src/styles/_lib.scss';
 
 .sidebar {
+  // background: var(--chakra-colors-blue-500);
+  border-right: solid 2px black;
   width: 20%;
   height: lib.$sidebarH;
   min-width: 230px;
@@ -11,13 +13,12 @@
   top: lib.$navbarH;
   z-index: 2;
   overflow: scroll;
-  // border: solid 1px red;
 }
 
 .body {
   width: 80%;
   min-height: calc(100vh - lib.$navbarH - 4rem);
-  padding: 1rem;
+  padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;

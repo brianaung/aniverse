@@ -1,4 +1,4 @@
-import { Button } from '@chakra-ui/react'
+import { Button, Heading } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import useSWR, { Fetcher } from 'swr'
@@ -51,6 +51,8 @@ export default function TrendingPage() {
       <Head>
         <title>Trending Animes</title>
       </Head>
+
+      <Heading mb="1rem">Trending Animes</Heading>
 
       {/* results page */}
       {pages}

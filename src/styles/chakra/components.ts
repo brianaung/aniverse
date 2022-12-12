@@ -1,3 +1,4 @@
+import { accordionTheme } from './accordionTheme'
 import { tabsTheme } from './tabsTheme'
 
 export const componentStyles = {
@@ -6,7 +7,7 @@ export const componentStyles = {
       // primary button style for the brand
       primary: {
         border: 'solid 2px black',
-        bg: 'yellow.500',
+        bg: 'primary.500',
         color: 'black',
         transition: 'all 200ms ease',
         boxShadow: '2px 2px 0px black',
@@ -52,5 +53,6 @@ export const componentStyles = {
       variant: 'primary'
     }
   },
-  Tabs: tabsTheme
+  Tabs: tabsTheme,
+  Accordion: accordionTheme
 }

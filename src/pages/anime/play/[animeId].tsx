@@ -95,16 +95,23 @@ export default function VideoPage({ animeData }: { animeData: AnimeInfo }) {
             {/* select episode in a dropdown selector */}
             <Stack alignSelf="center" direction="row" align="center">
               {prev && (
-                <Button variant="ghost" onClick={handlePrev}>
+                <Button onClick={handlePrev}>
                   <ArrowBackIcon />
                 </Button>
               )}
-              <Text>Episode</Text>
-              <Select size="sm" value={episode.number} onChange={handleSelectEp}>
-                {animeData && animeData.episodes.map((ep) => <option key={ep.id}>{ep.number}</option>)}
-              </Select>
+              <Stack px="1rem">
+                <Text>Episode</Text>
+                <Select size="sm" value={episode.number} onChange={handleSelectEp}>
+                  {animeData &&
+                    animeData.episodes.map((ep) => (
+                      <option style={{ border: 'solid 2px black' }} key={ep.id}>
+                        {ep.number}
+                      </option>
+                    ))}
+                </Select>
+              </Stack>
               {next && (
-                <Button variant="ghost" onClick={handleNext}>
+                <Button onClick={handleNext}>
                   <ArrowForwardIcon />
                 </Button>
               )}

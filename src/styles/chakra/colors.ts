@@ -12,21 +12,27 @@ export const colorPalette = {
   // #e7c24f yellow
   // #0b30b5 royal blue
   bg: {
-    500: '#fbf4e4'
+    500: '#8cd3c7'
   },
   fg: {
     500: '#000'
   },
+  primary: {
+    500: '#b48ccc'
+  },
+  secondary: {
+    500: '#e88ac2'
+  },
   pink: {
-    500: '#ecaec3'
+    500: '#e88ac2'
   },
   orange: {
     500: '#dc4e28'
   },
   blue: {
-    500: '#3671ad'
+    500: '#93d6e5'
   },
-  yellow: {
-    500: '#e7c24f'
+  purple: {
+    500: '#b48ccc'
   }
 }

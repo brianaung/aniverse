@@ -10,11 +10,19 @@ const baseStyle = definePartsStyle({
     borderRight: 'solid 2px black',
     borderLeft: 'solid 2px black',
     _selected: {
-      borderBottom: 'none'
+      borderBottom: 'none',
+      bg: 'white'
     }
   },
+  // i cannot border: 'none' this section
+  tablist: {
+    borderColor: 'black'
+  },
   tabpanels: {
-    border: 'solid 2px black'
+    border: 'solid 2px black',
+    // this is clashing with tablist border-bottom
+    borderTop: 'none',
+    bg: 'white'
   }
 })
 

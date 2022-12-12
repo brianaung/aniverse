@@ -4,9 +4,9 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Box,
   Button,
-  Card,
-  CardBody,
+  Center,
   Heading,
   Show,
   SimpleGrid,
@@ -34,33 +34,25 @@ import { AnimeInfo } from '../../../types'
 function AboutInfo({ data }: { data: AnimeInfo }) {
   return (
     <>
-      <SimpleGrid mb="4" spacing={2} templateColumns="repeat(auto-fill, minmax(100px, 1fr))">
-        <Card size="sm" align="center" variant="outline">
-          <CardBody display="flex" flexDirection="column" alignItems="center">
-            <Heading size="sm">Episodes</Heading>
-            <Text as="i">{data.totalEpisodes}</Text>
-          </CardBody>
-        </Card>
-        <Card size="sm" align="center" variant="outline">
-          <CardBody display="flex" flexDirection="column" alignItems="center">
-            <Heading size="sm">Rating</Heading>
-            <Text textAlign="center" as="i">
-              {data.rating}
-            </Text>
-          </CardBody>
-        </Card>
-        <Card size="sm" align="center" variant="outline">
-          <CardBody display="flex" flexDirection="column" alignItems="center">
-            <Heading size="sm">Popularity</Heading>
-            <Text as="i">{data.popularity}</Text>
-          </CardBody>
-        </Card>
-        <Card size="sm" align="center" variant="outline">
-          <CardBody display="flex" flexDirection="column" alignItems="center">
-            <Heading size="sm">Origin</Heading>
-            <Text as="i">{data.countryOfOrigin}</Text>
-          </CardBody>
-        </Card>
+      <SimpleGrid mb="4" spacing={2} templateColumns="repeat(auto-fill, minmax(120px, 1fr))">
+        <Center bg="primary.500" p=".5rem" flexDirection="column" border="solid 2px black">
+          <Heading size="sm">Episodes</Heading>
+          <Text as="i">{data.totalEpisodes}</Text>
+        </Center>
+        <Center bg="primary.500" p=".5rem" flexDirection="column" border="solid 2px black">
+          <Heading size="sm">Rating</Heading>
+          <Text textAlign="center" as="i">
+            {data.rating}
+          </Text>
+        </Center>
+        <Center bg="primary.500" p=".5rem" flexDirection="column" border="solid 2px black">
+          <Heading size="sm">Popularity</Heading>
+          <Text as="i">{data.popularity}</Text>
+        </Center>
+        <Center bg="primary.500" p=".5rem" flexDirection="column" border="solid 2px black">
+          <Heading size="sm">Origin</Heading>
+          <Text as="i">{data.countryOfOrigin}</Text>
+        </Center>
       </SimpleGrid>
       <section>
         <Text dangerouslySetInnerHTML={{ __html: data.description }} />
@@ -109,17 +101,17 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
       </Head>
       <Stack width="100%" gap=".2rem">
         {/* anime info page drawer */}
-        <Heading as="h1" size="xl">
-          {data.title.english}
+        <Heading textTransform="uppercase" as="h1" size="xl">
+          {data.title.english || data.title.native || data.title.romaji || data.title.userPreferred}
         </Heading>
         {/* todo: clicking on each genre will redirect to similar animes with same genre? */}
-        <GenreTags genres={data.genres} />
+        <GenreTags genres={data.genres} fontSize="sm" />
         <Text>
           {data.releaseDate} ({data.status})
         </Text>
 
         <Image
-          style={{ border: 'solid 1px black', width: '100%', height: 'auto', minHeight: '120px', maxHeight: '500px' }}
+          style={{ border: 'solid 2px black', width: '100%', height: 'auto', minHeight: '120px', maxHeight: '500px' }}
           quality="100"
           src={data.cover}
           width={100000}
@@ -132,12 +124,12 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
           size={['xs', null, 'sm', null, 'md', null, 'lg']}
           alignSelf="center"
           onClick={() => handleStartWatching(1)}>
-          Start Watching
+          START WATCHING
         </Button>
 
         {/* tabs in larger display */}
         <Show above="md">
-          <Tabs isFitted variant="enclosed" size="sm">
+          <Tabs colorScheme="black" isFitted size="sm">
             <TabList>
               <Tab>About</Tab>
               <Tab>Episodes</Tab>
@@ -166,7 +158,9 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
           <Accordion allowToggle defaultIndex={0}>
             <AccordionItem>
               <AccordionButton>
-                About
+                <Box flex="1" textAlign="left">
+                  About
+                </Box>
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
@@ -176,7 +170,9 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
 
             <AccordionItem>
               <AccordionButton>
-                Episodes
+                <Box flex="1" textAlign="left">
+                  Episodes
+                </Box>
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
@@ -185,7 +181,9 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
             </AccordionItem>
             <AccordionItem>
               <AccordionButton>
-                Characters
+                <Box flex="1" textAlign="left">
+                  Characters
+                </Box>
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
@@ -194,7 +192,9 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
             </AccordionItem>
             <AccordionItem>
               <AccordionButton>
-                Related
+                <Box flex="1" textAlign="left">
+                  Related
+                </Box>
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>

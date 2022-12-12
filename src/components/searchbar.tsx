@@ -4,7 +4,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  Kbd,
+  // Kbd,
   Modal,
   ModalContent,
   ModalOverlay,
@@ -18,17 +18,16 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { getAnimeSearch } from '../lib/anime'
 import { AnimeResult } from '../types'
-import styles from './searchbar.module.scss'
 
 const PER_PAGE = 10
 
-function KeybindIcon() {
-  return (
-    <span style={{ minWidth: '100px' }}>
-      <Kbd>Ctrl</Kbd> + <Kbd>K</Kbd>
-    </span>
-  )
-}
+// function KeybindIcon() {
+//   return (
+//     <span style={{ minWidth: '100px' }}>
+//       <Kbd>Ctrl</Kbd> + <Kbd>K</Kbd>
+//     </span>
+//   )
+// }
 
 export default function Searchbar() {
   const router = useRouter()
@@ -87,17 +86,12 @@ export default function Searchbar() {
   return (
     <>
       <Show above="lg">
-        <Button
-          className={styles.largeSearch}
-          onClick={onOpen}
-          leftIcon={<SearchIcon />}
-          rightIcon={<KeybindIcon />}
-          variant="searchbar">
+        <Button onClick={onOpen} leftIcon={<SearchIcon />} variant="searchbar">
           Search Anime, Manga
         </Button>
       </Show>
       <Show below="lg">
-        <Button variant="ghost" marginLeft="auto" className={styles.smallSearch} onClick={onOpen}>
+        <Button variant="ghost" marginLeft="auto" onClick={onOpen}>
           <SearchIcon />
         </Button>
       </Show>
@@ -132,7 +126,7 @@ export default function Searchbar() {
           {/* todo: style the results */}
           {searchData && searchData.length > 0 && (
             <Stack
-              border="solid 1px black"
+              border="solid 2px black"
               bg="white"
               gap="1rem"
               p="1rem"

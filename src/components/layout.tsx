@@ -1,12 +1,28 @@
 import { Center, Stack, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './layout.module.scss'
 import Navbar from './navbar'
 import Sidebar from './sidebar'
 
+const jpMessage = 'テレビアニメを見るときは部屋を明るくして、テレビからはなれて見てください！'
+const engMessage = 'When watching anime, light up the room, and leave some distance between the TV and yourself!'
+
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const [message, setMessage] = useState(jpMessage)
+  const [isJpn, setIsJpn] = useState(true)
+
+  const handleTranslate = () => {
+    if (isJpn) {
+      setMessage(engMessage)
+      setIsJpn(false)
+    } else {
+      setMessage(jpMessage)
+      setIsJpn(true)
+    }
+  }
+
   return (
     <>
       <Head>
@@ -14,14 +30,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </Head>
       {/* a place to add version changes notes to display to users */}
       {/* todo: handle really long text*/}
-      <Center borderBottom="solid 1px black" minHeight="3rem" width="100%">
-        <Text fontSize={['sm', null, 'md', null, 'lg', null, null]}>🎉 v1.0.0 out now! 🎉</Text>
+      <Center
+        p=".5rem"
+        bg="pink.500"
+        onClick={handleTranslate}
+        borderBottom="solid 2px black"
+        minHeight="3rem"
+        width="100%">
+        <Text fontSize={['xs', null, 'sm', null, 'md', null, 'lg']}>{message}</Text>
       </Center>
       {/* -------------------------------------------------------- */}
 
+      <Navbar />
       {/* THIS IS THE MAIN LAYOUT FOR THE ENTIRE WEBPAGE */}
-      <Stack gap="1rem" w={['90%', null, '80%', null, '70%', '60%', '50%']} m="0 auto">
-        <Navbar />
+      <Stack gap="1rem">
         <main>
           {' '}
           {/* main content: sidebar and body */}
@@ -35,7 +57,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
               <footer className={styles.footer}>
                 <Text fontSize="sm" as="cite">
-                  created by <Link href="https://github.com/brianaung">@brianaung</Link>
+                  created by{' '}
+                  <Link target="_blank" rel="noreferrer" href="https://github.com/brianaung">
+                    @brianaung
+                  </Link>
                 </Text>
               </footer>
             </div>
