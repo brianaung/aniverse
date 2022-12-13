@@ -64,7 +64,7 @@ export default function SearchResultsPage() {
   return (
     <Layout>
       <Head>
-        <title>search results for {query}</title>
+        <title>{`Search "${query}"`}</title>
       </Head>
       <p>
         showing results for: <em>{query}</em>

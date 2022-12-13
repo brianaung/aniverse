@@ -79,7 +79,12 @@ export default function VideoPage({ animeData }: { animeData: AnimeInfo }) {
     <Layout>
       <Head>
         <title>
-          {animeData && animeData.title.english} Ep{episode && episode.number}
+          Watch{' '}
+          {(animeData && animeData.title.english) ||
+            animeData.title.romaji ||
+            animeData.title.native ||
+            animeData.title.userPreferred}{' '}
+          Episode {episode && episode.number}
         </title>
       </Head>
       {animeData && episode && (
