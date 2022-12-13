@@ -104,7 +104,6 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
         <Heading textTransform="uppercase" as="h1" size="xl">
           {data.title.english || data.title.native || data.title.romaji || data.title.userPreferred}
         </Heading>
-        {/* todo: clicking on each genre will redirect to similar animes with same genre? */}
         <GenreTags genres={data.genres} fontSize="sm" />
         <Text>
           {data.releaseDate} ({data.status})

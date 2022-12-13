@@ -1,10 +1,10 @@
 import { accordionTheme } from './accordionTheme'
+import { menuTheme } from './menuTheme'
 import { tabsTheme } from './tabsTheme'
 
 export const componentStyles = {
   Button: {
     variants: {
-      // primary button style for the brand
       primary: {
         border: 'solid 2px black',
         bg: 'primary.500',
@@ -20,6 +20,15 @@ export const componentStyles = {
         bg: 'white',
         fontWeight: '400',
         boxShadow: '2px 2px 0px black'
+      },
+      solid: {
+        border: 'solid 2px black'
+      },
+      link: {
+        _hover: {
+          textDecorationLine: 'underline',
+          textDecorationThickness: '2px'
+        }
       }
     },
     defaultProps: {
@@ -53,6 +62,20 @@ export const componentStyles = {
       variant: 'primary'
     }
   },
+  Link: {
+    variants: {
+      primary: {
+        _hover: {
+          textDecorationLine: 'underline',
+          textDecorationThickness: '2px'
+        }
+      }
+    },
+    defaultProps: {
+      variant: 'primary'
+    }
+  },
   Tabs: tabsTheme,
-  Accordion: accordionTheme
+  Accordion: accordionTheme,
+  Menu: menuTheme
 }

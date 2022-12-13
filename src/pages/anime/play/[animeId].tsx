@@ -2,11 +2,11 @@ import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { Button, Heading, Select, Skeleton, Stack, Text } from '@chakra-ui/react'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { default as useSWRImmutable, Fetcher } from 'swr'
 import Layout from '../../../components/layout'
+import MyLink from '../../../components/myLink'
 import Player from '../../../components/player'
 import { getAnimeInfo } from '../../../lib/anime'
 import { AnimeEpisode, AnimeInfo, VideoSrc } from '../../../types'
@@ -85,9 +85,11 @@ export default function VideoPage({ animeData }: { animeData: AnimeInfo }) {
       {animeData && episode && (
         <>
           <Stack width="100%" m="1rem" spacing="1rem">
-            <Heading as="h1" size="xl">
-              <Link href={`/anime/info/${animeData.id}`}>{animeData.title.english}</Link>
-            </Heading>
+            <MyLink href={`/anime/info/${animeData.id}`}>
+              <Heading as="h1" size="xl">
+                {animeData.title.english}
+              </Heading>
+            </MyLink>
             <Heading as="h2" size="md">
               Episode {episode.number} - {episode.title} ({animeData.duration}mins)
             </Heading>

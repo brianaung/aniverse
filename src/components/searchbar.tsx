@@ -76,7 +76,6 @@ export default function Searchbar() {
         onOpen()
       }
     }
-    // todo: learn more abt vanilla js
     document.addEventListener('keydown', handleKbdShortcut)
     return function cleanup() {
       document.removeEventListener('keydown', handleKbdShortcut)
@@ -85,13 +84,13 @@ export default function Searchbar() {
 
   return (
     <>
-      <Show above="lg">
-        <Button onClick={onOpen} leftIcon={<SearchIcon />} variant="searchbar">
+      <Show above="md">
+        <Button mr="auto" onClick={onOpen} leftIcon={<SearchIcon />} variant="searchbar">
           Search Anime, Manga
         </Button>
       </Show>
-      <Show below="lg">
-        <Button variant="ghost" marginLeft="auto" onClick={onOpen}>
+      <Show below="md">
+        <Button mr="auto" variant="ghost" onClick={onOpen}>
           <SearchIcon />
         </Button>
       </Show>
@@ -123,7 +122,6 @@ export default function Searchbar() {
             </InputGroup>
           </form>
           {/* show search results as you type */}
-          {/* todo: style the results */}
           {searchData && searchData.length > 0 && (
             <Stack
               border="solid 2px black"

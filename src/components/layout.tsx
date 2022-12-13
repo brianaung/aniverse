@@ -1,4 +1,4 @@
-import { Center, Stack, Text } from '@chakra-ui/react'
+import { Center, Show, Stack, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import Link from 'next/link'
 import React, { useState } from 'react'
@@ -29,7 +29,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <link rel="icon" href="/makima.ico" />
       </Head>
       {/* a place to add version changes notes to display to users */}
-      {/* todo: handle really long text*/}
       <Center
         p=".5rem"
         bg="pink.500"
@@ -43,29 +42,27 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <Navbar />
       {/* THIS IS THE MAIN LAYOUT FOR THE ENTIRE WEBPAGE */}
-      <Stack gap="1rem">
-        <main>
-          {' '}
-          {/* main content: sidebar and body */}
-          <Stack direction="row" w="100%" h="100%">
+      <Stack>
+        {/* main content: sidebar and body */}
+        <Stack direction="row" w="100%" h="100%">
+          <Show above="md">
             <div className={styles.sidebar}>
               <Sidebar />
             </div>
+          </Show>
+          <div className={styles.body} style={{ marginLeft: '0' }}>
+            {children}
 
-            <div className={styles.body} style={{ marginLeft: '0' }}>
-              {children}
-
-              <footer className={styles.footer}>
-                <Text fontSize="sm" as="cite">
-                  created by{' '}
-                  <Link target="_blank" rel="noreferrer" href="https://github.com/brianaung">
-                    @brianaung
-                  </Link>
-                </Text>
-              </footer>
-            </div>
-          </Stack>
-        </main>
+            <footer className={styles.footer}>
+              <Text fontSize="sm" as="cite">
+                created by{' '}
+                <Link target="_blank" rel="noreferrer" href="https://github.com/brianaung">
+                  @brianaung
+                </Link>
+              </Text>
+            </footer>
+          </div>
+        </Stack>
       </Stack>
     </>
   )

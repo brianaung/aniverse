@@ -1,12 +1,10 @@
 @use 'src/styles/_lib.scss';
 
 .sidebar {
-  // background: var(--chakra-colors-blue-500);
   border-right: solid 2px black;
   width: 20%;
   height: lib.$sidebarH;
   min-width: 230px;
-  // padding: 2rem;
   display: block;
   // make it sticky
   position: sticky;
@@ -16,7 +14,7 @@
 }
 
 .body {
-  width: 80%;
+  width: 100%; // fill up all available space
   min-height: calc(100vh - lib.$navbarH - 4rem);
   padding: 1rem 2rem;
   display: flex;
@@ -29,17 +27,4 @@
 .footer {
   padding-top: 3rem;
   margin-top: auto;
-}
-
-// mobile breakpoint
-@media only screen and (max-width: 62rem) {
-  // hide sidebar (hide below='md')
-  .sidebar {
-    display: none;
-  }
-
-  // and let main takes all space
-  .body {
-    width: 100%;
-  }
 }

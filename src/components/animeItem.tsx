@@ -16,13 +16,14 @@ export default function AnimeItem({ anime }: { anime: AnimeResult }) {
 
   return (
     <div onClick={() => router.push(`/anime/info/${anime.id}`)} className={styles.container}>
-      <Stack bg="primary.500" border="solid 2px black" position="absolute" top="2%" right="2%" px="1">
-        <Text as="b" fontSize="xs" textTransform="lowercase" color="black">
-          {anime.status}
-        </Text>
-      </Stack>
+      {anime.status && (
+        <Stack bg="primary.500" border="solid 2px black" position="absolute" top="2%" right="2%" px="1">
+          <Text as="b" fontSize="xs" textTransform="lowercase" color="black">
+            {anime.status}
+          </Text>
+        </Stack>
+      )}
 
-      {/* todo: make all images have equal height (for bugs: search gintama, chainsaw man */}
       <Image
         className={styles.animeImg}
         quality="100"

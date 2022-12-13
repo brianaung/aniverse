@@ -11,7 +11,6 @@ const breakpoints = {
   '3xl': '110em'
 }
 
-// todo: choose color palette
 const theme = extendTheme({
   colorConfig,
   breakpoints,
@@ -31,7 +30,8 @@ const theme = extendTheme({
         fontSize: '18px',
         padding: '0',
         margin: '0',
-        scrollBehavior: 'smooth'
+        scrollBehavior: 'smooth',
+        minWidth: '375px' // smallest supported screen size (iphone 6)
       },
       button: {
         _hover: {
