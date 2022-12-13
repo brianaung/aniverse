@@ -1,13 +1,13 @@
 import { HamburgerIcon, MoonIcon } from '@chakra-ui/icons'
 import {
   Button,
+  Image,
   Menu,
   MenuButton,
   MenuGroup,
   MenuItem,
   MenuList,
   Show,
-  Text,
   // useColorMode,
   useToast
 } from '@chakra-ui/react'
@@ -65,9 +65,14 @@ export default function Navbar() {
       </Show>
 
       <MyLink onClick={null} href="/">
-        <Text mr="1rem" as="b">
-          HOME
-        </Text>
+        <Image
+          src="/satoru-gojo.svg"
+          w="48px"
+          h="48"
+          alt="satoru"
+          transition="all 200ms ease"
+          _hover={{ transform: 'translateY(-2px)' }}
+        />
       </MyLink>
 
       <Searchbar />
