@@ -13,11 +13,11 @@ import {
   Text,
   useDisclosure
 } from '@chakra-ui/react'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { getAnimeSearch } from '../lib/anime'
 import { AnimeResult } from '../types'
+import MyLink from './myLink'
 
 const PER_PAGE = 10
 
@@ -134,9 +134,9 @@ export default function Searchbar() {
               {searchData.map((anime) => (
                 <Stack direction="row" key={anime.id}>
                   <Text as="b" fontSize="sm" noOfLines={1} textTransform="uppercase">
-                    <Link onClick={onClose} href={`/anime/info/${anime.id}`}>
+                    <MyLink onClick={onClose} href={`/anime/info/${anime.id}`}>
                       {anime.title.english}
-                    </Link>
+                    </MyLink>
                   </Text>
                 </Stack>
               ))}

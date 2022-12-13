@@ -54,7 +54,7 @@ export default function Sidebar() {
 
       <Stack>
         <Text as="b">MANGA</Text>
-        <SidebarTab url="/" displayText="Lorem Ipsum" />
+        <Text>[WIP]</Text>
       </Stack>
     </Stack>
   )

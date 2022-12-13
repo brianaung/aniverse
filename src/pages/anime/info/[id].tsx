@@ -97,7 +97,7 @@ export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
   return (
     <Layout>
       <Head>
-        <title>watch {data && data.title.english}</title>
+        <title>{data && data.title.english || data.title.romaji || data.title.native || data.title.userPreferred}</title>
       </Head>
       <Stack width="100%" gap=".2rem">
         {/* anime info page drawer */}

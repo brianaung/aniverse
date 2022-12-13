@@ -55,7 +55,7 @@ export default function Navbar() {
               <MenuItem onClick={() => handleClick('/anime/popular')}>Most Popular</MenuItem>
               <MenuItem onClick={() => handleClick('/anime/trending')}>Trending Now</MenuItem>
               {/* todo: make a seperate genres list page for mobile version (accordion in desktop) */}
-              <MenuItem onClick={() => handleClick('/')}>Genres</MenuItem>
+              <MenuItem>Genres [WIP]</MenuItem>
             </MenuGroup>
             <MenuGroup title="MANGA">
               <MenuItem onClick={() => handleClick('/')}>Dummy</MenuItem>
@@ -64,7 +64,7 @@ export default function Navbar() {
         </Menu>
       </Show>
 
-      <MyLink href="/">
+      <MyLink onClick={null} href="/">
         <Text mr="1rem" as="b">
           HOME
         </Text>
