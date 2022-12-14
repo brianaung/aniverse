@@ -60,7 +60,7 @@ export default function SearchResultsPage() {
   return (
     <Layout>
       <Head>
-        <title>{type}</title>
+        <title>{type} Animes</title>
       </Head>
       <Heading>Genre: {type}</Heading>
 

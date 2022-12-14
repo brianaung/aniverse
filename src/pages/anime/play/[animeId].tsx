@@ -2,11 +2,11 @@ import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { Button, Heading, Select, Skeleton, Stack, Text } from '@chakra-ui/react'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { default as useSWRImmutable, Fetcher } from 'swr'
 import Layout from '../../../components/layout'
+import MyLink from '../../../components/myLink'
 import Player from '../../../components/player'
 import { getAnimeInfo } from '../../../lib/anime'
 import { AnimeEpisode, AnimeInfo, VideoSrc } from '../../../types'
@@ -79,15 +79,22 @@ export default function VideoPage({ animeData }: { animeData: AnimeInfo }) {
     <Layout>
       <Head>
         <title>
-          {animeData && animeData.title.english} Ep{episode && episode.number}
+          Watch{' '}
+          {(animeData && animeData.title.english) ||
+            animeData.title.romaji ||
+            animeData.title.native ||
+            animeData.title.userPreferred}{' '}
+          Episode {episode && episode.number}
         </title>
       </Head>
       {animeData && episode && (
         <>
           <Stack width="100%" m="1rem" spacing="1rem">
-            <Heading as="h1" size="xl">
-              <Link href={`/anime/info/${animeData.id}`}>{animeData.title.english}</Link>
-            </Heading>
+            <MyLink onClick={null} href={`/anime/info/${animeData.id}`}>
+              <Heading as="h1" size="xl">
+                {animeData.title.english}
+              </Heading>
+            </MyLink>
             <Heading as="h2" size="md">
               Episode {episode.number} - {episode.title} ({animeData.duration}mins)
             </Heading>
@@ -95,16 +102,23 @@ export default function VideoPage({ animeData }: { animeData: AnimeInfo }) {
             {/* select episode in a dropdown selector */}
             <Stack alignSelf="center" direction="row" align="center">
               {prev && (
-                <Button variant="ghost" onClick={handlePrev}>
+                <Button onClick={handlePrev}>
                   <ArrowBackIcon />
                 </Button>
               )}
-              <Text>Episode</Text>
-              <Select size="sm" value={episode.number} onChange={handleSelectEp}>
-                {animeData && animeData.episodes.map((ep) => <option key={ep.id}>{ep.number}</option>)}
-              </Select>
+              <Stack px="1rem">
+                <Text>Episode</Text>
+                <Select size="sm" value={episode.number} onChange={handleSelectEp}>
+                  {animeData &&
+                    animeData.episodes.map((ep) => (
+                      <option style={{ border: 'solid 2px black' }} key={ep.id}>
+                        {ep.number}
+                      </option>
+                    ))}
+                </Select>
+              </Stack>
               {next && (
-                <Button variant="ghost" onClick={handleNext}>
+                <Button onClick={handleNext}>
                   <ArrowForwardIcon />
                 </Button>
               )}

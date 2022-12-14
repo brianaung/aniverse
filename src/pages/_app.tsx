@@ -1,11 +1,13 @@
 import { ChakraProvider } from '@chakra-ui/react'
-import '@fontsource/raleway/700.css'
+import '@fontsource/montserrat'
+import '@fontsource/noto-sans-jp'
+import '@fontsource/unifrakturcook'
 import { Analytics } from '@vercel/analytics/react'
 import type { AppProps } from 'next/app'
 import Router from 'next/router'
 import { useEffect, useState } from 'react'
+import theme from '../styles/chakra/theme'
 import '../styles/globals.scss'
-import theme from '../styles/theme'
 import utilStyles from '../styles/utils.module.scss'
 
 function LoadingAnimation() {

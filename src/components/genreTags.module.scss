@@ -9,9 +9,11 @@
 
 .pill {
   border-radius: 9999px;
-  border: solid lib.$dividerSize lib.$dividerColor;
+  border: solid 2px black;
   padding: 0 0.5rem;
-  transition: transform 200ms ease;
+  transition: all 200ms ease;
+  box-shadow: 2px 2px 0 black;
+  background: white;
   &:hover {
     transform: translateY(-4px);
   }

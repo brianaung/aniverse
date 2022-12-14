@@ -4,7 +4,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  Kbd,
+  // Kbd,
   Modal,
   ModalContent,
   ModalOverlay,
@@ -13,22 +13,22 @@ import {
   Text,
   useDisclosure
 } from '@chakra-ui/react'
-import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { getAnimeSearch } from '../lib/anime'
 import { AnimeResult } from '../types'
-import styles from './searchbar.module.scss'
+import MyLink from './myLink'
 
 const PER_PAGE = 10
 
-function KeybindIcon() {
-  return (
-    <span style={{ minWidth: '100px' }}>
-      <Kbd>Ctrl</Kbd> + <Kbd>K</Kbd>
-    </span>
-  )
-}
+// function KeybindIcon() {
+//   return (
+//     <span style={{ minWidth: '100px' }}>
+//       <Kbd>Ctrl</Kbd> + <Kbd>K</Kbd>
+//     </span>
+//   )
+// }
 
 export default function Searchbar() {
   const router = useRouter()
@@ -77,7 +77,6 @@ export default function Searchbar() {
         onOpen()
       }
     }
-    // todo: learn more abt vanilla js
     document.addEventListener('keydown', handleKbdShortcut)
     return function cleanup() {
       document.removeEventListener('keydown', handleKbdShortcut)
@@ -86,18 +85,13 @@ export default function Searchbar() {
 
   return (
     <>
-      <Show above="lg">
-        <Button
-          className={styles.largeSearch}
-          onClick={onOpen}
-          leftIcon={<SearchIcon />}
-          rightIcon={<KeybindIcon />}
-          variant="searchbar">
+      <Show above="md">
+        <Button mr="auto" onClick={onOpen} leftIcon={<SearchIcon />} variant="searchbar">
           Search Anime, Manga
         </Button>
       </Show>
-      <Show below="lg">
-        <Button variant="ghost" marginLeft="auto" className={styles.smallSearch} onClick={onOpen}>
+      <Show below="md">
+        <Button mr="auto" variant="ghost" onClick={onOpen}>
           <SearchIcon />
         </Button>
       </Show>
@@ -129,10 +123,9 @@ export default function Searchbar() {
             </InputGroup>
           </form>
           {/* show search results as you type */}
-          {/* todo: style the results */}
           {searchData && searchData.length > 0 && (
             <Stack
-              border="solid 1px black"
+              border="solid 2px black"
               bg="white"
               gap="1rem"
               p="1rem"
@@ -140,13 +133,23 @@ export default function Searchbar() {
               maxH="50vh"
               overflow="scroll">
               {searchData.map((anime) => (
-                <Stack direction="row" key={anime.id}>
-                  <Text as="b" fontSize="sm" noOfLines={1} textTransform="uppercase">
-                    <Link onClick={onClose} href={`/anime/info/${anime.id}`}>
+                <MyLink onClick={onClose} href={`/anime/info/${anime.id}`}>
+                  <Stack direction="row" key={anime.id}>
+                    <Image
+                      style={{
+                        border: 'solid 2px black'
+                      }}
+                      src={anime.image}
+                      alt={anime.title.english}
+                      width={50}
+                      height={50}
+                    />
+                    <Text as="b" fontSize="sm" noOfLines={1} textTransform="uppercase">
                       {anime.title.english}
-                    </Link>
-                  </Text>
-                </Stack>
+                      {anime.releaseDate && <p>({anime.releaseDate})</p>}
+                    </Text>
+                  </Stack>
+                </MyLink>
               ))}
             </Stack>
           )}
