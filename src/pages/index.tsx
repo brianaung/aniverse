@@ -1,8 +1,10 @@
-import { Image, Stack } from '@chakra-ui/react'
+import { Button, Image, Stack } from '@chakra-ui/react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import Layout from '../components/layout'
 
 export default function Home() {
+  const router = useRouter()
   return (
     <Layout>
       <Head>
@@ -14,6 +16,7 @@ export default function Home() {
           alt='anime meme: tries first episode, binges entire season, "yep its trash"'
           border="solid 2px black"
         />
+        <Button onClick={() => router.push('/anime/popular')}>EXPLORE</Button>
       </Stack>
     </Layout>
   )
