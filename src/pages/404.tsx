@@ -17,7 +17,7 @@ export default function Custom404() {
         </Heading>
         <Heading>Hello?? Is somebody there?!?</Heading>
         <Text as="b">
-          You've found a page that doesn't exist. It is scary in here so go back
+          {"You've found a page that doesn't exist. It is scary in here so go back"}
           <MyLink onClick={null} href="/">
             {' '}
             <Text display="inline" textDecorationLine="underline" textDecorationThickness="2px">

@@ -133,8 +133,8 @@ export default function Searchbar() {
               maxH="50vh"
               overflow="scroll">
               {searchData.map((anime) => (
-                <MyLink onClick={onClose} href={`/anime/info/${anime.id}`}>
-                  <Stack direction="row" key={anime.id}>
+                <MyLink key={anime.id} onClick={onClose} href={`/anime/info/${anime.id}`}>
+                  <Stack direction="row">
                     <Image
                       style={{
                         border: 'solid 2px black'
