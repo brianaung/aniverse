@@ -1,7 +1,6 @@
 import { HamburgerIcon, MoonIcon } from '@chakra-ui/icons'
 import {
   Button,
-  Image,
   Menu,
   MenuButton,
   MenuGroup,
@@ -13,7 +12,6 @@ import {
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 // import { useEffect } from 'react'
-import MyLink from './myLink'
 import styles from './navbar.module.scss'
 import Searchbar from './searchbar'
 
@@ -51,6 +49,7 @@ export default function Navbar() {
             <HamburgerIcon />
           </MenuButton>
           <MenuList>
+            <MenuItem onClick={() => handleClick('/')}>Home</MenuItem>
             <MenuGroup title="ANIME">
               <MenuItem onClick={() => handleClick('/anime/popular')}>Most Popular</MenuItem>
               <MenuItem onClick={() => handleClick('/anime/trending')}>Trending Now</MenuItem>
@@ -63,17 +62,6 @@ export default function Navbar() {
           </MenuList>
         </Menu>
       </Show>
-
-      <MyLink onClick={null} href="/">
-        <Image
-          src="/satoru-gojo.svg"
-          w="48px"
-          h="48"
-          alt="satoru"
-          transition="all 200ms ease"
-          _hover={{ transform: 'translateY(-2px)' }}
-        />
-      </MyLink>
 
       <Searchbar />
 

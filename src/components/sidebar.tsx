@@ -35,6 +35,7 @@ export default function Sidebar() {
 
   return (
     <Stack gap="1rem" p="1rem">
+      <SidebarTab url="/" displayText="Home" />
       <Stack>
         <Text as="b">ANIME</Text>
         <SidebarTab url="/anime/popular" displayText="Most Popular" />

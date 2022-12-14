@@ -13,6 +13,7 @@ import {
   Text,
   useDisclosure
 } from '@chakra-ui/react'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { getAnimeSearch } from '../lib/anime'
@@ -132,13 +133,23 @@ export default function Searchbar() {
               maxH="50vh"
               overflow="scroll">
               {searchData.map((anime) => (
-                <Stack direction="row" key={anime.id}>
-                  <Text as="b" fontSize="sm" noOfLines={1} textTransform="uppercase">
-                    <MyLink onClick={onClose} href={`/anime/info/${anime.id}`}>
+                <MyLink onClick={onClose} href={`/anime/info/${anime.id}`}>
+                  <Stack direction="row" key={anime.id}>
+                    <Image
+                      style={{
+                        border: 'solid 2px black'
+                      }}
+                      src={anime.image}
+                      alt={anime.title.english}
+                      width={50}
+                      height={50}
+                    />
+                    <Text as="b" fontSize="sm" noOfLines={1} textTransform="uppercase">
                       {anime.title.english}
-                    </MyLink>
-                  </Text>
-                </Stack>
+                      {anime.releaseDate && <p>({anime.releaseDate})</p>}
+                    </Text>
+                  </Stack>
+                </MyLink>
               ))}
             </Stack>
           )}
