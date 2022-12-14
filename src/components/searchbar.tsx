@@ -144,8 +144,8 @@ export default function Searchbar() {
                       width={50}
                       height={50}
                     />
-                    <Text as="b" fontSize="sm" noOfLines={1} textTransform="uppercase">
-                      {anime.title.english}
+                    <Text w="100%" as="b" fontSize="sm">
+                      {anime.title.english || anime.title.romaji || anime.title.native || anime.title.userPreferred}
                       {anime.releaseDate && <p>({anime.releaseDate})</p>}
                     </Text>
                   </Stack>
