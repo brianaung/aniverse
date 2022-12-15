@@ -17,6 +17,7 @@ $video-height: auto;
   width: 100%;
   height: auto;
   border: solid lib.$dividerSize lib.$dividerColor;
+  border-radius: 10px;
 }
 
 @media only screen and (max-width: 30rem) {

@@ -88,11 +88,11 @@ export default function VideoPage({ animeData }: { animeData: AnimeInfo }) {
       {animeData && episode && (
         <>
           <Stack width="100%" m="1rem" spacing="1rem">
-            <MyLink onClick={null} href={`/anime/info/${animeData.id}`}>
-              <Heading as="h1" size="xl">
+            <Heading as="h1" size="xl">
+              <MyLink onClick={null} href={`/anime/info/${animeData.id}`}>
                 {animeData.title.english}
-              </Heading>
-            </MyLink>
+              </MyLink>
+            </Heading>
             <Heading as="h2" size="md">
               Episode {episode.number} - {episode.title} ({animeData.duration}mins)
             </Heading>

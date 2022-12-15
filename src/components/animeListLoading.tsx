@@ -4,8 +4,8 @@ import dynamic from 'next/dynamic'
 function AnimeItemSkeleton() {
   return (
     <Stack
-      w={['120px', null, '140px', '160px', '170px', '180px']}
-      h={['180px', null, '200px', '220px', '240px', '260px']}>
+      w={['130px', '140px', '150px', '170px', '180px', '190px']}
+      h={['190px', '200px', '210px', '230px', '250px', '270px']}>
       <Skeleton w="100%%" h="100%" />
       <Skeleton w="80%" h=".5rem" />
       <Stack direction="row" justifyContent="space-between">
@@ -26,6 +26,12 @@ export default function AnimeListLoading() {
   const AnimeListContainer = dynamic(() => import('./animeListContainer'), { ssr: false })
   return (
     <AnimeListContainer>
+      <AnimeItemSkeleton />
+      <AnimeItemSkeleton />
+      <AnimeItemSkeleton />
+      <AnimeItemSkeleton />
+      <AnimeItemSkeleton />
+      <AnimeItemSkeleton />
       <AnimeItemSkeleton />
       <AnimeItemSkeleton />
       <AnimeItemSkeleton />

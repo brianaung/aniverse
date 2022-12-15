@@ -30,21 +30,21 @@ function AboutInfo({ data }: { data: AnimeInfo }) {
   return (
     <>
       <SimpleGrid mb="4" spacing={2} templateColumns="repeat(auto-fill, minmax(120px, 1fr))">
-        <Center bg="primary.500" p=".5rem" flexDirection="column" border="solid 2px black">
+        <Center bg="primary.500" p=".5rem" flexDirection="column" border="solid 2px black" borderRadius="10px">
           <Heading size="sm">Episodes</Heading>
           <Text as="i">{data.totalEpisodes}</Text>
         </Center>
-        <Center bg="primary.500" p=".5rem" flexDirection="column" border="solid 2px black">
+        <Center bg="primary.500" p=".5rem" flexDirection="column" border="solid 2px black" borderRadius="10px">
           <Heading size="sm">Rating</Heading>
           <Text textAlign="center" as="i">
             {data.rating}
           </Text>
         </Center>
-        <Center bg="primary.500" p=".5rem" flexDirection="column" border="solid 2px black">
+        <Center bg="primary.500" p=".5rem" flexDirection="column" border="solid 2px black" borderRadius="10px">
           <Heading size="sm">Popularity</Heading>
           <Text as="i">{data.popularity}</Text>
         </Center>
-        <Center bg="primary.500" p=".5rem" flexDirection="column" border="solid 2px black">
+        <Center bg="primary.500" p=".5rem" flexDirection="column" border="solid 2px black" borderRadius="10px">
           <Heading size="sm">Origin</Heading>
           <Text as="i">{data.countryOfOrigin}</Text>
         </Center>
