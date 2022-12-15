@@ -1,5 +1,4 @@
 import { Stack } from '@chakra-ui/react'
-import Hls from 'hls.js'
 import React, { useEffect, useRef, useState } from 'react'
 import { VideoSrc } from '../types'
 import styles from './player.module.scss'
@@ -33,24 +32,29 @@ export default function Player({ allSrc }: { allSrc: VideoSrc[] }) {
 
   // get the video player ready with the src available
   useEffect(() => {
-    const video = videoRef.current
-    if (!video) {
-      return
-    }
+    const initPlayer = async () => {
+      // dynamically import Hls.js
+      const Hls = (await import('hls.js')).default
+      const video = videoRef.current
+      if (!video) {
+        return
+      }
 
-    video.controls = true
+      video.controls = true
 
-    if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      // hls is automatically supported on safari
-      video.src = src
-    } else if (Hls.isSupported()) {
-      // for other unsupported browsers use Hls.js
-      const hls = new Hls()
-      if (hls) {
-        hls.loadSource(src)
-        hls.attachMedia(video)
+      if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        // hls is automatically supported on safari
+        video.src = src
+      } else if (Hls.isSupported()) {
+        // for other unsupported browsers use Hls.js
+        const hls = new Hls()
+        if (hls) {
+          hls.loadSource(src)
+          hls.attachMedia(video)
+        }
       }
     }
+    initPlayer()
   }, [src, videoRef])
 
   const handleQuality = (e: React.ChangeEvent<HTMLSelectElement>) => {

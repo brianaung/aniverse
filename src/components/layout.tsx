@@ -1,10 +1,9 @@
 import { Center, Show, Stack, Text } from '@chakra-ui/react'
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import styles from './layout.module.scss'
-import Navbar from './navbar'
-import Sidebar from './sidebar'
 
 const jpMessage = 'テレビアニメを見るときは部屋を明るくして、テレビからはなれて見てください！'
 const engMessage = 'When watching anime, light up the room, and leave some distance between the TV and yourself!'
@@ -12,6 +11,12 @@ const engMessage = 'When watching anime, light up the room, and leave some dista
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [message, setMessage] = useState(jpMessage)
   const [isJpn, setIsJpn] = useState(true)
+  const Navbar = dynamic(() => import('./navbar'), {
+    ssr: false
+  })
+  const Sidebar = dynamic(() => import('./sidebar'), {
+    ssr: false
+  })
 
   const handleTranslate = () => {
     if (isJpn) {

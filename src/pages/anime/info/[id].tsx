@@ -19,15 +19,10 @@ import {
   Text
 } from '@chakra-ui/react'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import AnimeItem from '../../../components/animeItem'
-import AnimeListContainer from '../../../components/animeListContainer'
-import CharactersList from '../../../components/charactersList'
-import EpisodeGrids from '../../../components/episodeGrids'
-import GenreTags from '../../../components/genreTags'
-import Layout from '../../../components/layout'
 import { getAnimeInfo } from '../../../lib/anime'
 import { AnimeInfo } from '../../../types'
 
@@ -62,6 +57,7 @@ function AboutInfo({ data }: { data: AnimeInfo }) {
 }
 
 function CharactersInfo({ data }: { data: AnimeInfo }) {
+  const CharactersList = dynamic(() => import('../../../components/charactersList'), { ssr: false })
   return (
     <>
       <CharactersList characters={data.characters} />
@@ -78,6 +74,8 @@ function CharactersInfo({ data }: { data: AnimeInfo }) {
 }
 
 function RelatedInfo({ data }: { data: AnimeInfo }) {
+  const AnimeListContainer = dynamic(() => import('../../../components/animeListContainer'), { ssr: false })
+  const AnimeItem = dynamic(() => import('../../../components/animeItem'), { ssr: false })
   return (
     <AnimeListContainer>
       {data.recommendations.map((anime) => (
@@ -89,6 +87,9 @@ function RelatedInfo({ data }: { data: AnimeInfo }) {
 
 export default function AnimeInfoPage({ data }: { data: AnimeInfo }) {
   const router = useRouter()
+  const Layout = dynamic(() => import('../../../components/layout'), { ssr: false })
+  const GenreTags = dynamic(() => import('../../../components/genreTags'), { ssr: false })
+  const EpisodeGrids = dynamic(() => import('../../../components/episodeGrids'), { ssr: false })
 
   const handleStartWatching = (index: number) => {
     router.push(`/anime/play/${data.id}?ep=${index}`)

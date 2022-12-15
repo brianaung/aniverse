@@ -1,10 +1,13 @@
 import { Button, Image, Stack } from '@chakra-ui/react'
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import Layout from '../components/layout'
 
 export default function Home() {
   const router = useRouter()
+  const Layout = dynamic(() => import('../components/layout'), {
+    ssr: false
+  })
   return (
     <Layout>
       <Head>
