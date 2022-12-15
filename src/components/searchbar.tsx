@@ -13,12 +13,13 @@ import {
   Text,
   useDisclosure
 } from '@chakra-ui/react'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { getAnimeSearch } from '../lib/anime'
 import { AnimeResult } from '../types'
-import MyLink from './myLink'
+// import MyLink from './myLink'
 
 const PER_PAGE = 10
 
@@ -31,6 +32,7 @@ const PER_PAGE = 10
 // }
 
 export default function Searchbar() {
+  const MyLink = dynamic(() => import('./myLink'), { ssr: false })
   const router = useRouter()
   const [searchData, setSearchData] = useState<AnimeResult[] | null>(null)
   const { isOpen, onOpen, onClose } = useDisclosure()

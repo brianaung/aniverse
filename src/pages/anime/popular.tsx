@@ -1,17 +1,17 @@
 import { Button, Heading } from '@chakra-ui/react'
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import useSWR, { Fetcher } from 'swr'
-import AnimeItem from '../../components/animeItem'
-import AnimeListContainer from '../../components/animeListContainer'
-import AnimeListLoading from '../../components/animeListLoading'
-import Layout from '../../components/layout'
 import { PopularAnimes } from '../../types'
 
 const fetcher: Fetcher<PopularAnimes> = (arg: string) => fetch(arg).then((res) => res.json())
 
 function SinglePage({ page, setNext }: { page: number; setNext: React.Dispatch<React.SetStateAction<boolean>> }) {
   const { data, error } = useSWR(`/api/anime/popular/?page=${page}`, fetcher)
+  const AnimeItem = dynamic(() => import('../../components/animeItem'), { ssr: false })
+  const AnimeListContainer = dynamic(() => import('../../components/animeListContainer'), { ssr: false })
+  const AnimeListLoading = dynamic(() => import('../../components/animeListLoading'), { ssr: false })
 
   useEffect(() => {
     if (data) {
@@ -38,6 +38,7 @@ function SinglePage({ page, setNext }: { page: number; setNext: React.Dispatch<R
 
 export default function PopularPage() {
   const [hasNext, setNext] = useState(false)
+  const Layout = dynamic(() => import('../../components/layout'), { ssr: false })
 
   const [cnt, setCnt] = useState(1)
   const pages = []

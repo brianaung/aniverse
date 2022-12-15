@@ -12,10 +12,11 @@ import {
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 // import { useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import styles from './navbar.module.scss'
-import Searchbar from './searchbar'
 
 export default function Navbar() {
+  const Searchbar = dynamic(() => import('./searchbar'), { ssr: false })
   const toast = useToast() // todo: tmp, remove after implementing dark mode
   /*
   const { colorMode, toggleColorMode } = useColorMode()

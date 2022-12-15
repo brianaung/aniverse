@@ -1,5 +1,5 @@
 import { Skeleton, SkeletonCircle, Stack } from '@chakra-ui/react'
-import AnimeListContainer from './animeListContainer'
+import dynamic from 'next/dynamic'
 
 function AnimeItemSkeleton() {
   return (
@@ -23,6 +23,7 @@ function AnimeItemSkeleton() {
 }
 
 export default function AnimeListLoading() {
+  const AnimeListContainer = dynamic(() => import('./animeListContainer'), { ssr: false })
   return (
     <AnimeListContainer>
       <AnimeItemSkeleton />

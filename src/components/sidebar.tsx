@@ -8,8 +8,8 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import GenreList from './genreList'
 
 function SidebarTab({ url, displayText }: { url: string; displayText: string }) {
   const router = useRouter()
@@ -32,6 +32,7 @@ function SidebarTab({ url, displayText }: { url: string; displayText: string }) 
 
 export default function Sidebar() {
   const router = useRouter()
+  const GenreList = dynamic(() => import('./genreList'), { ssr: false })
 
   return (
     <Stack gap="1rem" p="1rem">

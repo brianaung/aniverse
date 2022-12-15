@@ -1,13 +1,11 @@
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { Button, Heading, Select, Skeleton, Stack, Text } from '@chakra-ui/react'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { default as useSWRImmutable, Fetcher } from 'swr'
-import Layout from '../../../components/layout'
-import MyLink from '../../../components/myLink'
-import Player from '../../../components/player'
 import { getAnimeInfo } from '../../../lib/anime'
 import { AnimeEpisode, AnimeInfo, VideoSrc } from '../../../types'
 
@@ -29,18 +27,18 @@ export default function VideoPage({ animeData }: { animeData: AnimeInfo }) {
   // idx: 0 1 2 3 ...
   const { ep } = Array.isArray(router.query) ? router.query[0] : router.query
   const index = parseInt(ep) - 1
-
   const episode = animeData ? animeData.episodes[index] : null
-
+  const [prev, setPrev] = useState<AnimeEpisode | null>(null)
+  const [next, setNext] = useState<AnimeEpisode | null>(null)
   // IMPORTANT: using normal useSWR will revalidate data (fetching again after intervals) causing the video src link to change
   const { data: epData, error: epError } = useSWRImmutable(
     episode ? `/api/anime/play/${episode.id}` : null,
     epFetcher,
     options
   )
-
-  const [prev, setPrev] = useState<AnimeEpisode | null>(null)
-  const [next, setNext] = useState<AnimeEpisode | null>(null)
+  const Layout = dynamic(() => import('../../../components/layout'), { ssr: false })
+  const MyLink = dynamic(() => import('../../../components/myLink'), { ssr: false })
+  const Player = dynamic(() => import('../../../components/player'), { ssr: false })
 
   // check for prev and next episodes
   useEffect(() => {

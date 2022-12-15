@@ -1,12 +1,9 @@
 import { Button, Heading } from '@chakra-ui/react'
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import useSWR, { Fetcher } from 'swr'
-import AnimeItem from '../../../components/animeItem'
-import AnimeListContainer from '../../../components/animeListContainer'
-import AnimeListLoading from '../../../components/animeListLoading'
-import Layout from '../../../components/layout'
 import { AnimeSearchResults } from '../../../types'
 
 const fetcher: Fetcher<AnimeSearchResults> = (arg: string) => fetch(arg).then((res) => res.json())
@@ -21,6 +18,9 @@ function SinglePage({
   setNext: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   const { data, error } = useSWR(`/api/anime/genre?types=["${type}"]&page=${page}`, fetcher)
+  const AnimeItem = dynamic(() => import('../../../components/animeItem'), { ssr: false })
+  const AnimeListContainer = dynamic(() => import('../../../components/animeListContainer'), { ssr: false })
+  const AnimeListLoading = dynamic(() => import('../../../components/animeListLoading'), { ssr: false })
 
   useEffect(() => {
     if (data) {
@@ -49,6 +49,7 @@ export default function SearchResultsPage() {
   const router = useRouter()
   const { type } = Array.isArray(router.query) ? router.query[0] : router.query
   const [hasNext, setNext] = useState(false)
+  const Layout = dynamic(() => import('../../../components/layout'), { ssr: false })
 
   const [cnt, setCnt] = useState(1)
   const pages = []
