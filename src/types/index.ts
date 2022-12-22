@@ -93,3 +93,34 @@ type Date = {
   month: number
   day: number
 }
+
+/************************************************/
+export type MangaSearchRes = {
+  results: MangaMinimalInfo[]
+}
+
+type MangaMinimalInfo = {
+  id: string,
+  title: string
+  headerForImage: {
+    Referer: string
+  }
+  image: string
+}
+
+export type MangaInfo  = MangaMinimalInfo & {
+  altTitles: string
+  description: string
+  genres: string[]
+  status: string
+  views: string
+  authors: string
+  chapters: MangaChapters
+}
+
+export type MangaChapters = [{
+  id: string,
+  title: string,
+  views: number,
+  releasedDate: string,
+}]

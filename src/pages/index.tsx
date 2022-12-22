@@ -13,14 +13,16 @@ export default function Home() {
       <Head>
         <title>Hai</title>
       </Head>
+      <div> foo</div>
+      <div> bar</div>
       <Stack gap="1rem" p="2rem" align="center">
         <Image
           src="https://i.redd.it/qqlgi5vomnu91.jpg"
           alt='anime meme: tries first episode, binges entire season, "yep its trash"'
           border="solid 2px black"
-        />
-        <Button onClick={() => router.push('/anime/popular')}>EXPLORE</Button>
-      </Stack>
+        />{' '}
+        <Button onClick={() => router.push('/anime/popular')}>EXPLORE</Button>{' '}
+      </Stack>{' '}
     </Layout>
   )
 }
